@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lo Compa Autoimport | Premium Car Dealership DR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003876", // Deep Navy Blue (DR Flag)
+                        "accent": "#CE1126",  // Vibrant Red (DR Flag)
+                        "background-light": "#ffffff",
+                        "background-dark": "#0a0f1a",
+                        "border-light": "#e5e7eb",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Work Sans', sans-serif; }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .dark .glass-effect {
+            background: rgba(10, 15, 26, 0.8);
+        }
+        .custom-slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #003876;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .patriotic-gradient {
+            background: linear-gradient(135deg, #003876 0%, #003876 40%, #CE1126 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<header class="sticky top-0 z-50 w-full border-b border-primary/10 bg-primary shadow-lg">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12 flex h-20 items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-white">
+<svg class="size-9" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-black tracking-tight text-white uppercase">Lo Compa <span class="text-white/80 font-medium">Autoimport</span></h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Inventario</a>
+<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Financiamiento</a>
+<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Nosotros</a>
+<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="bg-accent text-white hover:bg-accent/90 transition-all px-6 py-2.5 rounded-lg text-sm font-extrabold uppercase tracking-wide shadow-lg shadow-black/20">
+                Buscar Mi Vehículo
+            </button>
+</div>
+</div>
+</header>
+<main class="w-full">
+<section class="relative w-full overflow-hidden bg-primary min-h-[700px] flex items-center">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7w0fiF2GKsquc0K3Ab02X0_4Jz7JDPLfulGrtMubCzNVKqdPDHG34eRLyj-XDt3ca25NWJAguLmdwh_90IE5eUJP3aW4LV_G5gu1eKsQ02B79_nFInRiIoQAvAOj4BG7Z_R1nPZGZw4AGmgt_84-DIJ5pB93cAZcxUZhRxdzsJBqV4IsH_lRfDdJZms7UePCDzXheR5ge7EANH6raoru_uRlWLOMPB3Z96s0Bot05f1sRE_fbu68pzzHnHPdaOMzL_4utz47mmQ4');"></div>
+</div>
+<div class="relative z-20 max-w-[1280px] mx-auto px-6 lg:px-12 w-full pt-20 pb-40">
+<div class="max-w-2xl space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-widest">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+</span>
+                    Calidad Certificada Dominicana
+                </div>
+<h1 class="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tight">
+                    Encuentra el Vehículo de tus <span class="text-accent italic">Sueños.</span>
+</h1>
+<p class="text-white/80 text-lg md:text-xl max-w-lg leading-relaxed font-light">
+                    Expertos en importación directa. Calidad garantizada y el mejor financiamiento de la República Dominicana.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-accent text-white h-14 px-8 rounded-lg font-black text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-xl shadow-accent/20">
+                        Ver Inventario
+                        <span class="material-symbols-outlined">trending_flat</span>
+</button>
+<button class="bg-white text-primary border border-white/20 h-14 px-8 rounded-lg font-bold text-lg hover:bg-slate-100 transition-all flex items-center justify-center">
+                        Contactar Asesor
+                    </button>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 left-0 right-0 z-30 px-6">
+<div class="max-w-[1100px] mx-auto bg-white dark:bg-background-dark p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-border-light dark:border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+<div class="space-y-2">
+<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Marca</p>
+<div class="relative group">
+<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer">
+<option>Seleccionar Marca</option>
+<option>Toyota</option>
+<option>Honda</option>
+<option>Lexus</option>
+<option>Hyundai</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Modelo</p>
+<div class="relative group">
+<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer">
+<option>Cualquier Modelo</option>
+<option>SUV</option>
+<option>Sedan</option>
+<option>Truck</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-2 lg:col-span-1">
+<div class="flex justify-between items-center px-1">
+<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Precio Máx</p>
+<span class="text-accent font-bold text-sm">USD $45k</span>
+</div>
+<div class="flex items-center h-12">
+<input class="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" max="100000" min="5000" step="500" type="range"/>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
+<span class="material-symbols-outlined text-xl">search</span>
+                        Filtrar 248 Autos
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+<div class="space-y-4">
+<h2 class="text-4xl font-black tracking-tight text-primary">Vehículos <span class="text-accent italic">Destacados</span></h2>
+<div class="h-1.5 w-24 bg-accent rounded-full"></div>
+<p class="text-slate-500 dark:text-slate-400 max-w-md">Explora nuestra selección premium de vehículos recién importados, listos para entrega inmediata.</p>
+</div>
+<div class="flex gap-4">
+<button class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+<div class="relative h-64 overflow-hidden">
+<div class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Premium</div>
+<div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm text-primary size-10 rounded-full flex items-center justify-center shadow-md hover:bg-accent hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3o4i6Jx29AhchJ-f172F0gnFO9JkvfOKQI8bZy9sVulx3k3NCByvFWHbKEHkYuV-n-NQfZBhopNg__eotu05MM1bKjMXLyNhgz22E6o1_SzrdIkv6nG7Fe91eAaxu00KHhO98FX7B4tkH-tH5DmxgsJ16-CLmWCKRSCXMnSE1KzzmBSLmME0SA5rNetTrLZXLyC9zZ87TIqbEnoOExlTSDeHchxd8LQYqujceJ0fqCVCyRvqh-gdfLE28HmrUT4DiHYcqxiWC228');"></div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-primary dark:text-white">Lexus RX 350 Luxury</h3>
+<p class="text-slate-500 text-sm font-medium">2023 • Blanco Perla • 12,000 KM</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
+<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">local_gas_station</span>
+<span class="text-xs font-bold uppercase">Gasolina</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="text-xs font-bold uppercase">Automatic</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-accent">US$ 64,500</span>
+<span class="text-primary/40 text-sm font-bold">RD$ 3,741,000 aprox.</span>
+</div>
+<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+<div class="relative h-64 overflow-hidden">
+<div class="absolute top-4 left-4 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Recién Llegado</div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEkSp9CQsQqz62mkmrC8LXLzFe5lFG0Ei_L20Grl8XEygwK0wnJv3S7KWPBJWxGK3m5V8vwYEgMDzPU_2boVL3na83yf6pFzfwHKQvMDdHJZXn0vzSxhAzwSsZZKFnSBDxanuijK5yLwqHm2GaKQO1K5xjcf8IWWo3M1R-887drNuXfiYxwt66MWnEQSlV3UOMK716_xyAmx3doK8iHjzzOvEQFsxSS7XazkPipoiWw9gqONNXRj_hgI3Ic8X0pyNuMEp9wkJ4qOk');"></div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-primary dark:text-white">Toyota Prado VX</h3>
+<p class="text-slate-500 text-sm font-medium">2022 • Gris Metálico • 25,000 KM</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
+<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">propane_tank</span>
+<span class="text-xs font-bold uppercase">Diesel</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
+<span class="material-symbols-outlined text-lg">grid_4x4</span>
+<span class="text-xs font-bold uppercase">4WD</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-accent">US$ 72,000</span>
+<span class="text-primary/40 text-sm font-bold">RD$ 4,176,000 aprox.</span>
+</div>
+<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+<div class="relative h-64 overflow-hidden">
+<div class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Oferta</div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPQF0_tFmpKrXkDpdX6trXP7WiXOVf62v4diZ68AF2MNboMlUbMoLcswn1zvY9sA2dHKjSjNsQmU4n6xnWtFyjhoOTBS929pAjWV7J2htcbSQHebbnfYcTIFPWZp8JMlmWekspZv9LM1T59J7UBUyuoPpoAPU4bGh14p-v51arZVWmXyN7XmDiJrG4jeyDXsasIa5Z3t_LWxc2OcF9_uXQCKM4VC43ajIaW69TTgmxLnrldnrV2pPci6X4rln5_r3RwQpkVrOKaS0');"></div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-primary dark:text-white">Honda CR-V Touring</h3>
+<p class="text-slate-500 text-sm font-medium">2021 • Azul Profundo • 38,000 KM</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
+<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">eco</span>
+<span class="text-xs font-bold uppercase">Hybrid</span>
+</div>
+<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="text-xs font-bold uppercase">Automatic</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex flex-col">
+<span class="text-2xl font-black text-accent">US$ 32,900</span>
+<span class="text-primary/40 text-sm font-bold">RD$ 1,908,000 aprox.</span>
+</div>
+<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 text-center">
+<button class="inline-flex items-center gap-3 border-b-2 border-accent pb-1 text-accent font-black uppercase tracking-widest hover:text-accent/70 transition-colors">
+                Ver Todo El Inventario (128)
+                <span class="material-symbols-outlined">north_east</span>
+</button>
+</div>
+</section>
+<section class="bg-slate-50 dark:bg-white/[0.02] py-24 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-20 opacity-[0.03] pointer-events-none">
+<span class="material-symbols-outlined text-[300px] text-primary">verified</span>
+</div>
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative">
+<div class="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYZJXDGOsXC9EmV6fceSLlqd7ebDjex-phAdrYDGr2dFE4VqVDpBT9gAkixKSCsdSrX07SpReQ4jLDBDUZ37jgvZX1167C-8X_eGMzpLyt9MV2fiPns0OWWiDQNqslLae2HI16jS6xrktWiH5u_nfrjD9Y4o5b22XaFntNEdmbIuANNP8aBtgfBMNSJe955rCJtj_MwkAeDM-lIuBoSPQVbSRZG_q4oOs41Rqz2VuxEYwIDNj3XdH8s_B7gWKuThgnA9Qq-AkSoH8'); background-size: cover; background-position: center;"></div>
+<div class="absolute -bottom-10 -right-10 bg-primary p-8 rounded-xl shadow-xl max-w-xs border border-white/10">
+<p class="text-4xl font-black text-accent mb-2">15+</p>
+<p class="text-sm font-bold text-white uppercase tracking-widest leading-relaxed">Años de experiencia en el mercado Dominicano</p>
+</div>
+</div>
+<div class="space-y-12">
+<div class="space-y-4">
+<h2 class="text-4xl font-black tracking-tight text-primary dark:text-white">¿Por qué elegir <br/><span class="text-accent italic">Lo Compa Autoimport?</span></h2>
+<p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">No solo vendemos vehículos, construimos relaciones de confianza a largo plazo con cada uno de nuestros clientes dominicanos.</p>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<div class="flex items-start gap-5">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-primary dark:text-white mb-2">Financiamiento Flexible</h4>
+<p class="text-slate-500 dark:text-slate-400">Trabajamos con los principales bancos locales para ofrecerte la tasa más competitiva del mercado.</p>
+</div>
+</div>
+<div class="flex items-start gap-5">
+<div class="size-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-primary dark:text-white mb-2">Certificación de 100 Puntos</h4>
+<p class="text-slate-500 dark:text-slate-400">Cada unidad es inspeccionada rigurosamente para garantizar su estado estético y mecánico.</p>
+</div>
+</div>
+<div class="flex items-start gap-5">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl">support_agent</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-primary dark:text-white mb-2">Asesoría Personalizada</h4>
+<p class="text-slate-500 dark:text-slate-400">Nuestros expertos te guiarán en cada paso de la compra, desde la elección hasta la matriculación.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[1280px] mx-auto px-6 py-24">
+<div class="patriotic-gradient rounded-[2rem] p-12 lg:p-20 relative overflow-hidden text-center lg:text-left shadow-2xl">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 -translate-y-12 translate-x-12"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+<div class="max-w-2xl space-y-6">
+<h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">¿Listo para conducir tu próximo vehículo?</h2>
+<p class="text-white/80 text-lg">Solicita una pre-aprobación de crédito hoy mismo sin compromiso.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 shrink-0">
+<button class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg">Aplicar Ahora</button>
+<button class="bg-accent border border-white/20 text-white h-14 px-10 rounded-xl font-black text-lg hover:bg-accent/90 transition-all shadow-lg">Hablar por WhatsApp</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-primary text-white/60 py-20 border-t border-white/5">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<div class="space-y-6">
+<div class="flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-accent text-3xl">directions_car</span>
+<h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span class="text-white/80 font-medium">Autoimport</span></h2>
+</div>
+<p class="leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos premium certificados e importaciones directas.</p>
+<div class="flex gap-4">
+<a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
+<i class="material-symbols-outlined text-lg">public</i>
+</a>
+<a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
+<i class="material-symbols-outlined text-lg">share</i>
+</a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold uppercase tracking-widest text-sm">Enlaces Rápidos</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-accent transition-colors" href="#">Todos los Vehículos</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Vehículos de Lujo</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Calculadora de Préstamo</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Vende tu Auto</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent">location_on</span>
+<span class="text-white/80">Av. Independencia #456, <br/>Santo Domingo, RD</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent">phone</span>
+<span class="text-white/80">+1 (809) 555-0123</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent">mail</span>
+<span class="text-white/80">ventas@locompa.do</span>
+</li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-white font-bold uppercase tracking-widest text-sm">Horario</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex justify-between">
+<span>Lun - Vie:</span>
+<span class="text-white">8:00 AM - 7:00 PM</span>
+</li>
+<li class="flex justify-between">
+<span>Sábados:</span>
+<span class="text-white">9:00 AM - 5:00 PM</span>
+</li>
+<li class="flex justify-between">
+<span>Domingos:</span>
+<span class="text-white">Cerrado</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
+<p>© 2024 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
+<div class="flex gap-8">
+<a class="hover:text-white" href="#">Términos</a>
+<a class="hover:text-white" href="#">Privacidad</a>
+<a class="hover:text-white" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
