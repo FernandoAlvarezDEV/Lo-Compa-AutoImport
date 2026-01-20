@@ -105,9 +105,6 @@
                         Ver Inventario
                         <span class="material-symbols-outlined">trending_flat</span>
 </button>
-<button class="bg-white text-primary border border-white/20 h-14 px-8 rounded-lg font-bold text-lg hover:bg-slate-100 transition-all flex items-center justify-center">
-                        Contactar Asesor
-                    </button>
 </div>
 </div>
 </div>
@@ -117,7 +114,7 @@
 <div class="space-y-2">
 <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Marca</p>
 <div class="relative group">
-<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer">
+<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
 <option>Seleccionar Marca</option>
 <option>Toyota</option>
 <option>Honda</option>
@@ -130,7 +127,7 @@
 <div class="space-y-2">
 <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Modelo</p>
 <div class="relative group">
-<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer">
+<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
 <option>Cualquier Modelo</option>
 <option>SUV</option>
 <option>Sedan</option>
@@ -140,17 +137,25 @@
 </div>
 </div>
 <div class="space-y-2 lg:col-span-1">
-<div class="flex justify-between items-center px-1">
-<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Precio Máx</p>
-<span class="text-accent font-bold text-sm">USD $45k</span>
-</div>
-<div class="flex items-center h-12">
-<input class="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" max="100000" min="5000" step="500" type="range"/>
-</div>
+    <div class="flex justify-between items-center px-1">
+        <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Precio Máx</p>
+        <span id="price-display" class="text-accent font-bold text-sm">USD $185k</span>
+    </div>
+    <div class="flex items-center h-12">
+        <input 
+            id="price-slider"
+            class="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary custom-slider-thumb" 
+            type="range"
+            min="33000" 
+            max="185000" 
+            step="1000" 
+            value="185000"
+        />
+    </div>
 </div>
 <button class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
 <span class="material-symbols-outlined text-xl">search</span>
-                        Filtrar 248 Autos
+                        Filtrar Autos
                     </button>
 </div>
 </div>
@@ -176,9 +181,6 @@
 <div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
 <div class="relative h-64 overflow-hidden">
 <div class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Premium</div>
-<div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm text-primary size-10 rounded-full flex items-center justify-center shadow-md hover:bg-accent hover:text-white cursor-pointer transition-colors">
-<span class="material-symbols-outlined text-xl">favorite</span>
-</div>
 <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3o4i6Jx29AhchJ-f172F0gnFO9JkvfOKQI8bZy9sVulx3k3NCByvFWHbKEHkYuV-n-NQfZBhopNg__eotu05MM1bKjMXLyNhgz22E6o1_SzrdIkv6nG7Fe91eAaxu00KHhO98FX7B4tkH-tH5DmxgsJ16-CLmWCKRSCXMnSE1KzzmBSLmME0SA5rNetTrLZXLyC9zZ87TIqbEnoOExlTSDeHchxd8LQYqujceJ0fqCVCyRvqh-gdfLE28HmrUT4DiHYcqxiWC228');"></div>
 </div>
 <div class="p-6 space-y-4">
@@ -334,11 +336,20 @@
 <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
 <div class="max-w-2xl space-y-6">
 <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">¿Listo para conducir tu próximo vehículo?</h2>
-<p class="text-white/80 text-lg">Solicita una pre-aprobación de crédito hoy mismo sin compromiso.</p>
 </div>
 <div class="flex flex-col sm:flex-row gap-4 shrink-0">
-<button class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg">Aplicar Ahora</button>
-<button class="bg-accent border border-white/20 text-white h-14 px-10 rounded-xl font-black text-lg hover:bg-accent/90 transition-all shadow-lg">Hablar por WhatsApp</button>
+<button class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg">Visitar Catologo</button>
+<div class="flex flex-col sm:flex-row gap-4 shrink-0">  
+    <a 
+        href="https://chat.whatsapp.com/FWyhXkneJvB4jtIkGScYtB" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="bg-accent border border-white/20 text-white h-14 px-10 rounded-xl font-black text-lg hover:bg-accent/90 transition-all shadow-lg flex items-center justify-center"
+    >
+        Hablar por WhatsApp
+    </a>
+</div>
+<Enter></Enter>
 </div>
 </div>
 </div>
@@ -368,7 +379,6 @@
 <li><a class="hover:text-accent transition-colors" href="#">Todos los Vehículos</a></li>
 <li><a class="hover:text-accent transition-colors" href="#">Vehículos de Lujo</a></li>
 <li><a class="hover:text-accent transition-colors" href="#">Calculadora de Préstamo</a></li>
-<li><a class="hover:text-accent transition-colors" href="#">Vende tu Auto</a></li>
 </ul>
 </div>
 <div class="space-y-6">
@@ -384,7 +394,7 @@
 </li>
 <li class="flex items-center gap-3">
 <span class="material-symbols-outlined text-accent">mail</span>
-<span class="text-white/80">ventas@locompa.do</span>
+<span class="text-white/80">ventas@locompaautoimport.do</span>
 </li>
 </ul>
 </div>
@@ -393,7 +403,7 @@
 <ul class="space-y-4 text-sm">
 <li class="flex justify-between">
 <span>Lun - Vie:</span>
-<span class="text-white">8:00 AM - 7:00 PM</span>
+<span class="text-white">8:00 AM - 5:00 PM</span>
 </li>
 <li class="flex justify-between">
 <span>Sábados:</span>
@@ -417,4 +427,5 @@
 </div>
 </footer>
 
+<script src="Landing JS.js"></script>
 </body></html>
