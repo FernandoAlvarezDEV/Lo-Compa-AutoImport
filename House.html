@@ -2,10 +2,20 @@
 <html class="light" lang="es"><head>
 
 <meta charset="utf-8"/>
+ <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const shouldDark = saved ? saved === "dark" : systemDark;
+      if (shouldDark) document.documentElement.classList.add("dark");
+    })();
+  </script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Lo Compa Autoimport | Premium Car Dealership DR</title>
 
 <link rel="icon" type="image/png" href="Logo.png">
+<link rel="stylesheet" href="theme.css">
+
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
@@ -20,7 +30,7 @@
                         "accent": "#CE1126",  // Vibrant Red (DR Flag)
                         "dr-red": "#CE1126",
                         "background-light": "#ffffff",
-                        "background-dark": "#0a0f1a",
+                        "background-dark": "#0F172A",
                         "border-light": "#e5e7eb",
                     },
                     fontFamily: {
@@ -58,30 +68,71 @@
             background: linear-gradient(135deg, #003876 0%, #003876 40%, #CE1126 100%);
         }
     </style>
+    
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
         <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
             <div class="flex items-center justify-between max-w-[1440px] mx-auto">
                 <div class="flex items-center gap-8">
-                    <div class="flex items-center gap-3">
-                        <div class="shrink-0">
-                            <img src="Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
-                        </div>
-                        
-                        <h2 class="text-xl font-bold tracking-tight">Lo Compa <span class="text-dr-red">Autoimport</span></h2>
-                    
-                    </div>
+                    <a href="House.html" class="group flex items-center gap-3 cursor-pointer">
+
+    <!-- LOGO -->
+    <img 
+    src="Logo.png" 
+    alt="Logo de Lo Compa Autoimport"
+    class="h-12 w-auto object-contain filter drop-shadow-md
+        transition-transform duration-200 group-hover:scale-105"
+    >
+
+    <!-- TEXTO -->
+    <h2 class="text-xl font-bold tracking-tight
+        text-slate-900 dark:text-white
+            transition-colors duration-200 group-hover:text-dr-red">Lo Compa <span class="text-dr-red dark:group-hover:text-white group-hover:text-primary">Autoimport</span>
+    </h2>
+
+</a>
+
                     <nav class="hidden md:flex items-center gap-7">
-                        <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="Landing Page.html">Inicio</a>
+                        <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="House.html">Inicio</a>
                         <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"  href="Inventory Page.html">Inventario</a>
                         <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="#">Nosotros</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Pagina de Financiamiento.html">Financiamiento</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Financiamiento.html">Financiamiento</a>
                     </nav>
                 </div>
-                <div class="flex items-center gap-6">
-                    <label class="hidden lg:flex flex-col min-w-48 !h-10 max-w-64">
-                    </label>
-                </div>
+                <div class="flex items-center gap-3">
+
+<!-- BUSCADOR -->
+<div class="relative">
+  <input
+    id="globalSearch"
+    type="text"
+    placeholder="Buscar vehículo..."
+    class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
+           bg-white dark:bg-[#1e293b]
+           border border-gray-200 dark:border-white/10
+           text-gray-800 dark:text-white
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-dr-red"
+  />
+  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+    search
+  </span>
+</div>
+
+<!-- BOTÓN MODO OSCURO -->
+  <button
+    id="btnTheme"
+    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+    type="button"
+    aria-label="Cambiar tema"
+  >
+    <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
+    <span id="themeText">Oscuro</span>
+  </button>
+</div>
+
+
+
             </div>
         </header>
 <main class="w-full">
@@ -106,11 +157,13 @@
                     Expertos en importación directa. Calidad garantizada y el mejor financiamiento de la República Dominicana.
                 </p>
 <div class="flex flex-col sm:flex-row gap-4">
-<button class="bg-accent text-white h-14 px-8 rounded-lg font-black text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-xl shadow-accent/20">
-                        Ver Inventario
-                        <span class="material-symbols-outlined">trending_flat</span>
-</button>
+  <button
+    class="relative -top-[25px] left-[45px] bg-accent text-white h-14 px-8 rounded-lg font-black text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-xl shadow-accent/20">
+    Ver Inventario
+    <span class="material-symbols-outlined">trending_flat</span>
+  </button>
 </div>
+
 </div>
 </div>
 <div class="absolute bottom-12 left-0 right-0 z-30 px-6">
@@ -209,10 +262,10 @@
 </div>
 <div class="flex gap-4">
 <button class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
-<span class="material-symbols-outlined">arrow_back</span>
+<span class="material-symbols-outlined dark:text-white ">arrow_back</span>
 </button>
 <button class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
-<span class="material-symbols-outlined">arrow_forward</span>
+<span class="material-symbols-outlined dark:text-white ">arrow_forward</span>
 </button>
 </div>
 </div>
@@ -242,9 +295,9 @@
 <div class="flex items-center justify-between pt-2">
 <div class="flex flex-col">
 <span class="text-2xl font-black text-accent">US$ 64,500</span>
-<span class="text-primary/40 text-sm font-bold">RD$ 3,741,000 aprox.</span>
+<span class="text-primary/40 dark:text-white text-sm font-bold">RD$ 3,741,000 aprox.</span>
 </div>
-<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
+<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white dark:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
 </div>
 </div>
 </div>
@@ -273,9 +326,9 @@
 <div class="flex items-center justify-between pt-2">
 <div class="flex flex-col">
 <span class="text-2xl font-black text-accent">US$ 72,000</span>
-<span class="text-primary/40 text-sm font-bold">RD$ 4,176,000 aprox.</span>
+<span class="text-primary/40 dark:text-white text-sm font-bold">RD$ 4,176,000 aprox.</span>
 </div>
-<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
+<button class="bg-primary/5 text-primary hover:bg-primary dark:text-white hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
 </div>
 </div>
 </div>
@@ -304,9 +357,9 @@
 <div class="flex items-center justify-between pt-2">
 <div class="flex flex-col">
 <span class="text-2xl font-black text-accent">US$ 32,900</span>
-<span class="text-primary/40 text-sm font-bold">RD$ 1,908,000 aprox.</span>
+<span class="text-primary/40 text-sm dark:text-white font-bold">RD$ 1,908,000 aprox.</span>
 </div>
-<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
+<button class="bg-primary/5 text-primary hover:bg-primary dark:text-white hover:text-white dark:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
 </div>
 </div>
 </div>
@@ -455,5 +508,9 @@
 </div>
 </footer>
 
-<script src="Landing JS.js"></script>
+<script src="temas.js" defer></script>
+<script src="Landing JS.js" defer></script>
+<script src="BUscador.js"></script>
+
+
 </body></html>

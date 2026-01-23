@@ -1,16 +1,76 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
+<html lang="es">
 <head>
     <meta charset="utf-8"/>
+    <script>
+    (function () {
+    const saved = localStorage.getItem('theme');
+    const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldDark = saved ? saved === 'dark' : systemDark;
+    if (shouldDark) document.documentElement.classList.add('dark');
+    })();
+</script>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Toyota Hilux GR-Sport | Lo Compa AutoImport</title>
 
     <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="stylesheet" href="theme.css">
+
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
+
+    <button id="btnTheme"
+    class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111827] px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-gray-100 dark:hover:bg-slate-800 transition-all"
+    type="button"
+    aria-label="Cambiar tema"
+>
+    <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
+    <span id="themeText">Oscuro</span>
+    </button>
+
+    <script>
+    (function () {
+    const html = document.documentElement;
+    const btn = document.getElementById('btnTheme');
+    const icon = document.getElementById('themeIcon');
+    const text = document.getElementById('themeText');
+
+    // 1) Cargar preferencia (localStorage) o usar preferencia del sistema
+    const savedTheme = localStorage.getItem('theme'); // 'dark' | 'light' | null
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const setTheme = (isDark) => {
+    html.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+      // UI del botón
+    if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    if (text) text.textContent = isDark ? 'Claro' : 'Oscuro';
+    };
+
+    // Inicializar tema
+    if (savedTheme === 'dark') setTheme(true);
+    else if (savedTheme === 'light') setTheme(false);
+    else setTheme(systemPrefersDark);
+
+    // 2) Toggle al hacer click
+    if (btn) {
+    btn.addEventListener('click', () => {
+        const isDark = html.classList.contains('dark');
+        setTheme(!isDark);
+    });
+    }
+    })();
+</script>
+
+
+
+
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",

@@ -27,3 +27,5 @@ priceSlider.addEventListener('input', (event) => {
 
 // Inicializar el valor al cargar la página
 priceDisplay.textContent = formatCurrency(priceSlider.value);
+
+
