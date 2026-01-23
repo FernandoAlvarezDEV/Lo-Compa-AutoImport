@@ -18,6 +18,7 @@
                     colors: {
                         "primary": "#003876", // Deep Navy Blue (DR Flag)
                         "accent": "#CE1126",  // Vibrant Red (DR Flag)
+                        "dr-red": "#CE1126",
                         "background-light": "#ffffff",
                         "background-dark": "#0a0f1a",
                         "border-light": "#e5e7eb",
@@ -59,35 +60,30 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-<header class="sticky top-0 z-50 w-full border-b border-primary/10 bg-primary shadow-lg">
-<div class="max-w-[1280px] mx-auto px-6 lg:px-12 flex h-20 items-center justify-between">
-<div class="flex items-center gap-3">
-    <div class="shrink-0">
-        <img 
-            src="Logo.png" 
-            alt="Logo de Lo Compa Autoimport" 
-            class="h-12 w-auto object-contain filter drop-shadow-md"
-        >
-    </div>
-    
-    <h2 class="text-xl font-black tracking-tight text-white uppercase">
-        Lo Compa 
-        <span class="text-white/80 font-medium block sm:inline">Autoimport</span>
-    </h2>
-</div>
-<nav class="hidden md:flex items-center gap-10">
-<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Inventario</a>
-<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Financiamiento</a>
-<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Nosotros</a>
-<a class="text-sm font-bold text-white hover:text-accent transition-colors uppercase tracking-wider" href="#">Contacto</a>
-</nav>
-<div class="flex items-center gap-6">
-<button class="bg-accent text-white hover:bg-accent/90 transition-all px-6 py-2.5 rounded-lg text-sm font-extrabold uppercase tracking-wide shadow-lg shadow-black/20">
-                Buscar Mi Vehículo
-            </button>
-</div>
-</div>
-</header>
+        <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
+            <div class="flex items-center justify-between max-w-[1440px] mx-auto">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="shrink-0">
+                            <img src="Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
+                        </div>
+                        
+                        <h2 class="text-xl font-bold tracking-tight">Lo Compa <span class="text-dr-red">Autoimport</span></h2>
+                    
+                    </div>
+                    <nav class="hidden md:flex items-center gap-7">
+                        <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="Landing Page.html">Inicio</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"  href="Inventory Page.html">Inventario</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="#">Nosotros</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Pagina de Financiamiento.html">Financiamiento</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-6">
+                    <label class="hidden lg:flex flex-col min-w-48 !h-10 max-w-64">
+                    </label>
+                </div>
+            </div>
+        </header>
 <main class="w-full">
 <section class="relative w-full overflow-hidden bg-primary min-h-[700px] flex items-center">
 <div class="absolute inset-0 z-0">
@@ -125,10 +121,18 @@
 <div class="relative group">
 <select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
 <option>Seleccionar Marca</option>
-<option>Toyota</option>
-<option>Honda</option>
-<option>Lexus</option>
-<option>Hyundai</option>
+<option value="toyota">Toyota</option>
+<option value="ford">Ford</option>
+<option value="mercedes-benz">Mercedes-Benz</option>
+<option value="lexus">Lexus</option>
+<option value="hyundai">Hyundai</option>
+<option value="chevrolet">Chevrolet</option>
+<option value="porsche">Porsche</option>
+<option value="bmw">BMW</option>
+<option value="audi">Audi</option>
+<option value="honda">Honda</option>
+<option value="mazda">Mazda</option>
+<option value="ram">Ram</option>    
 </select>
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
 </div>
@@ -138,9 +142,35 @@
 <div class="relative group">
 <select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
 <option>Cualquier Modelo</option>
-<option>SUV</option>
-<option>Sedan</option>
-<option>Truck</option>
+<option value="corvette">Corvette</option>
+<option value="911">911</option>
+<option value="r8">R8</option>
+
+<option value="prado">Prado</option>
+<option value="lx-600">LX 600</option>
+<option value="gle-53">GLE 53</option>
+<option value="4runner">4Runner</option>
+<option value="santa-fe">Santa Fe</option>
+<option value="explorer">Explorer</option>
+
+<option value="camry">Camry</option>
+<option value="c-300">C 300</option>
+<option value="330i">330i</option>
+<option value="accord">Accord</option>
+<option value="es-350">ES 350</option>
+<option value="sonata">Sonata</option>
+
+<option value="hilux">Hilux</option>
+<option value="raptor">Raptor</option>
+<option value="ram-1500">Ram 1500</option>
+<option value="silverado">Silverado</option>
+<option value="ranger">Ranger</option>
+
+<option value="m440i">M440i</option>
+<option value="mustang">Mustang</option>
+<option value="e-450">E 450</option>
+<option value="miata">Miata</option>
+<option value="boxster">Boxster</option>
 </select>
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
 </div>
@@ -282,10 +312,10 @@
 </div>
 </div>
 <div class="mt-16 text-center">
-<button class="inline-flex items-center gap-3 border-b-2 border-accent pb-1 text-accent font-black uppercase tracking-widest hover:text-accent/70 transition-colors">
+<a href="Inventory Page.html" class="inline-flex items-center gap-3 border-b-2 border-accent pb-1 text-accent font-black uppercase tracking-widest hover:text-accent/70 transition-colors">
                 Ver Todo El Inventario (25)
                 <span class="material-symbols-outlined">north_east</span>
-</button>
+</a>
 </div>
 </section>
 <section class="bg-slate-50 dark:bg-white/[0.02] py-24 relative overflow-hidden">
@@ -347,7 +377,7 @@
 <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">¿Listo para conducir tu próximo vehículo?</h2>
 </div>
 <div class="flex flex-col sm:flex-row gap-4 shrink-0">
-<button class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg">Visitar Catologo</button>
+<a href="Inventory Page.html" target="_blank" rel="noopener noreferrer" class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg flex items-center justify-center">Visitar Catologo</a>
 <div class="flex flex-col sm:flex-row gap-4 shrink-0">  
     <a 
         href="https://chat.whatsapp.com/FWyhXkneJvB4jtIkGScYtB" 
@@ -383,14 +413,6 @@
 </div>
 </div>
 <div class="space-y-6">
-<h4 class="text-white font-bold uppercase tracking-widest text-sm">Enlaces Rápidos</h4>
-<ul class="space-y-4 text-sm">
-<li><a class="hover:text-accent transition-colors" href="#">Todos los Vehículos</a></li>
-<li><a class="hover:text-accent transition-colors" href="#">Vehículos de Lujo</a></li>
-<li><a class="hover:text-accent transition-colors" href="#">Calculadora de Préstamo</a></li>
-</ul>
-</div>
-<div class="space-y-6">
 <h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
 <ul class="space-y-4 text-sm">
 <li class="flex items-start gap-3">
@@ -399,7 +421,7 @@
 </li>
 <li class="flex items-center gap-3">
 <span class="material-symbols-outlined text-accent">phone</span>
-<span class="text-white/80">+1 (809) 555-0123</span>
+<span class="text-white/80">+1 (829) 753-4583</span>
 </li>
 <li class="flex items-center gap-3">
 <span class="material-symbols-outlined text-accent">mail</span>
