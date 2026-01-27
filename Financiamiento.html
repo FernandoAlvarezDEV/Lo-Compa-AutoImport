@@ -25,19 +25,18 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-  <script>
+  <script id="tailwind-config"> 
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#003893",
-            secondary: "#CE1126",
-            "dr-red": "#CE1126",
-            "dr-blue": "#002D62",
-            "accent-gold": "#C08D43",
-            "background-light": "#F8FAFC",
-            "background-dark": "#0F172A",
+                        "primary": "#003876", // Deep Navy Blue (DR Flag)
+                        "accent": "#CE1126",  // Vibrant Red (DR Flag)
+                        "dr-red": "#CE1126",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0F172A",
+                        "border-light": "#e5e7eb",          
           },
           fontFamily: { display: ["Inter", "sans-serif"] },
           borderRadius: {
@@ -57,68 +56,100 @@
       font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
     }
   </style>
+
+<style type="text/tailwindcss">
+        body { font-family: 'Work Sans', sans-serif; }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .dark .glass-effect {
+            background: rgba(10, 15, 26, 0.8);
+        }
+        .custom-slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #003876;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .patriotic-gradient {
+            background: linear-gradient(135deg, #003876 0%, #003876 40%, #CE1126 100%);
+        }
+    </style>
+
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
 
   <!-- HEADER (solo UNO, ordenado) -->
-  <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 md:px-10 lg:px-40 py-3">
-    <div class="flex items-center justify-between max-w-[1440px] mx-auto gap-4">
+        <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
+            <div class="flex items-center justify-between max-w-[1440px] mx-auto">
+                <div class="flex items-center gap-8">
+                    <a href="House.html" class="group flex items-center gap-3 cursor-pointer">
 
-      <!-- IZQUIERDA: Logo + Nav -->
-      <div class="flex items-center gap-8">
-        <div class="flex items-center gap-3">
-          <div class="shrink-0">
-            <img src="Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
-          </div>
-          <h2 class="text-xl font-bold tracking-tight text-dr-blue dark:text-white">
-            Lo Compa <span class="text-dr-red">Autoimport</span>
-          </h2>
-        </div>
+    <!-- LOGO -->
+    <img 
+    src="Logo.png" 
+    alt="Logo de Lo Compa Autoimport"
+    class="h-12 w-auto object-contain filter drop-shadow-md
+        transition-transform duration-200 group-hover:scale-105"
+    >
 
-        <nav class="hidden md:flex items-center gap-7">
-          <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="House.html">Inicio</a>
-          <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="Inventory Page.html">Inventario</a>
-          <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="#">Nosotros</a>
-          <a class="text-sm font-bold text-dr-blue dark:text-white border-b-2 border-dr-red pb-1" href="Financiamiento.html">Financiamiento</a>
-        </nav>
-      </div>
+    <!-- TEXTO -->
+    <h2 class="text-xl font-bold tracking-tight
+        text-slate-900 dark:text-white
+            transition-colors duration-200 group-hover:text-dr-red">Lo Compa <span class="text-dr-red dark:group-hover:text-white group-hover:text-primary">Autoimport</span>
+    </h2>
+
+</a>
+
+                    <nav class="hidden md:flex items-center gap-7">
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="House.html">Inicio</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"  href="Inventory Page.html">Inventario</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Nosotros.html">Nosotros</a>
+                        <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="Financiamiento.html">Financiamiento</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-3">
 
 <!-- BUSCADOR -->
-<div class="relative -top-[0px] left-[130px]">
+<div class="relative">
   <input
     id="globalSearch"
     type="text"
     placeholder="Buscar vehículo..."
     class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
-          bg-white dark:bg-[#1e293b]
-          border border-gray-200 dark:border-white/10
-          text-gray-800 dark:text-white
-          placeholder-gray-400 dark:placeholder-gray-500
-          focus:outline-none focus:ring-2 focus:ring-dr-red"
+           bg-white dark:bg-[#1e293b]
+           border border-gray-200 dark:border-white/10
+           text-gray-800 dark:text-white
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-dr-red"
   />
   <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
     search
   </span>
 </div>
 
+<!-- BOTÓN MODO OSCURO -->
+  <button
+    id="btnTheme"
+    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+    type="button"
+    aria-label="Cambiar tema"
+  >
+    <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
+    <span id="themeText">Oscuro</span>
+  </button>
+</div>
 
 
-      <!-- DERECHA: Botón tema -->
-      <div class="flex items-center">
-        <button
-          id="btnTheme"
-          class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
-          type="button"
-          aria-label="Cambiar tema"
-        >
-          <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
-          <span id="themeText">Oscuro</span>
-        </button>
-      </div>
 
-    </div>
-  </header>
+            </div>
+        </header>
+
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex flex-col lg:flex-row gap-8">
@@ -202,7 +233,7 @@
             <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
               Mostrando <span id="numEntidades" class="font-bold text-slate-900 dark:text-white">8 entidades</span>
               financieras con tasas efectivas anuales desde <span id="minTasa" class="text-primary font-bold">15.95%</span>
-              hasta <span id="maxTasa" class="text-secondary font-bold">24.00%</span>.
+              hasta <span id="maxTasa" class="text-accent font-bold">24.00%</span>.
             </p>
           </div>
         </div>
