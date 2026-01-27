@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" href="Logo.png">
     <link rel="stylesheet" href="theme.css">
 
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -56,9 +55,7 @@
                         <div class="shrink-0">
                             <img src="Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
                         </div>
-                        
                         <h2 class="text-xl font-bold tracking-tight">Lo Compa <span class="text-dr-red">Autoimport</span></h2>
-                    
                     </div>
                     <nav class="hidden md:flex items-center gap-7">
                         <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="House.html">Inicio</a>
@@ -68,109 +65,112 @@
                     </nav>
                 </div>
                 <div class="flex items-center gap-6">
+                    <!-- BUSCADOR -->
+                    <div class="relative -top-[0px] left-[10px]">
+                        <input
+                            id="globalSearch"
+                            type="text"
+                            placeholder="Buscar vehículo..."
+                            class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
+                                   bg-white dark:bg-[#1e293b]
+                                   border border-gray-200 dark:border-white/10
+                                   text-gray-800 dark:text-white
+                                   placeholder-gray-400 dark:placeholder-gray-500
+                                   focus:outline-none focus:ring-2 focus:ring-dr-red"
+                        />
+                        <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                            search
+                        </span>
+                    </div>
 
-<!-- BUSCADOR -->
-<div class="relative -top-[0px] left-[10px]">
-  <input
-    id="globalSearch"
-    type="text"
-    placeholder="Buscar vehículo..."
-    class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
-           bg-white dark:bg-[#1e293b]
-           border border-gray-200 dark:border-white/10
-           text-gray-800 dark:text-white
-           placeholder-gray-400 dark:placeholder-gray-500
-           focus:outline-none focus:ring-2 focus:ring-dr-red"
-  />
-  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
-    search
-  </span>
-</div>
-
-
-
-
-  <!-- BOTÓN MODO OSCURO -->
-  <button
-    id="btnTheme"
-    class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
-    type="button"
-  >
-    <span id="themeIcon" class="material-symbols-outlined">dark_mode</span>
-    <span id="themeText">Oscuro</span>
-  </button>
-
-</div>
-
+                    <!-- BOTÓN MODO OSCURO -->
+                    <button
+                        id="btnTheme"
+                        class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
+                        type="button"
+                    >
+                        <span id="themeIcon" class="material-symbols-outlined">dark_mode</span>
+                        <span id="themeText">Oscuro</span>
+                    </button>
+                </div>
             </div>
         </header>
 
         <main class="flex-1 max-w-[1440px] mx-auto w-full px-4 md:px-10 lg:px-40 py-8 flex gap-8">
             <aside class="w-64 shrink-0 hidden md:flex flex-col gap-6 sticky top-24 h-fit">
                 <div class="flex flex-col bg-white dark:bg-[#242424] rounded-xl p-0 shadow-lg overflow-hidden border border-gray-200 dark:border-[#2a3a38]">
-                    <div class="bg-dr-blue p-4 flex items-center justify-between">
+                    <div class="bg-dr-blue p-4 flex items-center justify-between filters-header">
                         <h3 class="text-base font-bold text-white flex items-center gap-2">
                             <span class="material-symbols-outlined text-xl">tune</span> Filtros
                         </h3>
-                        <button class="text-[10px] font-bold text-white/80 hover:text-white uppercase tracking-wider">Reiniciar</button>
+                        <button id="btnResetFilters" class="text-[10px] font-bold text-white/80 hover:text-white uppercase tracking-wider">Reiniciar</button>
                     </div>
                     <div class="p-5">
                         <div class="mb-8">
                             <p class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">Tipo de Vehículo</p>
                             <div class="flex flex-wrap gap-2">
-                                <div class="flex h-8 items-center gap-2 rounded-md bg-dr-blue text-white px-3 cursor-pointer shadow-sm">
+                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">SUV</span>
                                 </div>
-                                <div class="flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer hover:bg-dr-blue/10 transition-colors">
+                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">Sedán</span>
                                 </div>
-                                <div class="flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer hover:bg-dr-blue/10 transition-colors">
+                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">Camioneta</span>
+                                </div>
+                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                    <span class="text-xs font-bold uppercase">Deportivo</span>
+                                </div>
+                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                    <span class="text-xs font-bold uppercase">Convertibles</span>
                                 </div>
                             </div>
                         </div>
+
                         <div class="mb-8">
                             <p class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">Marca</p>
                             <div class="flex flex-col max-h-40 overflow-y-auto custom-scrollbar pr-2 gap-1">
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input checked="" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
+                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
                                     <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Toyota</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
+                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
                                     <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Honda</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
+                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
                                     <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Hyundai</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
+                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
                                     <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Lexus</span>
                                 </label>
                             </div>
                         </div>
+
                         <div class="mb-8">
                             <p class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">Rango de Precio (USD)</p>
                             <div class="pt-2">
                                 <div class="relative h-1.5 w-full bg-gray-200 dark:bg-[#333] rounded-full">
-                                    <div class="absolute inset-y-0 left-[20%] right-[10%] bg-dr-red rounded-full"></div>
-                                    <div class="absolute top-1/2 -translate-y-1/2 left-[20%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer"></div>
-                                    <div class="absolute top-1/2 -translate-y-1/2 right-[10%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer"></div>
+                                    <div class="price-slider-track absolute inset-y-0 left-[20%] right-[10%] bg-dr-red rounded-full"></div>
+                                    <div class="price-thumb-min absolute top-1/2 -translate-y-1/2 left-[20%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer"></div>
+                                    <div class="price-thumb-max absolute top-1/2 -translate-y-1/2 right-[10%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer"></div>
                                 </div>
-                                <div class="flex justify-between mt-4">
-                                    <span class="text-xs font-bold text-dr-blue dark:text-gray-300">$33,000</span>
-                                    <span class="text-xs font-bold text-dr-blue dark:text-gray-300">$185,000</span>
+                                <div class="flex justify-between mt-4 text-xs font-bold text-dr-blue dark:text-gray-300">
+                                    <span id="price-min">$33,000</span>
+                                    <span id="price-max">$185,000</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="bg-dr-red rounded-xl p-6 text-white overflow-hidden relative shadow-lg">
                     <div class="relative z-10">
                         <h4 class="text-lg font-black mb-1 uppercase tracking-tighter italic">Tu Crédito Aquí</h4>
                         <p class="text-xs opacity-90 leading-tight mb-4">Financiamiento disponible con los principales bancos del país.</p>
-                        <button class="bg-white text-dr-red px-4 py-2 rounded font-black text-[10px] uppercase hover:bg-gray-100 transition-all">Solicitar Ya</button>
+                        <a href="Financiamiento.html" class="bg-white text-dr-red px-4 py-2 rounded font-black text-[10px] uppercase hover:bg-gray-100 transition-all">Solicitar Ya</a>
                     </div>
                     <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10">payments</span>
                 </div>
@@ -185,24 +185,18 @@
                     <div class="flex items-center gap-3">
                         <span class="text-xs font-bold uppercase dark:text-white text-dr-blue/40">Ordenar:</span>
                         <select id="orderSelect"
-                    class="bg-white dark:bg-[#242424] border border-gray-200 dark:border-[#2a3a38] rounded-lg text-xs font-bold px-3 py-2 outline-none cursor-pointer">
-                    <option value="recent">Más Recientes</option>
-                    <option value="price-asc">Precio: Menor a Mayor</option>
-                    <option value="price-desc">Precio: Mayor a Menor</option>
-</select>
-
+                            class="bg-white dark:bg-[#242424] border border-gray-200 dark:border-[#2a3a38] rounded-lg text-xs font-bold px-3 py-2 outline-none cursor-pointer">
+                            <option value="recent">Más Recientes</option>
+                            <option value="price-asc">Precio: Menor a Mayor</option>
+                            <option value="price-desc">Precio: Mayor a Menor</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                    <!-- orDENACIONS POR PRECIO Y FECHA -->
-
-                        <div
-                        class="bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                        data-precio="95000"
-                        data-fecha="2024-01-15">
-                        
-
+                    <!-- Vehículo 1 -->
+                    <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
+                         data-precio="95000" data-fecha="2024-01-15" data-marca="Toyota" data-tipo="suv">
                         <div class="relative aspect-[4/3] overflow-hidden">
                             <div class="absolute top-3 left-3 z-10">
                                 <span class="bg-dr-red text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">0KM Mileage</span>
@@ -211,8 +205,7 @@
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <div class="mb-4">
-                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white"
-                                >2024 Toyota Prado VX</h3>
+                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota Prado VX</h3>
                                 <p class="text-dr-red font-black text-xl mt-1">US$ 95,000</p>
                             </div>
                             <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
@@ -227,11 +220,9 @@
                         </div>
                     </div>
 
-                        <div
-                        class="bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                        data-precio="66000"
-                        data-fecha="2024-01-10">
-
+                    <!-- Vehículo 2 -->
+                    <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
+                         data-precio="66000" data-fecha="2024-01-10" data-marca="Toyota" data-tipo="camioneta">
                         <div class="relative aspect-[4/3] overflow-hidden">
                             <div class="absolute top-3 left-3 z-10">
                                 <span class="bg-dr-blue text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">Recién Llegada</span>
@@ -255,11 +246,9 @@
                         </div>
                     </div>
 
-                    <div
-                        class="bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                        data-precio="66000"
-                        data-fecha="2024-01-10">
-                        
+                    <!-- Vehículo 3 -->
+                    <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
+                         data-precio="45000" data-fecha="2024-02-05" data-marca="Toyota" data-tipo="sedán">
                         <div class="relative aspect-[4/3] overflow-hidden">
                             <div class="absolute top-3 left-3 z-10">
                                 <span class="bg-accent-gold text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">Premium</span>
@@ -285,7 +274,7 @@
                 </div>
 
                 <div class="mt-12 flex justify-center">
-                    <button class="flex items-center gap-2 px-8 py-3 bg-white dark:bg-[#242424] border-2 border-dr-blue text-dr-blue rounded-full text-xs font-black uppercase tracking-widest shadow-md hover:bg-dr-blue hover:text-white transition-all">
+                    <button class="flex items-center gap-2 px-8 py-3 bg-white bg-[#242424] border-2 border-dr-blue text-dr-blue rounded-full text-xs font-black uppercase tracking-widest shadow-md hover:bg-dr-blue hover:text-white transition-all">
                         Ver Más Vehículos
                         <span class="material-symbols-outlined text-sm">expand_more</span>
                     </button>
@@ -293,32 +282,69 @@
             </section>
         </main>
 
-        <footer class="bg-white dark:bg-background-dark py-12 px-4 md:px-10 lg:px-40 border-t border-gray-200 dark:border-[#2a3a38]">
-            <div class="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div>
-                    <h2 class="font-black text-xl text-dr-blue uppercase italic mb-4">Lo Compa</h2>
-                    <p class="text-sm text-gray-500 mb-6 leading-relaxed font-medium">Líderes en importación de vehículos de alta calidad en Santo Domingo desde hace más de 15 años.</p>
+        <footer class="bg-primary text-white/60 py-20 border-t border-white/5">
+            <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3 text-white">
+                            <img src="Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
+                            <h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span class="text-white/80 font-medium">Autoimport</span></h2>
+                        </div>
+                        <p class="leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos premium certificados e importaciones directas.</p>
+                        <div class="flex gap-4">
+                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
+                                <i class="material-symbols-outlined text-lg">public</i>
+                            </a>
+                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
+                                <i class="material-symbols-outlined text-lg">share</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-accent">location_on</span>
+                                <span class="text-white/80">Av. Independencia #456, <br/>Santo Domingo, RD</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent">phone</span>
+                                <span class="text-white/80">+1 (829) 753-4583</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent">mail</span>
+                                <span class="text-white/80">ventas@locompaautoimport.do</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-6">
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">Horario</h4>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex justify-between">
+                                <span>Lun - Vie:</span>
+                                <span class="text-white">8:00 AM - 5:00 PM</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Sábados:</span>
+                                <span class="text-white">9:00 AM - 5:00 PM</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Domingos:</span>
+                                <span class="text-white">Cerrado</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="font-black mb-6 text-xs uppercase tracking-widest text-dr-blue">Explorar</h4>
-                    <ul class="flex flex-col gap-3 text-sm font-bold text-gray-600">
-                        <li><a class="hover:text-dr-red transition-colors" href="#">Inventario</a></li>
-                        <li><a class="hover:text-dr-red transition-colors" href="#">Financiamiento</a></li>
-                    </ul>
+                <div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
+                    <p>© 2026 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
+                    <div class="flex gap-8"></div>
                 </div>
-                <div>
-                    <h4 class="font-black mb-6 text-xs uppercase tracking-widest text-dr-blue">Contacto</h4>
-                    <p class="text-sm text-gray-600 mb-2 font-bold">Av. 27 de Febrero #452<br/>Santo Domingo, RD</p>
-                    <p class="text-sm text-gray-500 font-medium">Lun - Sab: 9am - 7pm</p>
-                </div>
-            </div>
-            <div class="max-w-[1440px] mx-auto mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 Lo Compa Autoimport. Con Orgullo Dominicano.</p>
             </div>
         </footer>
     </div>
-    <script src="temas.js"></script>
-<script src="BUscador.js"></script>
 
+    <script src="temas.js"></script>
+    <script src="BUscador.js"></script>
+    <script src="inventory.js"></script>
 </body>
 </html>
