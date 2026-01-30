@@ -150,7 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (monto <= 0) {
             alert('Ingrese un monto a financiar válido.');
             return;
+        } if (inicial > monto) {
+            Toastify({
+                text: "Monto a financiar no válido",
+                duration: 3000,          // Se cierra automáticamente en 3 segundos
+                close: true,             // Muestra un botón 'X' para cerrar
+                gravity: "top",          // "top" o "bottom"
+                position: "right",       // "left", "center" o "right"
+                stopOnFocus: true,       // Evita que se cierre si el usuario pasa el mouse por encima
+                style: {
+                    background: "#ff5f6d", // Un color rojizo para indicar error
+                    borderRadius: "10px",
+                    boxShadow: "0 3px 10px rgba(0,0,0,0.2)"
+                },
+                onClick: function(){}    // Callback después de hacer click
+}).showToast();
+            return; 
         }
+
 
         const percentFinanced = (monto / (monto + inicial)) * 100;
 
