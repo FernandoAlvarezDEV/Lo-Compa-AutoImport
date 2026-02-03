@@ -236,65 +236,68 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ══════════════════════════════════════════════════════════
     // FUNCIÓN DE RENDERIZADO
     // ══════════════════════════════════════════════════════════
-    
-    function renderizarAutosConFiltros(autos) {
-        if (!contenedorAutos) return;
+// En la parte donde renderizas cada auto, cambia los botones "Detalles" así:
 
-        if (autos.length === 0) {
-            contenedorAutos.innerHTML = `
-                <div class="col-span-full text-center py-12">
-                    <span class="material-symbols-outlined text-6xl text-gray-300 mb-4">search_off</span>
-                    <p class="text-xl font-bold text-gray-400 dark:text-gray-500">No se encontraron vehículos</p>
-                    <p class="text-sm text-gray-400 dark:text-gray-600 mt-2">Intenta ajustar los filtros</p>
-                </div>
-            `;
-            return;
-        }
+function renderizarAutosConFiltros(autos) {
+    if (!contenedorAutos) return;
 
-        contenedorAutos.innerHTML = autos.map(auto => `
-            <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                 data-precio="${auto.precio}" 
-                 data-marca="${auto.marca.toLowerCase()}" 
-                 data-modelo="${auto.modelo.toLowerCase()}"
-                 data-id="${auto.id}">
-                <div class="relative aspect-[4/3] overflow-hidden">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span class="bg-${auto.disponible ? 'dr-red' : 'gray-400'} text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">
-                            ${auto.disponible ? 'Disponible' : 'Vendido'}
-                        </span>
-                    </div>
-                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                         src="${auto.imagen_url}" 
-                         alt="${auto.marca} ${auto.modelo}"
-                         onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'">
+    if (autos.length === 0) {
+        contenedorAutos.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <span class="material-symbols-outlined text-6xl text-gray-300 mb-4">search_off</span>
+                <p class="text-xl font-bold text-gray-400 dark:text-gray-500">No se encontraron vehículos</p>
+                <p class="text-sm text-gray-400 dark:text-gray-600 mt-2">Intenta ajustar los filtros</p>
+            </div>
+        `;
+        return;
+    }
+
+    contenedorAutos.innerHTML = autos.map(auto => `
+        <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
+             data-precio="${auto.precio}" 
+             data-marca="${auto.marca.toLowerCase()}" 
+             data-modelo="${auto.modelo.toLowerCase()}"
+             data-id="${auto.id}">
+            <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="window.location.href='Car Details Page.html?id=${auto.id}'">
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="bg-${auto.disponible ? 'dr-red' : 'gray-400'} text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">
+                        ${auto.disponible ? 'Disponible' : 'Vendido'}
+                    </span>
                 </div>
-                <div class="p-5 flex flex-col flex-1">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">
-                            ${auto.anio} ${auto.marca} ${auto.modelo}
-                        </h3>
-                        <p class="text-dr-red font-black text-xl mt-1">US$ ${auto.precio.toLocaleString()}</p>
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                     src="${auto.imagen_url}" 
+                     alt="${auto.marca} ${auto.modelo}"
+                     onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'">
+            </div>
+            <div class="p-5 flex flex-col flex-1">
+                <div class="mb-4">
+                    <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">
+                        ${auto.anio} ${auto.marca} ${auto.modelo}
+                    </h3>
+                    <p class="text-dr-red font-black text-xl mt-1">US$ ${auto.precio.toLocaleString()}</p>
+                </div>
+                <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
+                    <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span>
+                        <span class="text-[11px] font-bold">${auto.anio}</span>
                     </div>
-                    <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
-                        <div class="flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">calendar_today</span>
-                            <span class="text-[11px] font-bold">${auto.anio}</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">directions_car</span>
-                            <span class="text-[11px] font-bold uppercase">${auto.marca}</span>
-                        </div>
+                    <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">directions_car</span>
+                        <span class="text-[11px] font-bold uppercase">${auto.marca}</span>
                     </div>
-                    <div class="grid grid-cols-1 gap-2">
-                        <button class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">
-                            Consulta por WhatsApp
-                        </button>
-                        <button class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">
-                            Detalles
-                        </button>
-                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-2">
+                    <a href="https://wa.me/18297534583?text=${encodeURIComponent(`Hola! Interesado en ${auto.marca} ${auto.modelo} ${auto.anio}`)}" 
+                       class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">
+                        Consulta por WhatsApp
+                    </a>
+                    <button onclick="window.location.href='Car Details Page.html?id=${auto.id}'" 
+                            class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">
+                        Detalles
+                    </button>
                 </div>
             </div>
-        `).join('');
-    }
+        </div>
+    `).join('');
+}
 });

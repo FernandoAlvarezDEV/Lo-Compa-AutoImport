@@ -1,22 +1,20 @@
 import os
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware  # ← NUEVO: Para permitir peticiones desde el frontend
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from . import database, models
 
 app = FastAPI()
 
-# ← NUEVO: Configurar CORS para permitir peticiones desde el frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción, cambia esto por tu dominio específico
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Permite acceder a las imágenes desde http://localhost:8000/imagenes/nombre_imagen.jpg
 app.mount("/imagenes", StaticFiles(directory="Storage Images"), name="storage images")
 
 def get_db():
@@ -26,27 +24,34 @@ def get_db():
     finally:
         db.close()
 
-# ← NUEVO: Endpoint GET para obtener TODOS los autos
+# ✅ ENDPOINT GET para obtener TODOS los vehículos
 @app.get("/autos")
 def obtener_autos(db: Session = Depends(get_db)):
     """
-    Obtiene todos los autos de la base de datos
+    Obtiene todos los vehículos de la base de datos
     """
     try:
-        autos = db.query(models.AutoDB).all()
+        # ✅ CAMBIÓ DE models.AutoDB a models.VehiculoDB
+        vehiculos = db.query(models.VehiculoDB).all()
         
-        # Construir la URL completa de la imagen
         autos_con_url = []
-        for auto in autos:
+        for vehiculo in vehiculos:
             autos_con_url.append({
-                "id": auto.id,
-                "marca": auto.marca,
-                "modelo": auto.modelo,
-                "anio": auto.anio,
-                "precio": auto.precio,
-                "disponible": auto.disponible,
-                "imagen": auto.imagen,
-                "imagen_url": f"http://127.0.0.1:8000/imagenes/{auto.imagen}"  # URL completa
+                "id": vehiculo.id,
+                "marca": vehiculo.marca,
+                "modelo": vehiculo.modelo,
+                "anio": vehiculo.anio,
+                "color": vehiculo.color,
+                "precio": vehiculo.precio,
+                "kilometraje": vehiculo.kilometraje,
+                "transmision": vehiculo.transmision,
+                "combustible": vehiculo.combustible,
+                "tipo_vehiculo": vehiculo.tipo_vehiculo,
+                "disponible": vehiculo.disponible,
+                "destacado": vehiculo.destacado,
+                "descripcion": vehiculo.descripcion,
+                "imagen": vehiculo.imagen,
+                "imagen_url": f"http://127.0.0.1:8000/imagenes/{vehiculo.imagen}" if vehiculo.imagen else None
             })
         
         return {
@@ -56,47 +61,56 @@ def obtener_autos(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener autos: {str(e)}")
 
-# ← NUEVO: Endpoint GET para obtener un auto específico por ID
+# ✅ ENDPOINT GET para obtener un vehículo específico por ID
 @app.get("/autos/{auto_id}")
 def obtener_auto_por_id(auto_id: int, db: Session = Depends(get_db)):
     """
-    Obtiene un auto específico por su ID
+    Obtiene un vehículo específico por su ID
     """
-    auto = db.query(models.AutoDB).filter(models.AutoDB.id == auto_id).first()
+    # ✅ CAMBIÓ DE models.AutoDB a models.VehiculoDB
+    vehiculo = db.query(models.VehiculoDB).filter(models.VehiculoDB.id == auto_id).first()
     
-    if not auto:
+    if not vehiculo:
         raise HTTPException(status_code=404, detail=f"Auto con ID {auto_id} no encontrado")
     
     return {
-        "id": auto.id,
-        "marca": auto.marca,
-        "modelo": auto.modelo,
-        "anio": auto.anio,
-        "precio": auto.precio,
-        "disponible": auto.disponible,
-        "imagen": auto.imagen,
-        "imagen_url": f"http://127.0.0.1:8000/imagenes/{auto.imagen}"
+        "id": vehiculo.id,
+        "marca": vehiculo.marca,
+        "modelo": vehiculo.modelo,
+        "anio": vehiculo.anio,
+        "color": vehiculo.color,
+        "precio": vehiculo.precio,
+        "kilometraje": vehiculo.kilometraje,
+        "transmision": vehiculo.transmision,
+        "combustible": vehiculo.combustible,
+        "tipo_vehiculo": vehiculo.tipo_vehiculo,
+        "disponible": vehiculo.disponible,
+        "destacado": vehiculo.destacado,
+        "descripcion": vehiculo.descripcion,
+        "imagen": vehiculo.imagen,
+        "imagen_url": f"http://127.0.0.1:8000/imagenes/{vehiculo.imagen}" if vehiculo.imagen else None
     }
 
-# ← NUEVO: Endpoint GET para obtener solo autos disponibles
+# ✅ ENDPOINT GET para obtener solo vehículos disponibles
 @app.get("/autos/disponibles/todos")
 def obtener_autos_disponibles(db: Session = Depends(get_db)):
     """
-    Obtiene solo los autos que están disponibles (disponible = True)
+    Obtiene solo los vehículos que están disponibles
     """
-    autos = db.query(models.AutoDB).filter(models.AutoDB.disponible == True).all()
+    # ✅ CAMBIÓ de models.AutoDB a models.VehiculoDB
+    vehiculos = db.query(models.VehiculoDB).filter(models.VehiculoDB.disponible == True).all()
     
     autos_con_url = []
-    for auto in autos:
+    for vehiculo in vehiculos:
         autos_con_url.append({
-            "id": auto.id,
-            "marca": auto.marca,
-            "modelo": auto.modelo,
-            "anio": auto.anio,
-            "precio": auto.precio,
-            "disponible": auto.disponible,
-            "imagen": auto.imagen,
-            "imagen_url": f"http://127.0.0.1:8000/imagenes/{auto.imagen}"
+            "id": vehiculo.id,
+            "marca": vehiculo.marca,
+            "modelo": vehiculo.modelo,
+            "anio": vehiculo.anio,
+            "precio": vehiculo.precio,
+            "disponible": vehiculo.disponible,
+            "imagen": vehiculo.imagen,
+            "imagen_url": f"http://127.0.0.1:8000/imagenes/{vehiculo.imagen}" if vehiculo.imagen else None
         })
     
     return {
@@ -104,6 +118,7 @@ def obtener_autos_disponibles(db: Session = Depends(get_db)):
         "autos": autos_con_url
     }
 
+# ✅ ENDPOINT POST para vincular vehículo con foto
 @app.post("/autos/vincular")
 def vincular_auto_con_foto(
     marca: str, 
@@ -114,7 +129,7 @@ def vincular_auto_con_foto(
     db: Session = Depends(get_db)
 ):
     """
-    Vincula un auto con su imagen
+    Vincula un vehículo con su imagen
     """
     print(f"📥 Recibido: {marca} {modelo} {anio} ${precio} - Imagen: {nombre_imagen}")
     
@@ -126,7 +141,8 @@ def vincular_auto_con_foto(
         raise HTTPException(status_code=404, detail=f"El archivo '{nombre_imagen}' no existe en la carpeta Storage Images")
 
     try:
-        nuevo_auto = models.AutoDB(
+        # ✅ CAMBIÓ de models.AutoDB a models.VehiculoDB
+        nuevo_vehiculo = models.VehiculoDB(
             marca=marca,
             modelo=modelo,
             anio=anio,
@@ -134,22 +150,22 @@ def vincular_auto_con_foto(
             imagen=nombre_imagen
         )
         
-        db.add(nuevo_auto)
+        db.add(nuevo_vehiculo)
         db.commit()
-        db.refresh(nuevo_auto)
+        db.refresh(nuevo_vehiculo)
         
-        print(f"✅ Auto insertado con ID: {nuevo_auto.id}")
+        print(f"✅ Vehículo insertado con ID: {nuevo_vehiculo.id}")
         
         return {
             "mensaje": "Auto vinculado con éxito", 
             "auto": {
-                "id": nuevo_auto.id,
-                "marca": nuevo_auto.marca,
-                "modelo": nuevo_auto.modelo,
-                "anio": nuevo_auto.anio,
-                "precio": nuevo_auto.precio,
-                "imagen": nuevo_auto.imagen,
-                "imagen_url": f"http://127.0.0.1:8000/imagenes/{nuevo_auto.imagen}"
+                "id": nuevo_vehiculo.id,
+                "marca": nuevo_vehiculo.marca,
+                "modelo": nuevo_vehiculo.modelo,
+                "anio": nuevo_vehiculo.anio,
+                "precio": nuevo_vehiculo.precio,
+                "imagen": nuevo_vehiculo.imagen,
+                "imagen_url": f"http://127.0.0.1:8000/imagenes/{nuevo_vehiculo.imagen}"
             }
         }
     except Exception as e:

@@ -189,3 +189,23 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- ══════════════════════════════════════════════════════════
+-- CONSULTAS DE VERIFICACIÓN
+-- ══════════════════════════════════════════════════════════
+
+-- Ver todos los vehículos
+SELECT * FROM vehiculos;
+
+-- Ver vehículos disponibles
+SELECT * FROM vehiculos_disponibles;
+
+-- Ver vehículos destacados
+SELECT * FROM vehiculos_destacados;
+
+-- Contar vehículos por marca
+SELECT marca, COUNT(*) as cantidad
+FROM vehiculos
+WHERE disponible = TRUE
+GROUP BY marca
+ORDER BY cantidad DESC;
