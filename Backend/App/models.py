@@ -1,11 +1,13 @@
-from pydantic import BaseModel
-from typing import Optional
+from sqlalchemy import Column, Integer, String, Float, Boolean
+from .database import Base  # ← Import relativo
 
-class Auto(BaseModel):
-    id : Optional[int] = None
-    marca : str
-    modelo : str
-    anio : int
-    precio : float
-    disponible : bool = True
-    
+class AutoDB(Base):
+    __tablename__ = "Autos"
+
+    id = Column(Integer, primary_key=True, index=True)
+    marca = Column(String(50))
+    modelo = Column(String(50))
+    anio = Column(Integer)
+    precio = Column(Float)
+    disponible = Column(Boolean, default=True)
+    imagen = Column(String(255))

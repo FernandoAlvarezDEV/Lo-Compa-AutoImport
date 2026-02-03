@@ -1,31 +1,34 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("globalSearch");
+// BUscador.js - Funcionalidad del buscador
 
-  if (!input) return;
-
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const query = input.value.trim();
-      if (!query) return;
-
-      // redirige al inventario con el texto
-      window.location.href = `Inventory Page.html?search=${encodeURIComponent(query)}`;
+document.addEventListener('DOMContentLoaded', function() {
+    const buscadorGlobal = document.getElementById('globalSearch');
+    
+    if (buscadorGlobal) {
+        // Evento cuando presionas Enter en el buscador
+        buscadorGlobal.addEventListener('keypress', async function(e) {
+            if (e.key === 'Enter') {
+                const termino = this.value.trim();
+                
+                if (termino === '') {
+                    alert('Por favor ingresa un término de búsqueda');
+                    return;
+                }
+                
+                // Redirigir a la página de inventario con el término de búsqueda
+                window.location.href = `Inventory Page.html?buscar=${encodeURIComponent(termino)}`;
+            }
+        });
+        
+        // También puedes agregar un botón de búsqueda
+        const botonBuscar = buscadorGlobal.nextElementSibling;
+        if (botonBuscar && botonBuscar.classList.contains('material-symbols-outlined')) {
+            botonBuscar.style.cursor = 'pointer';
+            botonBuscar.addEventListener('click', function() {
+                const termino = buscadorGlobal.value.trim();
+                if (termino) {
+                    window.location.href = `Inventory Page.html?buscar=${encodeURIComponent(termino)}`;
+                }
+            });
+        }
     }
-  });
 });
-
-
-if (window.location.pathname.includes("Inventory")) {
-  const params = new URLSearchParams(window.location.search);
-  const search = params.get("search");
-
-  if (search) {
-    const cards = document.querySelectorAll("[data-vehicle]");
-    const term = search.toLowerCase();
-
-    cards.forEach(card => {
-      const text = card.dataset.vehicle.toLowerCase();
-      card.style.display = text.includes(term) ? "" : "none";
-    });
-  }
-}

@@ -47,26 +47,53 @@
         }
     </script>
 <style type="text/tailwindcss">
-        body { font-family: 'Work Sans', sans-serif; }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-        }
-        .dark .glass-effect {
-            background: rgba(10, 15, 26, 0.8);
-        }
-        .custom-slider-thumb::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            background: #003876;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .patriotic-gradient {
-            background: linear-gradient(135deg, #003876 0%, #003876 40%, #CE1126 100%);
-        }
+    body { font-family: 'Work Sans', sans-serif; }
+    
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+    }
+    .dark .glass-effect {
+        background: rgba(10, 15, 26, 0.8);
+    }
+    
+    /* ✅ AÑADE ESTO PARA ARREGLAR LOS SELECTS EN MODO OSCURO */
+    select {
+        background-color: rgb(248 250 252);
+        color: rgb(15 23 42);
+    }
+    
+    .dark select {
+        background-color: rgb(30 41 59) !important;
+        color: rgb(255 255 255) !important;
+    }
+    
+    /* Opciones del dropdown */
+    select option {
+        background-color: white;
+        color: rgb(15 23 42);
+    }
+    
+    .dark select option {
+        background-color: rgb(30 41 59) !important;
+        color: rgb(255 255 255) !important;
+    }
+    
+    .custom-slider-thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: #003876;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .patriotic-gradient {
+        background: linear-gradient(135deg, #003876 0%, #003876 40%, #CE1126 100%);
+    }
+</style>
+
     </style>
     
 </head>
@@ -193,7 +220,7 @@
 <div class="space-y-2">
 <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Modelo</p>
 <div class="relative group">
-<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+<select class="w-full bg-slate-50 dark: bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
 <option>Cualquier Modelo</option>
 <option value="corvette">Corvette</option>
 <option value="911">911</option>
@@ -245,7 +272,7 @@
         />
     </div>
 </div>
-<button class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
+<button  class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
 <span class="material-symbols-outlined text-xl">search</span>
                         Filtrar Autos
                     </button>
