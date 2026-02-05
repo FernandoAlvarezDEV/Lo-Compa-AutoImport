@@ -1,6 +1,6 @@
 // Calculadora de financiamiento.js
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const btnNuevo = document.getElementById('btnNuevo');
     const btnUsado = document.getElementById('btnUsado');
     const containerAnio = document.getElementById('containerAnio');
@@ -17,6 +17,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const minTasa = document.getElementById('minTasa');
     const maxTasa = document.getElementById('maxTasa');
 
+    // === NUEVO CÓDIGO: Leer datos de localStorage y prellenar ===
+    let TASA_DOLAR = 58.50; // Fallback si falla la API
+    try {
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const data = await response.json();
+        if (data.rates && data.rates.DOP) {
+            TASA_DOLAR = data.rates.DOP;
+        }
+    } catch (error) {
+        console.error('Error al obtener tasa de cambio:', error);
+        Toastify({
+            text: "Error al obtener tasa de cambio. Usando valor aproximado.",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "#ff5f6d",
+                borderRadius: "10px",
+                boxShadow: "0 3px 10px rgba(0,0,0,0.2)"
+            }
+        }).showToast();
+    }
+
+    const dataString = localStorage.getItem('financiamientoData');
+    if (dataString) {
+        const data = JSON.parse(dataString);
+        const precioUSD = data.precio || 0;
+        const porcInicial = data.porcInicial || 20;
+        const meses = data.meses || 36; // Default a 36 si no hay
+        const auto = data.auto || { anio: 2026 }; // Default a nuevo
+
+        // Limpiar localStorage
+        localStorage.removeItem('financiamientoData');
+
+        // Determinar tipo: usado si año < 2026
+        const esUsado = auto.anio < 2026;
+        if (esUsado) {
+            btnUsado.click(); // Simula clic para seleccionar "Usado"
+            selectAnio.value = auto.anio.toString(); // Prellena el año
+        } else {
+            btnNuevo.click(); // Simula clic para "Nuevo"
+        }
+
+        // Calcular valores en RD$
+        const inicialRD = Math.round(precioUSD * (porcInicial / 100) * TASA_DOLAR);
+        const montoRD = Math.round(precioUSD * (1 - porcInicial / 100) * TASA_DOLAR);
+
+        // Prellenar inputs (formateados con comas)
+        inputInicial.value = inicialRD.toLocaleString('es-DO');
+        inputMonto.value = montoRD.toLocaleString('es-DO');
+
+        // Prellenar plazo
+        selectPlazo.value = meses.toString();
+
+        // Actualizar porcentajes
+        updatePorcentajes();
+
+        // Trigger cálculo automático
+        btnActualizar.click();
+    }
+    // === FIN DEL NUEVO CÓDIGO ===
+
     // Instituciones financieras
     const instituciones = [
         {
@@ -26,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMax: 60,
             gastos: 'Si',
             fija: true,
-            logo: 'Fotos Bancos/Proamerica.png' // Asume que tienes el logo en el directorio
+            logo: '../Fotos Bancos/Proamerica.png' // Asume que tienes el logo en el directorio
         },
         {
             name: 'Motor Crédito',
@@ -35,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMax: 60,
             gastos: 'Si',
             fija: true,
-            logo: 'Fotos Bancos/Motor Credito.png'
+            logo: '../Fotos Bancos/Motor Credito.png'
         },
         {
             name: 'Banco BACC',
@@ -44,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMax: 60,
             gastos: 'Incluidos',
             fija: true,
-            logo: 'Fotos Bancos/BACC.png'
+            logo: '../Fotos Bancos/BACC.png'
         },
         {
             name: 'Scotiabank',
@@ -53,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMax: 84,
             gastos: 'Si',
             fija: true,
-            logo: 'Fotos Bancos/ScotiaBank.png'
+            logo: '../Fotos Bancos/ScotiaBank.png'
         },
         {
             name: 'Banco Popular',
@@ -62,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMax: 84,
             gastos: 'Si',
             fija: true,
-            logo: 'Fotos Bancos/banco popular.png'
+            logo: '../Fotos Bancos/banco popular.png'
         },
         {
             name: 'APAP',
@@ -73,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMaxUsed: 60,
             gastos: 'Incluidos',
             fija: true,
-            logo: 'Fotos Bancos/APAP.png'
+            logo: '../Fotos Bancos/APAP.png'
         },
         {
             name: 'Banco BHD',
@@ -82,17 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
             plazoMax: 60,
             gastos: 'Si',
             fija: true,
-            logo: 'Fotos Bancos/BHD.jpg',
+            logo: '../Fotos Bancos/BHD.jpg',
             maxAge: 5
         },
         {
-            name: 'Banco Lafise',
+            name: '../Banco Lafise',
             tasa: 14.0,
             maxPrestar: 85,
             plazoMax: 60,
             gastos: 'Si',
             fija: true,
-            logo: 'Fotos Bancos/LAFISE.png'
+            logo: '../Fotos Bancos/LAFISE.png'
         }
     ];
 
@@ -164,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     boxShadow: "0 3px 10px rgba(0,0,0,0.2)"
                 },
                 onClick: function(){}    // Callback después de hacer click
-}).showToast();
+            }).showToast();
             return; 
         }
 

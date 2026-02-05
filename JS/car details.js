@@ -31,6 +31,9 @@ async function cargarDetallesAuto(id) {
         // Renderizar los datos en la página
         renderizarDetalles(auto);
         
+        // Ocultar loading
+        ocultarLoading();
+        
     } catch (error) {
         console.error('Error al cargar auto:', error);
         mostrarError('No se pudo cargar la información del vehículo');
@@ -96,7 +99,7 @@ function renderizarDetalles(auto) {
         let badges = '';
         
         if (auto.kilometraje === 0) {
-            badges += `<span class="bg-primary-blue/10 text-primary-blue px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">0KM MILEAGE</span>`;
+            badges += `<span class="bg-primary-blue/10 text-primary-blue px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">0 KM</span>`;
         }
         
         if (auto.disponible) {
@@ -183,83 +186,146 @@ function renderizarDetalles(auto) {
     // CALCULADORA DE FINANCIAMIENTO
     // ═══════════════════════════════════════════
     
-    calcularFinanciamiento(auto.precio);
+    calcularFinanciamiento(auto);
     
     // ═══════════════════════════════════════════
     // BOTÓN WHATSAPP
     // ═══════════════════════════════════════════
     
-    const botonWhatsapp = document.querySelector('a[href*="wa.me"]');
-    if (botonWhatsapp) {
+    const botonesWhatsapp = document.querySelectorAll('a[href*="wa.me"]');
+    botonesWhatsapp.forEach(boton => {
         const mensaje = `Hola! Estoy interesado en el ${auto.marca} ${auto.modelo} ${auto.anio} por USD$ ${auto.precio.toLocaleString()}`;
-        botonWhatsapp.href = `https://wa.me/18297534583?text=${encodeURIComponent(mensaje)}`;
-    }
+        boton.href = `https://wa.me/18297534583?text=${encodeURIComponent(mensaje)}`;
+    });
 }
 
-function calcularFinanciamiento(precio) {
-    const slider = document.querySelector('input[type="range"]');
-    const cuotaElement = document.querySelector('.text-2xl.font-bold.text-primary-blue');
+async function calcularFinanciamiento(auto) {
+    const precio = auto.precio;
+    const slider = document.getElementById('range-inicial');
+    const cuotaRDElement = document.getElementById('cuota-mensual');
+    const cuotaUSDElement = document.getElementById('cuota-usd');
+    const valorInicialUSD = document.getElementById('valor-inicial-usd');
+    const botonesPlazo = document.querySelectorAll('.btn-plazo');
+    const botonWhatsapp = document.getElementById('btn-whatsapp');
+    const botonFinanciamiento = document.getElementById('btn-financiamiento');
     
-    if (!slider || !cuotaElement) return;
-    
-    // Configurar slider
-    slider.min = 10;
-    slider.max = 50;
-    slider.value = 20;
-    
-    function actualizarCuota() {
-        const inicial = parseFloat(slider.value);
-        const montoFinanciado = precio * (1 - inicial / 100);
-        const tasaAnual = 0.12; // 12% anual
-        const plazoMeses = 60; // 5 años
-        const tasaMensual = tasaAnual / 12;
+    if (!slider || !cuotaRDElement) return;
+
+    let mesesSeleccionados = 48; // Valor por defecto
+    let TASA_DOLAR = 58.50; // Fallback en caso de error en la API
+    const TASA_INTERES_ANUAL = 0.12; // 12%
+
+    // Obtener tasa de cambio dinámica desde API
+    try {
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const data = await response.json();
+        if (data.rates && data.rates.DOP) {
+            TASA_DOLAR = data.rates.DOP;
+        }
+    } catch (error) {
+        console.error('Error al obtener tasa de cambio:', error);
+        // Usar fallback
+    }
+
+    function actualizarCalculos() {
+        const porcInicial = parseFloat(slider.value);
+        const montoInicialUSD = precio * (porcInicial / 100);
+        const montoFinanciado = precio - montoInicialUSD;
         
-        // Fórmula de cuota mensual
-        const cuota = montoFinanciado * (tasaMensual * Math.pow(1 + tasaMensual, plazoMeses)) / 
-                     (Math.pow(1 + tasaMensual, plazoMeses) - 1);
+        // Mostrar valor del inicial en USD
+        valorInicialUSD.textContent = `USD$ ${Math.round(montoInicialUSD).toLocaleString()}`;
         
-        // Convertir a pesos dominicanos (aprox 58 DOP por USD)
-        const cuotaRD = cuota * 58;
+        // Fórmula de amortización
+        const tasaMensual = TASA_INTERES_ANUAL / 12;
+        const cuotaUSD = montoFinanciado * (tasaMensual * Math.pow(1 + tasaMensual, mesesSeleccionados)) / 
+                        (Math.pow(1 + tasaMensual, mesesSeleccionados) - 1);
         
-        cuotaElement.textContent = `RD$ ${Math.round(cuotaRD).toLocaleString()}`;
+        const cuotaRD = cuotaUSD * TASA_DOLAR;
+
+        // Renderizar resultados
+        cuotaRDElement.textContent = `RD$ ${Math.round(cuotaRD).toLocaleString()}`;
+        cuotaUSDElement.textContent = `USD$ ${Math.round(cuotaUSD).toLocaleString()}`;
         
-        // Actualizar label del slider
-        const label = slider.previousElementSibling;
-        if (label) {
-            label.textContent = `Pago Inicial (${inicial}%)`;
+        const label = document.getElementById('label-inicial');
+        if (label) label.textContent = `Pago Inicial (${porcInicial}%)`;
+
+        // Actualizar mensaje de WhatsApp para consulta de financiamiento
+        if (botonWhatsapp) {
+            const mensaje = `Hola! Estoy interesado en financiar el ${auto.marca} ${auto.modelo} ${auto.anio}. Detalles: Pago inicial ${porcInicial}% (USD$ ${Math.round(montoInicialUSD).toLocaleString()}), Plazo ${mesesSeleccionados} meses, Cuota estimada RD$ ${Math.round(cuotaRD).toLocaleString()} (USD$ ${Math.round(cuotaUSD).toLocaleString()})`;
+            botonWhatsapp.href = `https://wa.me/18297534583?text=${encodeURIComponent(mensaje)}`;
         }
     }
-    
-    slider.addEventListener('input', actualizarCuota);
-    actualizarCuota();
+
+    // Eventos para el Slider
+    slider.addEventListener('input', actualizarCalculos);
+
+    // Eventos para los botones de Plazo
+    botonesPlazo.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Estética de botones
+            botonesPlazo.forEach(b => {
+                b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                b.classList.add('border-primary/10');
+            });
+            btn.classList.add('bg-primary', 'text-white', 'border-primary');
+            btn.classList.remove('border-primary/10');
+
+            // Actualizar lógica
+            mesesSeleccionados = parseInt(btn.dataset.meses);
+            actualizarCalculos();
+        });
+    });
+
+    // Evento para botón de financiamiento (guardar datos y redirigir)
+    if (botonFinanciamiento) {
+        botonFinanciamiento.addEventListener('click', (e) => {
+            e.preventDefault();
+            const porcInicial = parseFloat(slider.value);
+            localStorage.setItem('financiamientoData', JSON.stringify({
+                precio: precio,
+                porcInicial: porcInicial,
+                meses: mesesSeleccionados,
+                auto: {
+                    marca: auto.marca,
+                    modelo: auto.modelo,
+                    anio: auto.anio
+                }
+            }));
+            window.location.href = 'Financiamiento.html';
+        });
+    }
+
+    // Inicializar cálculos
+    actualizarCalculos();
 }
 
 function mostrarLoading() {
-    const main = document.querySelector('main');
-    if (main) {
-        main.innerHTML = `
-            <div class="flex justify-center items-center py-20">
-                <div class="text-center">
-                    <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-primary-blue mx-auto mb-4"></div>
-                    <p class="text-lg font-bold text-gray-600 dark:text-gray-400">Cargando vehículo...</p>
-                </div>
-            </div>
-        `;
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'block';
+        loading.innerHTML = '<div class="text-center"><p class="text-xl font-bold">Cargando detalles del vehículo...</p></div>';
     }
+    const autoContent = document.getElementById('auto-content');
+    if (autoContent) autoContent.classList.add('hidden');
+}
+
+function ocultarLoading() {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'none';
+    }
+    const autoContent = document.getElementById('auto-content');
+    if (autoContent) autoContent.classList.remove('hidden');
 }
 
 function mostrarError(mensaje) {
-    const main = document.querySelector('main');
-    if (main) {
-        main.innerHTML = `
-            <div class="flex justify-center items-center py-20">
-                <div class="text-center">
-                    <span class="material-symbols-outlined text-6xl text-red-500 mb-4">error</span>
-                    <p class="text-xl font-bold text-gray-600 dark:text-gray-400 mb-4">${mensaje}</p>
-                    <a href="Inventory Page.html" class="inline-block bg-primary-blue text-white px-6 py-3 rounded-lg font-bold hover:bg-opacity-90">
-                        Volver al Inventario
-                    </a>
-                </div>
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.innerHTML = `
+            <div class="text-center text-red-500">
+                <span class="material-symbols-outlined text-6xl">error</span>
+                <p class="text-xl font-bold">${mensaje}</p>
+                <a href="Inventory Page.html" class="mt-4 inline-block bg-primary text-white px-6 py-2 rounded-lg">Volver al Inventario</a>
             </div>
         `;
     }

@@ -14,7 +14,6 @@
 <title>Lo Compa Autoimport</title>
 
 <link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport\Logo.png"/>
-<link rel="stylesheet" href="theme.css">
 
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -184,24 +183,41 @@
                     Expertos en importación directa. Calidad garantizada y el mejor financiamiento de la República Dominicana.
                 </p>
 <div class="flex flex-col sm:flex-row gap-4">
-  <button
+  <a href="Inventory Page.html" target="_blank"
+    
     class="relative -top-[25px] left-[45px] bg-accent text-white h-14 px-8 rounded-lg font-black text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-xl shadow-accent/20">
     Ver Inventario
     <span class="material-symbols-outlined">trending_flat</span>
-  </button>
+</a>
 </div>
 
 </div>
 </div>
 <div class="absolute bottom-12 left-0 right-0 z-30 px-6">
 <div class="max-w-[1100px] mx-auto bg-white dark:bg-background-dark p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-border-light dark:border-white/5">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-end">
+
+    <div class="space-y-2">
+<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Tipo de Auto</p>
+<div class="relative group">
+<select id="TiposDeCarros" class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+<option>Cualquier Tipo</option>
+<option value="sedan">Sedán</option>
+<option value="suv">SUV</option>
+<option value="convertible">Convertible</option>
+<option value="camioneta">Camioneta</option>
+<option value="deportivo">Deportivo</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
+</div>
+</div>
+
 <div class="space-y-2">
 <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Marca</p>
 <div class="relative group">
-<select class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+<select id="MarcasDeCarros" class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
 <option>Seleccionar Marca</option>
-<option value="toyota">Toyota</option>
+<option  value="toyota">Toyota</option>
 <option value="ford">Ford</option>
 <option value="mercedes-benz">Mercedes-Benz</option>
 <option value="lexus">Lexus</option>
@@ -220,8 +236,8 @@
 <div class="space-y-2">
 <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Modelo</p>
 <div class="relative group">
-<select class="w-full bg-slate-50 dark: bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
-<option>Cualquier Modelo</option>
+<select id="ModelosDeCarros" class="w-full bg-slate-50 dark: bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+<option> Cualquier Modelo</option>
 <option value="corvette">Corvette</option>
 <option value="911">911</option>
 <option value="r8">R8</option>
@@ -272,7 +288,7 @@
         />
     </div>
 </div>
-<button  class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
+<button id="btnFiltrarAutos" class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
 <span class="material-symbols-outlined text-xl">search</span>
                         Filtrar Autos
                     </button>
@@ -535,7 +551,7 @@
 </div>
 </footer>
 
-<script src="../JS/Theme.js" defer></script>
+<script src="../JS/temas.js" defer></script>
 <script src="../JS/Landing.js" defer></script>
 <script src="../JS/Buscador.js"></script>
 

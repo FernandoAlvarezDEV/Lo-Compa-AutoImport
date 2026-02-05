@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentMin = MIN_PRICE;
     let currentMax = MAX_PRICE;
 
+
     // ══════════════════════════════════════════════════════════
     // FUNCIONES DEL SLIDER
     // ══════════════════════════════════════════════════════════
@@ -193,19 +194,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Filtrar autos
-        let autosFiltrados = todosLosAutos.filter(auto => {
-            // Filtro por tipo (si lo tienes en la base de datos)
-            // const matchTipo = activeTypes.length === 0 || activeTypes.includes(auto.tipo?.toLowerCase());
-            
-            // Filtro por marca
-            const matchMarca = activeBrands.length === 0 || 
-                             activeBrands.includes(auto.marca.toLowerCase());
-            
-            // Filtro por precio
-            const matchPrecio = auto.precio >= currentMin && auto.precio <= currentMax;
+// Filtrar autos
+            let autosFiltrados = todosLosAutos.filter(auto => {
+                // Filtro por tipo de vehículo
+                const matchTipo = activeTypes.length === 0 || 
+                                activeTypes.includes(auto.tipo_vehiculo?.toLowerCase());
+                
+                // Filtro por marca
+                const matchMarca = activeBrands.length === 0 || 
+                                activeBrands.includes(auto.marca.toLowerCase());
+                
+                // Filtro por precio
+                const matchPrecio = auto.precio >= currentMin && auto.precio <= currentMax;
 
-            return matchMarca && matchPrecio; // && matchTipo si tienes tipo
-        });
+                return matchTipo && matchMarca && matchPrecio; // ✅ Ahora incluye tipo
+            }); // && matchTipo si tienes tipo
 
         // Ordenar
         if (selectOrden) {
@@ -266,17 +269,23 @@ function renderizarAutosConFiltros(autos) {
                 </div>
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                      src="${auto.imagen_url}" 
-                     alt="${auto.marca} ${auto.modelo}"
+                     alt="${auto.modelo}"
                      onerror="this.src='https://via.placeholder.com/800x600?text=Imagen+No+Disponible'">
             </div>
             <div class="p-5 flex flex-col flex-1">
                 <div class="mb-4">
                     <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">
-                        ${auto.anio} ${auto.marca} ${auto.modelo}
+                        ${auto.modelo}
                     </h3>
                     <p class="text-dr-red font-black text-xl mt-1">US$ ${auto.precio.toLocaleString()}</p>
                 </div>
                 <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
+
+                    <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span>
+                        <span class="text-[11px] font-bold">${auto.tipo_vehiculo}</span>
+                    </div>
+
                     <div class="flex items-center gap-1">
                         <span class="material-symbols-outlined text-sm">calendar_today</span>
                         <span class="text-[11px] font-bold">${auto.anio}</span>
