@@ -63,6 +63,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentMin = MIN_PRICE;
     let currentMax = MAX_PRICE;
 
+    function normalizar(texto) {
+    if (!texto) return '';
+    return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, ''); }
+
 
     // ══════════════════════════════════════════════════════════
     // FUNCIONES DEL SLIDER
@@ -176,40 +183,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ══════════════════════════════════════════════════════════
     // FUNCIÓN PRINCIPAL DE FILTRADO Y RENDERIZADO
     // ══════════════════════════════════════════════════════════
-    
     function applyFilters() {
-        // Obtener filtros activos
+        // Obtener filtros activos (normalizados sin tildes)
         const activeTypes = [];
         vehicleTypeButtons.forEach(btn => {
             if (btn.classList.contains('bg-dr-blue')) {
-                activeTypes.push(btn.querySelector('span').textContent.trim().toLowerCase());
+                activeTypes.push(normalizar(btn.querySelector('span').textContent.trim()));
             }
         });
 
         const activeBrands = [];
         brandCheckboxes.forEach(chk => {
             if (chk.checked) {
-                activeBrands.push(chk.nextElementSibling.textContent.trim().toLowerCase());
+                activeBrands.push(normalizar(chk.nextElementSibling.textContent.trim()));
             }
         });
 
         // Filtrar autos
-// Filtrar autos
-            let autosFiltrados = todosLosAutos.filter(auto => {
-                // Filtro por tipo de vehículo
-                const matchTipo = activeTypes.length === 0 || 
-                                activeTypes.includes(auto.tipo_vehiculo?.toLowerCase());
-                
-                // Filtro por marca
-                const matchMarca = activeBrands.length === 0 || 
-                                activeBrands.includes(auto.marca.toLowerCase());
-                
-                // Filtro por precio
-                const matchPrecio = auto.precio >= currentMin && auto.precio <= currentMax;
+        let autosFiltrados = todosLosAutos.filter(auto => {
+            // Filtro por tipo de vehículo (comparación normalizada)
+            const matchTipo = activeTypes.length === 0 || 
+                            activeTypes.includes(normalizar(auto.tipo_vehiculo));
+            
+            // Filtro por marca (comparación normalizada)
+            const matchMarca = activeBrands.length === 0 || 
+                            activeBrands.includes(normalizar(auto.marca));
+            
+            // Filtro por precio
+            const matchPrecio = auto.precio >= currentMin && auto.precio <= currentMax;
 
-                return matchTipo && matchMarca && matchPrecio; // ✅ Ahora incluye tipo
-            }); // && matchTipo si tienes tipo
-
+            return matchTipo && matchMarca && matchPrecio;
+        });
         // Ordenar
         if (selectOrden) {
             switch(selectOrden.value) {
