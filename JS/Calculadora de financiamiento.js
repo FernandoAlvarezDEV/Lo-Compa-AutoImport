@@ -207,14 +207,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tipo = containerAnio.style.display === 'block' ? 'usado' : 'nuevo';
         const anio = parseInt(selectAnio.value) || 2026;
         const age = 2026 - anio;
-        const inicial = parseFloat(inputInicial.value.replace(/,/g, '')) || 0;
-        const monto = parseFloat(inputMonto.value.replace(/,/g, '')) || 0;
+        const inicial = parseFloat(inputInicial.value.replace(/[,.]/g, '')) || 0;
+        const monto = parseFloat(inputMonto.value.replace(/[,.]/g, '')) || 0;
         const plazo = parseInt(selectPlazo.value);
 
         if (monto <= 0) {
             alert('Ingrese un monto a financiar válido.');
             return;
-        } if (inicial > monto) {
+        } if (inicial >= (inicial + monto)) {
             Toastify({
                 text: "Monto a financiar no válido",
                 duration: 3000,          // Se cierra automáticamente en 3 segundos
