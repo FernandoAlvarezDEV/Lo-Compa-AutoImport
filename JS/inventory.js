@@ -1,4 +1,4 @@
-// inventory.js - Versión completa con API, filtros y sincronización desde Landing Page
+// inventory.js - Versión completa con API, filtros, sincronización desde Landing Page y paginación
 
 // ══════════════════════════════════════════════════════════
 // FUNCIÓN HELPER: Normalizar texto (quitar tildes)
@@ -10,6 +10,12 @@ function normalizar(texto) {
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
 }
+
+// ══════════════════════════════════════════════════════════
+// VARIABLES DE PAGINACIÓN (fuera del DOMContentLoaded)
+// ══════════════════════════════════════════════════════════
+let autosVisibles = 6;
+let autosFiltradosGlobal = [];
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -260,15 +266,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Filtrar autos
         let autosFiltrados = todosLosAutos.filter(auto => {
-            // Filtro por tipo de vehículo (comparación normalizada)
             const matchTipo = activeTypes.length === 0 || 
                             activeTypes.includes(normalizar(auto.tipo_vehiculo));
             
-            // Filtro por marca (comparación normalizada)
             const matchMarca = activeBrands.length === 0 || 
                             activeBrands.includes(normalizar(auto.marca));
             
-            // Filtro por precio
             const matchPrecio = auto.precio >= currentMin && auto.precio <= currentMax;
 
             return matchTipo && matchMarca && matchPrecio;
@@ -296,16 +299,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Autos filtrados:', autosFiltrados.length, 'de', todosLosAutos.length);
         console.groupEnd();
 
-        // Renderizar
-        renderizarAutosConFiltros(autosFiltrados);
+        // Guardar filtrados globalmente y resetear paginación
+        autosFiltradosGlobal = autosFiltrados;
+        autosVisibles = 6;
+
+        // Renderizar primera página
+        renderizarPagina();
     }
 
     // ══════════════════════════════════════════════════════════
-    // FUNCIÓN DE RENDERIZADO
+    // FUNCIÓN DE RENDERIZADO CON PAGINACIÓN
     // ══════════════════════════════════════════════════════════
     
     function renderizarAutosConFiltros(autos) {
         if (!contenedorAutos) return;
+
+        autosFiltradosGlobal = autos;
+        autosVisibles = 6;
+        renderizarPagina();
+    }
+
+    function renderizarPagina() {
+        if (!contenedorAutos) return;
+
+        const autos = autosFiltradosGlobal;
+        const btnVerMas = document.getElementById('btnVerMas');
 
         if (autos.length === 0) {
             contenedorAutos.innerHTML = `
@@ -315,10 +333,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p class="text-sm text-gray-400 dark:text-gray-600 mt-2">Intenta ajustar los filtros</p>
                 </div>
             `;
+            if (btnVerMas) btnVerMas.style.display = 'none';
             return;
         }
 
-        contenedorAutos.innerHTML = autos.map(auto => `
+        // Mostrar solo los primeros `autosVisibles`
+        const autosAMostrar = autos.slice(0, autosVisibles);
+
+        contenedorAutos.innerHTML = autosAMostrar.map(auto => `
             <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
                  data-precio="${auto.precio}" 
                  data-marca="${auto.marca.toLowerCase()}" 
@@ -369,5 +391,36 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </div>
         `).join('');
+
+        // ── Controlar visibilidad del botón "Ver Más" ──
+        if (btnVerMas) {
+            const quedan = autos.length - autosVisibles;
+            if (quedan > 0) {
+                btnVerMas.style.display = 'flex';
+                // Actualizar texto con cuántos quedan
+                btnVerMas.innerHTML = `
+                    Ver Más Vehículos
+                    <span class="text-white/60 ml-1">(${quedan} más)</span>
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                `;
+            } else {
+                btnVerMas.style.display = 'none';
+            }
+        }
     }
-});
+
+    // ══════════════════════════════════════════════════════════
+    // BOTÓN VER MÁS
+    // ══════════════════════════════════════════════════════════
+
+    const btnVerMas = document.getElementById('btnVerMas');
+    if (btnVerMas) {
+        btnVerMas.addEventListener('click', () => {
+            autosVisibles += 6; // Mostrar 6 más cada vez
+            renderizarPagina();
+            // Scroll suave hacia los nuevos cards
+            contenedorAutos.lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    }
+
+}); // ← cierre del DOMContentLoaded
