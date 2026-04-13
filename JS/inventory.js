@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             Consulta por WhatsApp
                         </a>
                         <button onclick="window.location.href='Car Details Page.html?id=${auto.id}'" 
-                                class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">
+                                class="h-10 rounded-lg border-2 border-dr-blue/30 dark:border-white/20 bg-white dark:bg-slate-800 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white dark:hover:bg-dr-blue dark:hover:border-dr-blue transition-all">
                             Detalles
                         </button>
                     </div>

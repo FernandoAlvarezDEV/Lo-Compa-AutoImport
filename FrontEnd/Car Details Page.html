@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="es" class="light">
+<html lang="es">
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <script>
-    (function () {
-      const saved = localStorage.getItem("theme");
-      const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const shouldDark = saved ? saved === "dark" : systemDark;
-      if (shouldDark) document.documentElement.classList.add("dark");
-    })();
+        (function () {
+            const saved = localStorage.getItem("theme");
+            const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const shouldDark = saved ? saved === "dark" : systemDark;
+            if (shouldDark) document.documentElement.classList.add("dark");
+        })();
     </script>
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Detalles del Vehículo | Lo Compa AutoImport</title>
 
     <link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport/Logo.png">
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
 
     <script id="tailwind-config">
         tailwind.config = {
@@ -39,66 +42,69 @@
             },
         }
     </script>
-    
+
     <style>
-        body { font-family: 'Work Sans', sans-serif; }
+        body {
+            font-family: 'Work Sans', sans-serif;
+        }
     </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-    
+
     <!-- HEADER -->
-        <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
-            <div class="flex items-center justify-between max-w-[1440px] mx-auto">
-                <div class="flex items-center gap-8">
-                    <div class="flex items-center gap-3">
-                        <div class="shrink-0">
-                            <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
-                        </div>
-                        <h2 class="text-xl font-bold tracking-tight">Lo Compa <span class="text-dr-red">Autoimport</span></h2>
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
+        <div class="flex items-center justify-between max-w-[1440px] mx-auto">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <div class="shrink-0">
+                        <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport"
+                            class="h-12 w-auto object-contain filter drop-shadow-md">
                     </div>
-                    <nav class="hidden md:flex items-center gap-7">
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="House.html">Inicio</a>
-                        <a class="text-sm font-bold text-dr-blue dark:text-white border-b-2 border-dr-red pb-1" href="Inventory Page.html">Inventario</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="Nosotros.html">Nosotros</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="Financiamiento.html">Financiamiento</a>
-                    </nav>
+                    <h2 class="text-xl font-bold tracking-tight">Lo Compa <span class="text-dr-red">Autoimport</span>
+                    </h2>
                 </div>
-                <div class="flex items-center gap-6">
-                    <!-- BUSCADOR -->
-                    <div class="relative -top-[0px] left-[10px]">
-                        <input
-                            id="globalSearch"
-                            type="text"
-                            placeholder="Buscar vehículo..."
-                            class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
+                <nav class="hidden md:flex items-center gap-7">
+                    <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors"
+                        href="House.html">Inicio</a>
+                    <a class="text-sm font-bold text-dr-blue dark:text-white border-b-2 border-dr-red pb-1"
+                        href="Inventory Page.html">Inventario</a>
+                    <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors"
+                        href="Nosotros.html">Nosotros</a>
+                    <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors"
+                        href="Financiamiento.html">Financiamiento</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <!-- BUSCADOR -->
+                <div class="relative -top-[0px] left-[10px]">
+                    <input id="globalSearch" type="text" placeholder="Buscar vehículo..." class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
                                    bg-white dark:bg-[#1e293b]
                                    border border-gray-200 dark:border-white/10
                                    text-gray-800 dark:text-white
                                    placeholder-gray-400 dark:placeholder-gray-500
-                                   focus:outline-none focus:ring-2 focus:ring-dr-red"
-                        />
-                        <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
-                            search
-                        </span>
-                    </div>
-
-                    <!-- BOTÓN MODO OSCURO -->
-                    <button
-                        id="btnTheme"
-                        class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
-                        type="button"
-                    >
-                        <span id="themeIcon" class="material-symbols-outlined">dark_mode</span>
-                        <span id="themeText">Oscuro</span>
-                    </button>
+                                   focus:outline-none focus:ring-2 focus:ring-dr-red" />
+                    <span
+                        class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                        search
+                    </span>
                 </div>
+
+                <!-- BOTÓN MODO OSCURO -->
+                <button id="btnTheme"
+                    class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
+                    type="button">
+                    <span id="themeIcon" class="material-symbols-outlined">dark_mode</span>
+                    <span id="themeText">Oscuro</span>
+                </button>
             </div>
-        </header>
+        </div>
+    </header>
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="max-w-[1280px] mx-auto px-6 py-8">
-        
+
         <!-- Loading inicial -->
         <div id="loading" class="flex justify-center items-center py-20">
             <div class="text-center">
@@ -110,7 +116,7 @@
         <!-- Contenido del auto (oculto inicialmente) -->
         <div id="auto-content" class="hidden">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                
+
                 <!-- Columna Izquierda -->
                 <div class="lg:col-span-8 space-y-8">
                     <!-- Imagen -->
@@ -122,7 +128,8 @@
                     <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm">
                         <div class="flex flex-col md:flex-row justify-between gap-4 mb-4">
                             <div>
-                                <h1 id="titulo" class="text-3xl font-bold mb-2 text-primary dark:text-white">Cargando...</h1>
+                                <h1 id="titulo" class="text-3xl font-bold mb-2 text-primary dark:text-white">Cargando...
+                                </h1>
                                 <p id="subtitulo" class="text-lg opacity-70">...</p>
                             </div>
                             <div class="text-right">
@@ -146,184 +153,150 @@
                 </div>
 
                 <!-- Columna Derecha -->
-<div class="lg:col-span-4 space-y-6">
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
-        <h3 class="text-lg font-bold mb-6 flex items-center gap-2 text-primary dark:text-white">
-            <span class="material-symbols-outlined">calculate</span> Calculadora de Cuotas
-        </h3>
-        <div class="space-y-5">
-            <div>
-                <div class="flex justify-between items-center mb-2">
-                    <label id="label-inicial" class="text-xs font-bold uppercase opacity-60">Pago Inicial (20%)</label>
-                    <span id="valor-inicial-usd" class="text-xs font-bold text-accent">USD$ 0</span>
-                </div>
-                <input id="range-inicial" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent" type="range" min="10" max="80" value="20"/>
-            </div>
+                <div class="lg:col-span-4 space-y-6">
+                    <div
+                        class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <h3 class="text-lg font-bold mb-6 flex items-center gap-2 text-primary dark:text-white">
+                            <span class="material-symbols-outlined">calculate</span> Calculadora de Cuotas
+                        </h3>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label id="label-inicial" class="text-xs font-bold uppercase opacity-60">Pago
+                                        Inicial (20%)</label>
+                                    <span id="valor-inicial-usd" class="text-xs font-bold text-accent">USD$ 0</span>
+                                </div>
+                                <input id="range-inicial"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
+                                    type="range" min="10" max="80" value="20" />
+                            </div>
 
-            <div>
-                <label class="text-xs font-bold uppercase opacity-60 mb-2 block">Plazo del Financiamiento</label>
-                <div class="grid grid-cols-3 gap-2">
-                    <button type="button" class="btn-plazo py-2 rounded-md border-2 border-primary/10 text-xs font-bold hover:bg-primary hover:text-white transition-all" data-meses="12">12 Meses</button>
-                    <button type="button" class="btn-plazo py-2 rounded-md border-2 border-primary text-white bg-primary text-xs font-bold" data-meses="48">48 Meses</button>
-                    <button type="button" class="btn-plazo py-2 rounded-md border-2 border-primary/10 text-xs font-bold hover:bg-primary hover:text-white transition-all" data-meses="60">60 Meses</button>
-                </div>
-            </div>
+                            <div>
+                                <label class="text-xs font-bold uppercase opacity-60 mb-2 block">Plazo del
+                                    Financiamiento</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button type="button"
+                                        class="btn-plazo py-2 rounded-md border-2 border-primary/10 text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white transition-all"
+                                        data-meses="12">12 Meses</button>
+                                    <button type="button"
+                                        class="btn-plazo py-2 rounded-md border-2 border-primary text-white bg-primary text-xs font-bold"
+                                        data-meses="48">48 Meses</button>
+                                    <button type="button"
+                                        class="btn-plazo py-2 rounded-md border-2 border-primary/10 text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white transition-all"
+                                        data-meses="60">60 Meses</button>
+                                </div>
+                            </div>
 
-            <div class="bg-primary/5 dark:bg-primary/20 p-5 rounded-xl border border-primary/10">
-                <p class="text-[10px] font-black uppercase tracking-widest text-center opacity-60 mb-1">Cuota Mensual Estimada</p>
-                <div class="flex flex-col items-center">
-                    <p id="cuota-mensual" class="text-3xl font-black text-primary dark:text-white">RD$ 0</p>
-                    <p id="cuota-usd" class="text-sm font-medium opacity-60">USD$ 0</p>
-                </div>
-            </div>
+                            <div class="bg-primary/5 dark:bg-primary/20 p-5 rounded-xl border border-primary/10">
+                                <p class="text-[10px] font-black uppercase tracking-widest text-center opacity-60 mb-1">
+                                    Cuota Mensual Estimada</p>
+                                <div class="flex flex-col items-center">
+                                    <p id="cuota-mensual" class="text-3xl font-black text-primary dark:text-white">RD$ 0
+                                    </p>
+                                    <p id="cuota-usd" class="text-sm font-medium opacity-60">USD$ 0</p>
+                                </div>
+                            </div>
 
-            <a id="btn-financiamiento" href="Financiamiento.html" class="block w-full bg-primary text-white py-4 rounded-lg font-bold text-center hover:scale-[1.02] transition-transform shadow-md">
-                Más Detalles de Financiamiento
-            </a>
+                            <a id="btn-financiamiento" href="Financiamiento.html"
+                                class="block w-full bg-primary text-white py-4 rounded-lg font-bold text-center hover:scale-[1.02] transition-transform shadow-md">
+                                Más Detalles de Financiamiento
+                            </a>
 
-            <a id="btn-whatsapp" href="#" class="block w-full bg-accent text-white py-4 rounded-lg font-bold text-center hover:scale-[1.02] transition-transform shadow-md">
-                Consultar por WhatsApp
-            </a>
-        </div>
-    </div>
-</div>
+                            <a id="btn-whatsapp" href="#"
+                                class="block w-full bg-accent text-white py-4 rounded-lg font-bold text-center hover:scale-[1.02] transition-transform shadow-md">
+                                Consultar por WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
 
     </main>
 
     <!-- FOOTER -->
-        <footer class="bg-primary text-white/60 py-20 border-t border-white/5">
-            <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-3 text-white">
-                            <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
-                            <h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span class="text-white/80 font-medium">Autoimport</span></h2>
-                        </div>
-                        <p class="leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos premium certificados e importaciones directas.</p>
-                        <div class="flex gap-4">
-                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
-                                <i class="material-symbols-outlined text-lg">public</i>
-                            </a>
-                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
-                                <i class="material-symbols-outlined text-lg">share</i>
-                            </a>
-                        </div>
+    <footer class="bg-primary text-white/60 py-20 border-t border-white/5">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 text-white">
+                        <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport"
+                            class="h-12 w-auto object-contain filter drop-shadow-md">
+                        <h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span
+                                class="text-white/80 font-medium">Autoimport</span></h2>
                     </div>
-                    <div class="space-y-6">
-                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
-                        <ul class="space-y-4 text-sm">
-                            <li class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-accent">location_on</span>
-                                <span class="text-white/80">Av. Independencia #456, <br/>Santo Domingo, RD</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">phone</span>
-                                <span class="text-white/80">+1 (829) 753-4583</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-accent">mail</span>
-                                <span class="text-white/80">ventas@locompaautoimport.do</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-6">
-                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">Horario</h4>
-                        <ul class="space-y-4 text-sm">
-                            <li class="flex justify-between">
-                                <span>Lun - Vie:</span>
-                                <span class="text-white">8:00 AM - 5:00 PM</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span>Sábados:</span>
-                                <span class="text-white">9:00 AM - 5:00 PM</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span>Domingos:</span>
-                                <span class="text-white">Cerrado</span>
-                            </li>
-                        </ul>
+                    <p class="leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos premium
+                        certificados e importaciones directas.</p>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                            href="#">
+                            <i class="material-symbols-outlined text-lg">public</i>
+                        </a>
+                        <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                            href="#">
+                            <i class="material-symbols-outlined text-lg">share</i>
+                        </a>
                     </div>
                 </div>
-                <div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
-                    <p>© 2026 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
-                    <div class="flex gap-8"></div>
+                <div class="space-y-6">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-accent">location_on</span>
+                            <span class="text-white/80">Av. Independencia #456, <br />Santo Domingo, RD</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent">phone</span>
+                            <span class="text-white/80">+1 (829) 753-4583</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent">mail</span>
+                            <span class="text-white/80">ventas@locompaautoimport.do</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm">Horario</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between">
+                            <span>Lun - Vie:</span>
+                            <span class="text-white">8:00 AM - 5:00 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sábados:</span>
+                            <span class="text-white">9:00 AM - 5:00 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Domingos:</span>
+                            <span class="text-white">Cerrado</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </footer>
+            <div
+                class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
+                <p>© 2026 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
+                <div class="flex gap-8"></div>
+            </div>
+        </div>
+    </footer>
 
     <!-- WhatsApp Button -->
-    <a id="whatsapp-float" href="#" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+    <a id="whatsapp-float" href="#"
+        class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z">
+            </path>
+        </svg>
     </a>
 
     <!-- Scripts -->
     <script src="../JS/temas.js"></script>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const autoId = urlParams.get('id');
-        
-        if (!autoId) {
-            document.getElementById('loading').innerHTML = '<p class="text-center text-xl">No se especificó un vehículo</p>';
-            return;
-        }
-        
-        fetch(`http://127.0.0.1:8000/autos/${autoId}`)
-            .then(r => r.json())
-            .then(auto => {
-                // Ocultar loading, mostrar contenido
-                document.getElementById('loading').classList.add('hidden');
-                document.getElementById('auto-content').classList.remove('hidden');
-                
-                // Actualizar título de página
-                document.title = `${auto.marca} ${auto.modelo} | Lo Compa AutoImport`;
-                
-                // Actualizar elementos
-                document.getElementById('titulo').textContent = `${auto.anio} ${auto.marca} ${auto.modelo}`;
-                document.getElementById('subtitulo').textContent = `${auto.combustible || 'Gasolina'} • ${auto.transmision || 'Automática'}`;
-                document.getElementById('precio').textContent = `USD$ ${auto.precio.toLocaleString()}`;
-                
-                // Imagen
-                const imgUrl = auto.imagen_url || 'https://via.placeholder.com/1200x600/003876/ffffff?text=Sin+Imagen';
-                document.getElementById('imagen-principal').style.backgroundImage = `url('${imgUrl}')`;
-                
-                // Badges
-                let badgesHTML = '';
-                if (auto.kilometraje === 0) badgesHTML += `<span class="bg-primary/10 text-primary px-3 py-1 rounded text-xs font-bold uppercase">0KM</span>`;
-                if (auto.disponible) badgesHTML += `<span class="bg-green-100 text-green-700 px-3 py-1 rounded text-xs font-bold uppercase">Disponible</span>`;
-                document.getElementById('badges').innerHTML = badgesHTML;
-                
-                // Especificaciones
-                document.getElementById('especificaciones').innerHTML = `
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Año</span><span class="font-semibold">${auto.anio}</span></div>
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Marca</span><span class="font-semibold">${auto.marca}</span></div>
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Modelo</span><span class="font-semibold">${auto.modelo}</span></div>
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Precio</span><span class="font-semibold">USD$ ${auto.precio.toLocaleString()}</span></div>
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Transmisión</span><span class="font-semibold">${auto.transmision || 'Automática'}</span></div>
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Combustible</span><span class="font-semibold">${auto.combustible || 'Gasolina'}</span></div>
-                    ${auto.color ? `<div class="flex justify-between py-3 border-b"><span class="opacity-60">Color</span><span class="font-semibold">${auto.color}</span></div>` : ''}
-                    <div class="flex justify-between py-3 border-b"><span class="opacity-60">Kilometraje</span><span class="font-semibold">${auto.kilometraje ? auto.kilometraje.toLocaleString() : '0'} km</span></div>
-                `;
-                
-                // WhatsApp
-                const mensaje = `Hola! Estoy interesado en el ${auto.marca} ${auto.modelo} ${auto.anio} por USD$ ${auto.precio.toLocaleString()}`;
-                document.getElementById('btn-whatsapp').href = `https://wa.me/18297534583?text=${encodeURIComponent(mensaje)}`;
-                document.getElementById('whatsapp-float').href = `https://wa.me/18297534583?text=${encodeURIComponent(mensaje)}`;
-            })
-            .catch(err => {
-                document.getElementById('loading').innerHTML = `<p class="text-center text-xl text-red-500">Error al cargar el vehículo</p>`;
-                console.error(err);
-            });
-    });
-    </script>
-
-<script src="../JS/car details.js"></script>
-<script src="../JS/temas.js"></script>
+    <script src="../JS/car details.js"></script>
 
 </body>
+
 </html>

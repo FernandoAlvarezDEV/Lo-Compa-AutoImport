@@ -1,15 +1,15 @@
 // car-details.js - Cargar detalles del vehículo desde la API
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     // Obtener el ID del auto desde la URL
     const urlParams = new URLSearchParams(window.location.search);
     const autoId = urlParams.get('id');
-    
+
     if (!autoId) {
         mostrarError('No se especificó un vehículo');
         return;
     }
-    
+
     // Cargar los datos del auto
     await cargarDetallesAuto(autoId);
 });
@@ -18,22 +18,22 @@ async function cargarDetallesAuto(id) {
     try {
         // Mostrar loading
         mostrarLoading();
-        
+
         // Hacer petición a la API
         const response = await fetch(`http://127.0.0.1:8000/autos/${id}`);
-        
+
         if (!response.ok) {
             throw new Error('Auto no encontrado');
         }
-        
+
         const auto = await response.json();
-        
+
         // Renderizar los datos en la página
         renderizarDetalles(auto);
-        
+
         // Ocultar loading
         ocultarLoading();
-        
+
     } catch (error) {
         console.error('Error al cargar auto:', error);
         mostrarError('No se pudo cargar la información del vehículo');
@@ -44,80 +44,95 @@ function renderizarDetalles(auto) {
     // ═══════════════════════════════════════════
     // TÍTULO Y PRECIO
     // ═══════════════════════════════════════════
-    
-    const titulo = document.querySelector('h1');
+
+    const titulo = document.getElementById('titulo');
     if (titulo) {
         titulo.textContent = `${auto.anio} ${auto.marca} ${auto.modelo}`;
     }
-    
-    const precio = document.querySelector('h2.text-dr-red');
+
+    const precio = document.getElementById('precio');
     if (precio) {
         precio.textContent = `USD$ ${auto.precio.toLocaleString()}`;
     }
-    
+
     // Actualizar título de la página
     document.title = `${auto.marca} ${auto.modelo} | Lo Compa AutoImport`;
-    
+
     // ═══════════════════════════════════════════
     // IMAGEN PRINCIPAL
     // ═══════════════════════════════════════════
-    
-    const imagenPrincipal = document.querySelector('.aspect-video.w-full');
+
+    const imagenPrincipal = document.getElementById('imagen-principal');
     if (imagenPrincipal && auto.imagen_url) {
-        imagenPrincipal.style.backgroundImage = `url('${auto.imagen_url}')`;
+        const img = new Image();
+        img.onload = () => {
+            imagenPrincipal.style.backgroundImage = `url('${auto.imagen_url}')`;
+            imagenPrincipal.parentElement.style.display = 'block';
+        };
+        img.onerror = () => {
+            imagenPrincipal.parentElement.style.display = 'none';
+        };
+        img.src = auto.imagen_url;
     }
-    
+
     // ═══════════════════════════════════════════
     // MINIATURAS (por ahora solo mostrar la principal)
     // ═══════════════════════════════════════════
-    
+
     const contenedorMiniaturas = document.querySelector('.flex.gap-4.overflow-x-auto');
     if (contenedorMiniaturas && auto.imagen_url) {
-        contenedorMiniaturas.innerHTML = `
-            <div class="min-w-[160px] aspect-video rounded-lg bg-cover bg-center border-2 border-primary-blue" 
-                 style="background-image: url('${auto.imagen_url}');"></div>
-        `;
+        const thumb = new Image();
+        thumb.onload = () => {
+            contenedorMiniaturas.innerHTML = `
+                <div class="min-w-[160px] aspect-video rounded-lg bg-cover bg-center border-2 border-primary-blue bg-white dark:bg-gray-800" 
+                     style="background-image: url('${auto.imagen_url}');"></div>
+            `;
+        };
+        thumb.onerror = () => {
+            contenedorMiniaturas.style.display = 'none';
+        };
+        thumb.src = auto.imagen_url;
     }
-    
+
     // ═══════════════════════════════════════════
     // SUBTÍTULO (Combustible • Transmisión)
     // ═══════════════════════════════════════════
-    
-    const subtitulo = document.querySelector('.text-lg.opacity-70');
+
+    const subtitulo = document.getElementById('subtitulo');
     if (subtitulo) {
         const combustible = auto.combustible || 'Gasolina';
         const transmision = auto.transmision || 'Automática';
         subtitulo.textContent = `${combustible} • ${transmision}`;
     }
-    
+
     // ═══════════════════════════════════════════
     // BADGES (0KM, Disponible, etc.)
     // ═══════════════════════════════════════════
-    
-    const contenedorBadges = document.querySelector('.flex.flex-wrap.gap-3');
+
+    const contenedorBadges = document.getElementById('badges');
     if (contenedorBadges) {
         let badges = '';
-        
+
         if (auto.kilometraje === 0) {
             badges += `<span class="bg-primary-blue/10 text-primary-blue px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">0 KM</span>`;
         }
-        
+
         if (auto.disponible) {
             badges += `<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Disponible</span>`;
         }
-        
+
         if (auto.destacado) {
             badges += `<span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">Destacado</span>`;
         }
-        
+
         contenedorBadges.innerHTML = badges;
     }
-    
+
     // ═══════════════════════════════════════════
     // ESPECIFICACIONES TÉCNICAS
     // ═══════════════════════════════════════════
-    
-    const especificaciones = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.gap-x-12');
+
+    const especificaciones = document.getElementById('especificaciones');
     if (especificaciones) {
         especificaciones.innerHTML = `
             <div class="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
@@ -131,6 +146,10 @@ function renderizarDetalles(auto) {
             <div class="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
                 <span class="opacity-60">Modelo</span>
                 <span class="font-semibold">${auto.modelo}</span>
+            </div>
+            <div class="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
+                <span class="opacity-60">Precio</span>
+                <span class="font-semibold">USD$ ${auto.precio.toLocaleString()}</span>
             </div>
             <div class="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
                 <span class="opacity-60">Transmisión</span>
@@ -158,11 +177,11 @@ function renderizarDetalles(auto) {
             ` : ''}
         `;
     }
-    
+
     // ═══════════════════════════════════════════
     // DESCRIPCIÓN (si existe)
     // ═══════════════════════════════════════════
-    
+
     if (auto.descripcion) {
         // Buscar el contenedor de especificaciones y agregar descripción después
         const contenedorEspecs = especificaciones?.parentElement;
@@ -181,17 +200,17 @@ function renderizarDetalles(auto) {
             contenedorEspecs.parentElement.insertBefore(divDescripcion, contenedorEspecs.nextSibling);
         }
     }
-    
+
     // ═══════════════════════════════════════════
     // CALCULADORA DE FINANCIAMIENTO
     // ═══════════════════════════════════════════
-    
+
     calcularFinanciamiento(auto);
-    
+
     // ═══════════════════════════════════════════
     // BOTÓN WHATSAPP
     // ═══════════════════════════════════════════
-    
+
     const botonesWhatsapp = document.querySelectorAll('a[href*="wa.me"]');
     botonesWhatsapp.forEach(boton => {
         const mensaje = `Hola! Estoy interesado en el ${auto.marca} ${auto.modelo} ${auto.anio} por USD$ ${auto.precio.toLocaleString()}`;
@@ -208,7 +227,7 @@ async function calcularFinanciamiento(auto) {
     const botonesPlazo = document.querySelectorAll('.btn-plazo');
     const botonWhatsapp = document.getElementById('btn-whatsapp');
     const botonFinanciamiento = document.getElementById('btn-financiamiento');
-    
+
     if (!slider || !cuotaRDElement) return;
 
     let mesesSeleccionados = 48; // Valor por defecto
@@ -231,21 +250,21 @@ async function calcularFinanciamiento(auto) {
         const porcInicial = parseFloat(slider.value);
         const montoInicialUSD = precio * (porcInicial / 100);
         const montoFinanciado = precio - montoInicialUSD;
-        
+
         // Mostrar valor del inicial en USD
         valorInicialUSD.textContent = `USD$ ${Math.round(montoInicialUSD).toLocaleString()}`;
-        
+
         // Fórmula de amortización
         const tasaMensual = TASA_INTERES_ANUAL / 12;
-        const cuotaUSD = montoFinanciado * (tasaMensual * Math.pow(1 + tasaMensual, mesesSeleccionados)) / 
-                        (Math.pow(1 + tasaMensual, mesesSeleccionados) - 1);
-        
+        const cuotaUSD = montoFinanciado * (tasaMensual * Math.pow(1 + tasaMensual, mesesSeleccionados)) /
+            (Math.pow(1 + tasaMensual, mesesSeleccionados) - 1);
+
         const cuotaRD = cuotaUSD * TASA_DOLAR;
 
         // Renderizar resultados
         cuotaRDElement.textContent = `RD$ ${Math.round(cuotaRD).toLocaleString()}`;
         cuotaUSDElement.textContent = `USD$ ${Math.round(cuotaUSD).toLocaleString()}`;
-        
+
         const label = document.getElementById('label-inicial');
         if (label) label.textContent = `Pago Inicial (${porcInicial}%)`;
 

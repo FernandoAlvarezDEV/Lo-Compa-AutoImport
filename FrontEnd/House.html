@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html class="light" lang="es"><head>
+<html class="light" lang="es">
 
-<meta charset="utf-8"/>
- <script>
-    (function () {
-      const saved = localStorage.getItem("theme");
-      const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const shouldDark = saved ? saved === "dark" : systemDark;
-      if (shouldDark) document.documentElement.classList.add("dark");
-    })();
-  </script>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lo Compa Autoimport</title>
+<head>
 
-<link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport\Logo.png"/>
+    <meta charset="utf-8" />
+    <script>
+        (function () {
+            const saved = localStorage.getItem("theme");
+            const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const shouldDark = saved ? saved === "dark" : systemDark;
+            if (shouldDark) document.documentElement.classList.add("dark");
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lo Compa Autoimport</title>
+
+    <link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport\Logo.png" />
 
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -45,8 +50,8 @@
             },
         }
     </script>
-<style type="text/tailwindcss">
-    body { font-family: 'Work Sans', sans-serif; }
+    <style type="text/tailwindcss">
+        body { font-family: 'Work Sans', sans-serif; }
     
     .glass-effect {
         background: rgba(255, 255, 255, 0.9);
@@ -94,466 +99,525 @@
 </style>
 
     </style>
-    
+
 </head>
+
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-        <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
-            <div class="flex items-center justify-between max-w-[1440px] mx-auto">
-                <div class="flex items-center gap-8">
-                    <a href="House.html" class="group flex items-center gap-3 cursor-pointer">
+    <header
+        class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
+        <div class="flex items-center justify-between max-w-[1440px] mx-auto">
+            <div class="flex items-center gap-8">
+                <a href="House.html" class="group flex items-center gap-3 cursor-pointer">
 
-    <!-- LOGO -->
-    <img 
-    src="../Logo Lo Compa AutoImport/Logo.png" 
-    alt="Logo de Lo Compa Autoimport"
-    class="h-12 w-auto object-contain filter drop-shadow-md
-        transition-transform duration-200 group-hover:scale-105"
-    >
+                    <!-- LOGO -->
+                    <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md
+        transition-transform duration-200 group-hover:scale-105">
 
-    <!-- TEXTO -->
-    <h2 class="text-xl font-bold tracking-tight
+                    <!-- TEXTO -->
+                    <h2 class="text-xl font-bold tracking-tight
         text-slate-900 dark:text-white
-            transition-colors duration-200 group-hover:text-dr-red">Lo Compa <span class="text-dr-red dark:group-hover:text-white group-hover:text-primary">Autoimport</span>
-    </h2>
+            transition-colors duration-200 group-hover:text-dr-red">Lo Compa <span
+                            class="text-dr-red dark:group-hover:text-white group-hover:text-primary">Autoimport</span>
+                    </h2>
 
-</a>
+                </a>
 
-                    <nav class="hidden md:flex items-center gap-7">
-                        <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="House.html">Inicio</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"  href="Inventory Page.html">Inventario</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Nosotros.html">Nosotros</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Financiamiento.html">Financiamiento</a>
-                    </nav>
-                </div>
-                <div class="flex items-center gap-3">
+                <nav class="hidden md:flex items-center gap-7">
+                    <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="House.html">Inicio</a>
+                    <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"
+                        href="Inventory Page.html">Inventario</a>
+                    <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"
+                        href="Nosotros.html">Nosotros</a>
+                    <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors"
+                        href="Financiamiento.html">Financiamiento</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-3">
 
-<!-- BUSCADOR -->
-<div class="relative">
-  <input
-    id="globalSearch"
-    type="text"
-    placeholder="Buscar vehículo..."
-    class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
+                <!-- BUSCADOR -->
+                <div class="relative">
+                    <input id="globalSearch" type="text" placeholder="Buscar vehículo..." class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
            bg-white dark:bg-[#1e293b]
            border border-gray-200 dark:border-white/10
            text-gray-800 dark:text-white
            placeholder-gray-400 dark:placeholder-gray-500
-           focus:outline-none focus:ring-2 focus:ring-dr-red"
-  />
-  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
-    search
-  </span>
-</div>
-
-<!-- BOTÓN MODO OSCURO -->
-  <button
-    id="btnTheme"
-    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
-    type="button"
-    aria-label="Cambiar tema"
-  >
-    <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
-    <span id="themeText">Oscuro</span>
-  </button>
-</div>
-
-
-
-            </div>
-        </header>
-<main class="w-full">
-<section class="relative w-full overflow-hidden bg-primary min-h-[700px] flex items-center">
-<div class="absolute inset-0 z-0">
-<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-transparent z-10"></div>
-<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7w0fiF2GKsquc0K3Ab02X0_4Jz7JDPLfulGrtMubCzNVKqdPDHG34eRLyj-XDt3ca25NWJAguLmdwh_90IE5eUJP3aW4LV_G5gu1eKsQ02B79_nFInRiIoQAvAOj4BG7Z_R1nPZGZw4AGmgt_84-DIJ5pB93cAZcxUZhRxdzsJBqV4IsH_lRfDdJZms7UePCDzXheR5ge7EANH6raoru_uRlWLOMPB3Z96s0Bot05f1sRE_fbu68pzzHnHPdaOMzL_4utz47mmQ4');"></div>
-</div>
-<div class="relative z-20 max-w-[1280px] mx-auto px-6 lg:px-12 w-full pt-20 pb-40">
-<div class="max-w-2xl space-y-8">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-widest">
-<span class="relative flex h-2 w-2">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-</span>
-                    Calidad Certificada Dominicana
+           focus:outline-none focus:ring-2 focus:ring-dr-red" />
+                    <span
+                        class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                        search
+                    </span>
                 </div>
-<h1 class="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tight">
-                    Encuentra el Vehículo de tus <span class="text-accent italic">Sueños.</span>
-</h1>
-<p class="text-white/80 text-lg md:text-xl max-w-lg leading-relaxed font-light">
-                    Expertos en importación directa. Calidad garantizada y el mejor financiamiento de la República Dominicana.
-                </p>
-<div class="flex flex-col sm:flex-row gap-4">
-  <a href="Inventory Page.html" target="_blank"
-    
-    class="relative -top-[25px] left-[45px] bg-accent text-white h-14 px-8 rounded-lg font-black text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-xl shadow-accent/20">
-    Ver Inventario
-    <span class="material-symbols-outlined">trending_flat</span>
-</a>
-</div>
 
-</div>
-</div>
-<div class="absolute bottom-12 left-0 right-0 z-30 px-6">
-<div class="max-w-[1100px] mx-auto bg-white dark:bg-background-dark p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-border-light dark:border-white/5">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-end">
+                <!-- BOTÓN MODO OSCURO -->
+                <button id="btnTheme"
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                    type="button" aria-label="Cambiar tema">
+                    <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
+                    <span id="themeText">Oscuro</span>
+                </button>
+            </div>
 
-    <div class="space-y-2">
-<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Tipo de Auto</p>
-<div class="relative group">
-<select id="TiposDeCarros" class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
-<option>Cualquier Tipo</option>
-<option value="sedan">Sedán</option>
-<option value="SUV">SUV</option>
-<option value="convertible">Convertible</option>
-<option value="camioneta">Camioneta</option>
-<option value="deportivo">Deportivo</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
-</div>
-</div>
 
-<div class="space-y-2">
-<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Marca</p>
-<div class="relative group">
-<select id="MarcasDeCarros" class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
-<option>Seleccionar Marca</option>
-<option  value="toyota">Toyota</option>
-<option value="ford">Ford</option>
-<option value="mercedes-benz">Mercedes-Benz</option>
-<option value="lexus">Lexus</option>
-<option value="hyundai">Hyundai</option>
-<option value="chevrolet">Chevrolet</option>
-<option value="porsche">Porsche</option>
-<option value="bmw">BMW</option>
-<option value="audi">Audi</option>
-<option value="honda">Honda</option>
-<option value="mazda">Mazda</option>
-<option value="ram">Ram</option>    
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="space-y-2">
-<p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">Modelo</p>
-<div class="relative group">
-<select id="ModelosDeCarros" class="w-full bg-slate-50 dark: bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
-<option> Cualquier Modelo</option>
-<option value="corvette">Corvette</option>
-<option value="911">911</option>
-<option value="r8">R8</option>
 
-<option value="prado">Prado</option>
-<option value="lx-600">LX 600</option>
-<option value="gle-53">GLE 53</option>
-<option value="4runner">4Runner</option>
-<option value="santa-fe">Santa Fe</option>
-<option value="explorer">Explorer</option>
+        </div>
+    </header>
+    <main class="w-full">
+        <section class="relative w-full overflow-hidden bg-primary min-h-[700px] flex items-center">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-transparent z-10"></div>
+                <div class="w-full h-full bg-cover bg-center"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7w0fiF2GKsquc0K3Ab02X0_4Jz7JDPLfulGrtMubCzNVKqdPDHG34eRLyj-XDt3ca25NWJAguLmdwh_90IE5eUJP3aW4LV_G5gu1eKsQ02B79_nFInRiIoQAvAOj4BG7Z_R1nPZGZw4AGmgt_84-DIJ5pB93cAZcxUZhRxdzsJBqV4IsH_lRfDdJZms7UePCDzXheR5ge7EANH6raoru_uRlWLOMPB3Z96s0Bot05f1sRE_fbu68pzzHnHPdaOMzL_4utz47mmQ4');">
+                </div>
+            </div>
+            <div class="relative z-20 max-w-[1280px] mx-auto px-6 lg:px-12 w-full pt-20 pb-40">
+                <div class="max-w-2xl space-y-8">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-widest">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                        </span>
+                        Calidad Certificada Dominicana
+                    </div>
+                    <h1 class="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tight">
+                        Encuentra el Vehículo de tus <span class="text-accent italic">Sueños.</span>
+                    </h1>
+                    <p class="text-white/80 text-lg md:text-xl max-w-lg leading-relaxed font-light">
+                        Expertos en importación directa. Calidad garantizada y el mejor financiamiento de la República
+                        Dominicana.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="Inventory Page.html" target="_blank"
+                            class="relative -top-[25px] left-[45px] bg-accent text-white h-14 px-8 rounded-lg font-black text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-xl shadow-accent/20">
+                            Ver Inventario
+                            <span class="material-symbols-outlined">trending_flat</span>
+                        </a>
+                    </div>
 
-<option value="camry">Camry</option>
-<option value="c-300">C 300</option>
-<option value="330i">330i</option>
-<option value="accord">Accord</option>
-<option value="es-350">ES 350</option>
-<option value="sonata">Sonata</option>
+                </div>
+            </div>
+            <div class="absolute bottom-12 left-0 right-0 z-30 px-6">
+                <div
+                    class="max-w-[1100px] mx-auto bg-white dark:bg-background-dark p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-border-light dark:border-white/5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-end">
 
-<option value="hilux">Hilux</option>
-<option value="raptor">Raptor</option>
-<option value="ram-1500">Ram 1500</option>
-<option value="silverado">Silverado</option>
-<option value="ranger">Ranger</option>
+                        <div class="space-y-2">
+                            <p
+                                class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">
+                                Tipo de Auto</p>
+                            <div class="relative group">
+                                <select id="TiposDeCarros"
+                                    class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+                                    <option>Cualquier Tipo</option>
+                                    <option value="sedan">Sedán</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="convertible">Convertible</option>
+                                    <option value="camioneta">Camioneta</option>
+                                    <option value="deportivo">Deportivo</option>
+                                </select>
+                                <span
+                                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
 
-<option value="m440i">M440i</option>
-<option value="mustang">Mustang</option>
-<option value="e-450">E 450</option>
-<option value="miata">Miata</option>
-<option value="boxster">Boxster</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="space-y-2 lg:col-span-1">
-    <div class="flex justify-between items-center px-1">
-        <p class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Precio Máx</p>
-        <span id="price-display" class="text-accent font-bold text-sm">USD $185k</span>
-    </div>
-    <div class="flex items-center h-12">
-        <input 
-            id="price-slider"
-            class="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary custom-slider-thumb" 
-            type="range"
-            min="33000" 
-            max="185000" 
-            step="1000" 
-            value="185000"
-        />
-    </div>
-</div>
-<button id="btnFiltrarAutos" class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
-<span class="material-symbols-outlined text-xl">search</span>
-                        Filtrar Autos
+                        <div class="space-y-2">
+                            <p
+                                class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">
+                                Marca</p>
+                            <div class="relative group">
+                                <select id="MarcasDeCarros"
+                                    class="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+                                    <option>Seleccionar Marca</option>
+                                    <option value="toyota">Toyota</option>
+                                    <option value="ford">Ford</option>
+                                    <option value="mercedes-benz">Mercedes-Benz</option>
+                                    <option value="lexus">Lexus</option>
+                                    <option value="hyundai">Hyundai</option>
+                                    <option value="chevrolet">Chevrolet</option>
+                                    <option value="porsche">Porsche</option>
+                                    <option value="bmw">BMW</option>
+                                    <option value="audi">Audi</option>
+                                    <option value="honda">Honda</option>
+                                    <option value="mazda">Mazda</option>
+                                    <option value="ram">Ram</option>
+                                </select>
+                                <span
+                                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <p
+                                class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest px-1">
+                                Modelo</p>
+                            <div class="relative group">
+                                <select id="ModelosDeCarros"
+                                    class="w-full bg-slate-50 dark: bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-12 px-4 focus:ring-2 focus:ring-primary appearance-none text-sm font-medium transition-all cursor-pointer bg-none">
+                                    <option> Cualquier Modelo</option>
+                                    <option value="corvette">Corvette</option>
+                                    <option value="911">911</option>
+                                    <option value="r8">R8</option>
+
+                                    <option value="prado">Prado</option>
+                                    <option value="lx-600">LX 600</option>
+                                    <option value="gle-53">GLE 53</option>
+                                    <option value="4runner">4Runner</option>
+                                    <option value="santa-fe">Santa Fe</option>
+                                    <option value="explorer">Explorer</option>
+
+                                    <option value="camry">Camry</option>
+                                    <option value="c-300">C 300</option>
+                                    <option value="330i">330i</option>
+                                    <option value="accord">Accord</option>
+                                    <option value="es-350">ES 350</option>
+                                    <option value="sonata">Sonata</option>
+
+                                    <option value="hilux">Hilux</option>
+                                    <option value="raptor">Raptor</option>
+                                    <option value="ram-1500">Ram 1500</option>
+                                    <option value="silverado">Silverado</option>
+                                    <option value="ranger">Ranger</option>
+
+                                    <option value="m440i">M440i</option>
+                                    <option value="mustang">Mustang</option>
+                                    <option value="e-450">E 450</option>
+                                    <option value="miata">Miata</option>
+                                    <option value="boxster">Boxster</option>
+                                </select>
+                                <span
+                                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2 lg:col-span-1">
+                            <div class="flex justify-between items-center px-1">
+                                <p
+                                    class="text-primary/60 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">
+                                    Precio Máx</p>
+                                <span id="price-display" class="text-accent font-bold text-sm">USD $185k</span>
+                            </div>
+                            <div class="flex items-center h-12">
+                                <input id="price-slider"
+                                    class="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary custom-slider-thumb"
+                                    type="range" min="33000" max="185000" step="1000" value="185000" />
+                            </div>
+                        </div>
+                        <button id="btnFiltrarAutos"
+                            class="bg-primary hover:bg-primary/90 text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-md">
+                            <span class="material-symbols-outlined text-xl">search</span>
+                            Filtrar Autos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+                <div class="space-y-4">
+                    <h2 class="text-4xl font-black tracking-tight text-primary">Vehículos <span
+                            class="text-accent italic">Destacados</span></h2>
+                    <div class="h-1.5 w-24 bg-accent rounded-full"></div>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-md">Explora nuestra selección premium de
+                        vehículos recién importados, listos para entrega inmediata.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button
+                        class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
+                        <span class="material-symbols-outlined dark:text-white ">arrow_back</span>
                     </button>
-</div>  
-</div>
-</div>
-</section>
-<section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24">
-<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-<div class="space-y-4">
-<h2 class="text-4xl font-black tracking-tight text-primary">Vehículos <span class="text-accent italic">Destacados</span></h2>
-<div class="h-1.5 w-24 bg-accent rounded-full"></div>
-<p class="text-slate-500 dark:text-slate-400 max-w-md">Explora nuestra selección premium de vehículos recién importados, listos para entrega inmediata.</p>
-</div>
-<div class="flex gap-4">
-<button class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
-<span class="material-symbols-outlined dark:text-white ">arrow_back</span>
-</button>
-<button class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
-<span class="material-symbols-outlined dark:text-white ">arrow_forward</span>
-</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-<div class="relative h-64 overflow-hidden">
-<div class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Premium</div>
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3o4i6Jx29AhchJ-f172F0gnFO9JkvfOKQI8bZy9sVulx3k3NCByvFWHbKEHkYuV-n-NQfZBhopNg__eotu05MM1bKjMXLyNhgz22E6o1_SzrdIkv6nG7Fe91eAaxu00KHhO98FX7B4tkH-tH5DmxgsJ16-CLmWCKRSCXMnSE1KzzmBSLmME0SA5rNetTrLZXLyC9zZ87TIqbEnoOExlTSDeHchxd8LQYqujceJ0fqCVCyRvqh-gdfLE28HmrUT4DiHYcqxiWC228');"></div>
-</div>
-<div class="p-6 space-y-4">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-xl font-bold text-primary dark:text-white">Lexus RX 350 Luxury</h3>
-<p class="text-slate-500 text-sm font-medium">2023 • Blanco Perla • 12,000 KM</p>
-</div>
-</div>
-<div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
-<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
-<span class="material-symbols-outlined text-lg">local_gas_station</span>
-<span class="text-xs font-bold uppercase">Gasolina</span>
-</div>
-<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
-<span class="material-symbols-outlined text-lg">settings</span>
-<span class="text-xs font-bold uppercase">Automatic</span>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<div class="flex flex-col">
-<span class="text-2xl font-black text-accent">US$ 64,500</span>
-<span class="text-primary/40 dark:text-white text-sm font-bold">RD$ 3,741,000 aprox.</span>
-</div>
-<button class="bg-primary/5 text-primary hover:bg-primary hover:text-white dark:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
-</div>
-</div>
-</div>
-<div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-<div class="relative h-64 overflow-hidden">
-<div class="absolute top-4 left-4 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Recién Llegado</div>
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEkSp9CQsQqz62mkmrC8LXLzFe5lFG0Ei_L20Grl8XEygwK0wnJv3S7KWPBJWxGK3m5V8vwYEgMDzPU_2boVL3na83yf6pFzfwHKQvMDdHJZXn0vzSxhAzwSsZZKFnSBDxanuijK5yLwqHm2GaKQO1K5xjcf8IWWo3M1R-887drNuXfiYxwt66MWnEQSlV3UOMK716_xyAmx3doK8iHjzzOvEQFsxSS7XazkPipoiWw9gqONNXRj_hgI3Ic8X0pyNuMEp9wkJ4qOk');"></div>
-</div>
-<div class="p-6 space-y-4">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-xl font-bold text-primary dark:text-white">Toyota Prado VX</h3>
-<p class="text-slate-500 text-sm font-medium">2022 • Gris Metálico • 25,000 KM</p>
-</div>
-</div>
-<div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
-<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
-<span class="material-symbols-outlined text-lg">propane_tank</span>
-<span class="text-xs font-bold uppercase">Diesel</span>
-</div>
-<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
-<span class="material-symbols-outlined text-lg">grid_4x4</span>
-<span class="text-xs font-bold uppercase">4WD</span>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<div class="flex flex-col">
-<span class="text-2xl font-black text-accent">US$ 72,000</span>
-<span class="text-primary/40 dark:text-white text-sm font-bold">RD$ 4,176,000 aprox.</span>
-</div>
-<button class="bg-primary/5 text-primary hover:bg-primary dark:text-white hover:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
-</div>
-</div>
-</div>
-<div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-<div class="relative h-64 overflow-hidden">
-<div class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Oferta</div>
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPQF0_tFmpKrXkDpdX6trXP7WiXOVf62v4diZ68AF2MNboMlUbMoLcswn1zvY9sA2dHKjSjNsQmU4n6xnWtFyjhoOTBS929pAjWV7J2htcbSQHebbnfYcTIFPWZp8JMlmWekspZv9LM1T59J7UBUyuoPpoAPU4bGh14p-v51arZVWmXyN7XmDiJrG4jeyDXsasIa5Z3t_LWxc2OcF9_uXQCKM4VC43ajIaW69TTgmxLnrldnrV2pPci6X4rln5_r3RwQpkVrOKaS0');"></div>
-</div>
-<div class="p-6 space-y-4">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-xl font-bold text-primary dark:text-white">Honda CR-V Touring</h3>
-<p class="text-slate-500 text-sm font-medium">2021 • Azul Profundo • 38,000 KM</p>
-</div>
-</div>
-<div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
-<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
-<span class="material-symbols-outlined text-lg">eco</span>
-<span class="text-xs font-bold uppercase">Hybrid</span>
-</div>
-<div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
-<span class="material-symbols-outlined text-lg">settings</span>
-<span class="text-xs font-bold uppercase">Automatic</span>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<div class="flex flex-col">
-<span class="text-2xl font-black text-accent">US$ 32,900</span>
-<span class="text-primary/40 text-sm dark:text-white font-bold">RD$ 1,908,000 aprox.</span>
-</div>
-<button class="bg-primary/5 text-primary hover:bg-primary dark:text-white hover:text-white dark:text-white px-5 py-2.5 rounded-lg text-sm font-black transition-all uppercase tracking-wide">Detalles</button>
-</div>
-</div>
-</div>
-</div>
-<div class="mt-16 text-center">
-<a href="Inventory Page.html" class="inline-flex items-center gap-3 border-b-2 border-accent pb-1 text-accent font-black uppercase tracking-widest hover:text-accent/70 transition-colors">
-                Ver Todo El Inventario (25)
-                <span class="material-symbols-outlined">north_east</span>
-</a>
-</div>
-</section>
-<section class="bg-slate-50 dark:bg-white/[0.02] py-24 relative overflow-hidden">
-<div class="absolute top-0 right-0 p-20 opacity-[0.03] pointer-events-none">
-<span class="material-symbols-outlined text-[300px] text-primary">verified</span>
-</div>
-<div class="max-w-[1280px] mx-auto px-6 lg:px-12 relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-<div class="relative">
-<div class="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYZJXDGOsXC9EmV6fceSLlqd7ebDjex-phAdrYDGr2dFE4VqVDpBT9gAkixKSCsdSrX07SpReQ4jLDBDUZ37jgvZX1167C-8X_eGMzpLyt9MV2fiPns0OWWiDQNqslLae2HI16jS6xrktWiH5u_nfrjD9Y4o5b22XaFntNEdmbIuANNP8aBtgfBMNSJe955rCJtj_MwkAeDM-lIuBoSPQVbSRZG_q4oOs41Rqz2VuxEYwIDNj3XdH8s_B7gWKuThgnA9Qq-AkSoH8'); background-size: cover; background-position: center;"></div>
-<div class="absolute -bottom-10 -right-10 bg-primary p-8 rounded-xl shadow-xl max-w-xs border border-white/10">
-<p class="text-4xl font-black text-accent mb-2">15+</p>
-<p class="text-sm font-bold text-white uppercase tracking-widest leading-relaxed">Años de experiencia en el mercado Dominicano</p>
-</div>
-</div>
-<div class="space-y-12">
-<div class="space-y-4">
-<h2 class="text-4xl font-black tracking-tight text-primary dark:text-white">¿Por qué elegir <br/><span class="text-accent italic">Lo Compa Autoimport?</span></h2>
-<p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">No solo vendemos vehículos, construimos relaciones de confianza a largo plazo con cada uno de nuestros clientes dominicanos.</p>
-</div>
-<div class="grid grid-cols-1 gap-8">
-<div class="flex items-start gap-5">
-<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-3xl">payments</span>
-</div>
-<div>
-<h4 class="text-xl font-bold text-primary dark:text-white mb-2">Financiamiento Flexible</h4>
-<p class="text-slate-500 dark:text-slate-400">Trabajamos con los principales bancos locales para ofrecerte la tasa más competitiva del mercado.</p>
-</div>
-</div>
-<div class="flex items-start gap-5">
-<div class="size-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
-<span class="material-symbols-outlined text-3xl">verified_user</span>
-</div>
-<div>
-<h4 class="text-xl font-bold text-primary dark:text-white mb-2">Certificación de 100 Puntos</h4>
-<p class="text-slate-500 dark:text-slate-400">Cada unidad es inspeccionada rigurosamente para garantizar su estado estético y mecánico.</p>
-</div>
-</div>
-<div class="flex items-start gap-5">
-<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-3xl">support_agent</span>
-</div>
-<div>
-<h4 class="text-xl font-bold text-primary dark:text-white mb-2">Asesoría Personalizada</h4>
-<p class="text-slate-500 dark:text-slate-400">Nuestros expertos te guiarán en cada paso de la compra, desde la elección hasta la matriculación.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="max-w-[1280px] mx-auto px-6 py-24">
-<div class="patriotic-gradient rounded-[2rem] p-12 lg:p-20 relative overflow-hidden text-center lg:text-left shadow-2xl">
-<div class="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 -translate-y-12 translate-x-12"></div>
-<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
-<div class="max-w-2xl space-y-6">
-<h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">¿Listo para conducir tu próximo vehículo?</h2>
-</div>
-<div class="flex flex-col sm:flex-row gap-4 shrink-0">
-<a href="Inventory Page.html" target="_blank" rel="noopener noreferrer" class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg flex items-center justify-center">Visitar Catologo</a>
-<div class="flex flex-col sm:flex-row gap-4 shrink-0">  
-    <a 
-        href="https://chat.whatsapp.com/FWyhXkneJvB4jtIkGScYtB" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="bg-accent border border-white/20 text-white h-14 px-10 rounded-xl font-black text-lg hover:bg-accent/90 transition-all shadow-lg flex items-center justify-center"
-    >
-        Hablar por WhatsApp
-    </a>
-</div>
-<Enter></Enter>
-</div>
-</div>
-</div>
-</section>
-</main>
-<footer class="bg-primary dark:text-white/60 py-20 border-t border-white/5">
-<div class="max-w-[1280px] mx-auto px-6 lg:px-12">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-<div class="space-y-6">
-<div class="flex items-center gap-3 text-white">
-<img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
-<h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span class="text-white/80 font-medium">Autoimport</span></h2>
-</div>
-<p class="text-white leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos premium certificados e importaciones directas.</p>
-<div class="flex gap-4">
-<a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
-<i class="material-symbols-outlined text-lg">public</i>
-</a>
-<a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
-<i class="material-symbols-outlined text-lg">share</i>
-</a>
-</div>
-</div>
-<div class="space-y-6">
-<h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
-<ul class="space-y-4 text-sm">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-accent">location_on</span>
-<span class="text-white/80">Av. Independencia #456, <br/>Santo Domingo, RD</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-accent">phone</span>
-<span class="text-white/80">+1 (829) 753-4583</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-accent">mail</span>
-<span class="text-white/80">ventas@locompaautoimport.do</span>
-</li>
-</ul>
-</div>
-<div class="space-y-6">
-<h4 class="text-white font-bold uppercase tracking-widest text-sm">Horario</h4>
-<ul class="space-y-4 text-sm">
-<li class="flex justify-between">
-<span class="text-white" >  Lun - Vie:</span>
-<span class="text-white">8:00 AM - 5:00 PM</span>
-</li>
-<li class="flex justify-between">
-<span class="text-white" >Sábados:</span>
-<span class="text-white">9:00 AM - 5:00 PM</span>
-</li>
-<li class="flex justify-between">
-<span class="text-white" >Domingos:</span>
-<span class="text-white">Cerrado</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="text-white" class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
-<p>© 2026 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
-<div class="flex gap-8">
-</div>
-</div>
-</div>
-</footer>
+                    <button
+                        class="size-12 rounded-full border border-primary/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-primary">
+                        <span class="material-symbols-outlined dark:text-white ">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+                    onclick="window.location.href='Car Details Page.html?id=5'">
+                    <div class="relative h-64 overflow-hidden">
+                        <div
+                            class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                            Premium</div>
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="http://127.0.0.1:8000/imagenes/2023%20Lexus%20RX%20350%20Luxury.jpg"
+                            alt="Lexus RX 350 Luxury" onerror="this.style.display='none'">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary dark:text-white">Lexus RX 350 Luxury</h3>
+                                <p class="text-slate-500 text-sm font-medium">2023 • Blanco Perla • 12,000 KM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
+                            <div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
+                                <span class="material-symbols-outlined text-lg">local_gas_station</span>
+                                <span class="text-xs font-bold uppercase">Gasolina</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
+                                <span class="material-symbols-outlined text-lg">settings</span>
+                                <span class="text-xs font-bold uppercase">Automatic</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center pt-2">
+                            <div class="flex flex-col items-center text-center">
+                                <span class="text-2xl font-black text-accent">US$ 64,500</span>
+                                <span class="text-primary/40 dark:text-white text-sm font-bold">RD$ 3,741,000
+                                    aprox.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+                    onclick="window.location.href='Car Details Page.html?id=2'">
+                    <div class="relative h-64 overflow-hidden">
+                        <div
+                            class="absolute top-4 left-4 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                            Recién Llegado</div>
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="http://127.0.0.1:8000/imagenes/2024%20Toyota%20Prado%20VX.jpg" alt="Toyota Prado VX"
+                            onerror="this.style.display='none'">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary dark:text-white">Toyota Prado VX</h3>
+                                <p class="text-slate-500 text-sm font-medium">2024 • Gris Metálico • 0 KM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
+                            <div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
+                                <span class="material-symbols-outlined text-lg">propane_tank</span>
+                                <span class="text-xs font-bold uppercase">Diesel</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
+                                <span class="material-symbols-outlined text-lg">grid_4x4</span>
+                                <span class="text-xs font-bold uppercase">4WD</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center pt-2">
+                            <div class="flex flex-col items-center text-center">
+                                <span class="text-2xl font-black text-accent">US$ 95,000</span>
+                                <span class="text-primary/40 dark:text-white text-sm font-bold">RD$ 5,510,000
+                                    aprox.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-border-light dark:border-white/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+                    onclick="window.location.href='Car Details Page.html?id=9'">
+                    <div class="relative h-64 overflow-hidden">
+                        <div
+                            class="absolute top-4 left-4 z-10 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                            Oferta</div>
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="http://127.0.0.1:8000/imagenes/2023%20Lexus%20LX%20600%20F%20Sport.jpg"
+                            alt="Lexus LX 600 F Sport" onerror="this.style.display='none'">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary dark:text-white">Lexus LX 600 F Sport</h3>
+                                <p class="text-slate-500 text-sm font-medium">2023 • Manganese Luster • 2,000 KM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 py-2 border-y border-slate-100 dark:border-white/5">
+                            <div class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400">
+                                <span class="material-symbols-outlined text-lg">local_gas_station</span>
+                                <span class="text-xs font-bold uppercase">Gasolina</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-1.5 text-primary/70 dark:text-slate-400 border-l border-slate-200 dark:border-white/10 pl-4">
+                                <span class="material-symbols-outlined text-lg">settings</span>
+                                <span class="text-xs font-bold uppercase">Automatic</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center pt-2">
+                            <div class="flex flex-col items-center text-center">
+                                <span class="text-2xl font-black text-accent">US$ 150,000</span>
+                                <span class="text-primary/40 text-sm dark:text-white font-bold">RD$ 8,700,000
+                                    aprox.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 text-center">
+                <a href="Inventory Page.html"
+                    class="inline-flex items-center gap-3 border-b-2 border-accent pb-1 text-accent font-black uppercase tracking-widest hover:text-accent/70 transition-colors">
+                    Ver Todo El Inventario (25)
+                    <span class="material-symbols-outlined">north_east</span>
+                </a>
+            </div>
+        </section>
+        <section class="bg-slate-50 dark:bg-white/[0.02] py-24 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-20 opacity-[0.03] pointer-events-none">
+                <span class="material-symbols-outlined text-[300px] text-primary">verified</span>
+            </div>
+            <div class="max-w-[1280px] mx-auto px-6 lg:px-12 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="relative">
+                        <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYZJXDGOsXC9EmV6fceSLlqd7ebDjex-phAdrYDGr2dFE4VqVDpBT9gAkixKSCsdSrX07SpReQ4jLDBDUZ37jgvZX1167C-8X_eGMzpLyt9MV2fiPns0OWWiDQNqslLae2HI16jS6xrktWiH5u_nfrjD9Y4o5b22XaFntNEdmbIuANNP8aBtgfBMNSJe955rCJtj_MwkAeDM-lIuBoSPQVbSRZG_q4oOs41Rqz2VuxEYwIDNj3XdH8s_B7gWKuThgnA9Qq-AkSoH8'); background-size: cover; background-position: center;">
+                        </div>
+                        <div
+                            class="absolute -bottom-10 -right-10 bg-primary p-8 rounded-xl shadow-xl max-w-xs border border-white/10">
+                            <p class="text-4xl font-black text-accent mb-2">15+</p>
+                            <p class="text-sm font-bold text-white uppercase tracking-widest leading-relaxed">Años de
+                                experiencia en el mercado Dominicano</p>
+                        </div>
+                    </div>
+                    <div class="space-y-12">
+                        <div class="space-y-4">
+                            <h2 class="text-4xl font-black tracking-tight text-primary dark:text-white">¿Por qué elegir
+                                <br /><span class="text-accent italic">Lo Compa Autoimport?</span>
+                            </h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">No solo vendemos
+                                vehículos, construimos relaciones de confianza a largo plazo con cada uno de nuestros
+                                clientes dominicanos.</p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-8">
+                            <div class="flex items-start gap-5">
+                                <div
+                                    class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-3xl">payments</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-primary dark:text-white mb-2">Financiamiento
+                                        Flexible</h4>
+                                    <p class="text-slate-500 dark:text-slate-400">Trabajamos con los principales bancos
+                                        locales para ofrecerte la tasa más competitiva del mercado.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div
+                                    class="size-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                                    <span class="material-symbols-outlined text-3xl">verified_user</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-primary dark:text-white mb-2">Certificación de 100
+                                        Puntos</h4>
+                                    <p class="text-slate-500 dark:text-slate-400">Cada unidad es inspeccionada
+                                        rigurosamente para garantizar su estado estético y mecánico.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-5">
+                                <div
+                                    class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-3xl">support_agent</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-primary dark:text-white mb-2">Asesoría
+                                        Personalizada</h4>
+                                    <p class="text-slate-500 dark:text-slate-400">Nuestros expertos te guiarán en cada
+                                        paso de la compra, desde la elección hasta la matriculación.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-[1280px] mx-auto px-6 py-24">
+            <div
+                class="patriotic-gradient rounded-[2rem] p-12 lg:p-20 relative overflow-hidden text-center lg:text-left shadow-2xl">
+                <div class="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 -translate-y-12 translate-x-12">
+                </div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="max-w-2xl space-y-6">
+                        <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">¿Listo para conducir tu
+                            próximo vehículo?</h2>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 shrink-0">
+                        <a href="Inventory Page.html" target="_blank" rel="noopener noreferrer"
+                            class="bg-white text-primary h-14 px-10 rounded-xl font-black text-lg hover:scale-105 transition-transform shadow-lg flex items-center justify-center">Visitar
+                            Catologo</a>
+                        <div class="flex flex-col sm:flex-row gap-4 shrink-0">
+                            <a href="https://chat.whatsapp.com/FWyhXkneJvB4jtIkGScYtB" target="_blank"
+                                rel="noopener noreferrer"
+                                class="bg-accent border border-white/20 text-white h-14 px-10 rounded-xl font-black text-lg hover:bg-accent/90 transition-all shadow-lg flex items-center justify-center">
+                                Hablar por WhatsApp
+                            </a>
+                        </div>
+                        <Enter></Enter>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-primary dark:text-white/60 py-20 border-t border-white/5">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 text-white">
+                        <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport"
+                            class="h-12 w-auto object-contain filter drop-shadow-md">
+                        <h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span
+                                class="text-white/80 font-medium">Autoimport</span></h2>
+                    </div>
+                    <p class="text-white leading-relaxed text-sm">El destino #1 en la República Dominicana para
+                        vehículos premium certificados e importaciones directas.</p>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                            href="#">
+                            <i class="material-symbols-outlined text-lg">public</i>
+                        </a>
+                        <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                            href="#">
+                            <i class="material-symbols-outlined text-lg">share</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm">Contacto</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-accent">location_on</span>
+                            <span class="text-white/80">Av. Independencia #456, <br />Santo Domingo, RD</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent">phone</span>
+                            <span class="text-white/80">+1 (829) 753-4583</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent">mail</span>
+                            <span class="text-white/80">ventas@locompaautoimport.do</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm">Horario</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between">
+                            <span class="text-white"> Lun - Vie:</span>
+                            <span class="text-white">8:00 AM - 5:00 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-white">Sábados:</span>
+                            <span class="text-white">9:00 AM - 5:00 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-white">Domingos:</span>
+                            <span class="text-white">Cerrado</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-white"
+                class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
+                <p>© 2026 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
+                <div class="flex gap-8">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<script src="../JS/temas.js" defer></script>
-<script src="../JS/Landing.js" defer></script>
-<script src="../JS/Buscador.js"></script>
+    <script src="../JS/temas.js" defer></script>
+    <script src="../JS/Landing.js" defer></script>
+    <script src="../JS/Buscador.js"></script>
 
 
-</body></html>
+</body>
+
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const shouldDark = saved ? saved === "dark" : systemDark;
+      if (shouldDark) document.documentElement.classList.add("dark");
+    })();
+  </script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Solicitar Financiamiento - Lo Compa Autoimport</title>
+  <link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport/Logo.png"/>
+  <link rel="stylesheet" href="theme.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#003876",
+            "accent":  "#CE1126",
+            "dr-red":  "#CE1126",
+            "background-light": "#ffffff",
+            "background-dark":  "#0F172A",
+          },
+          fontFamily: { display: ["Inter", "sans-serif"] },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Sticky sidebar */
+    .loan-sidebar {
+      position: sticky;
+      top: 5rem;
+      height: fit-content;
+    }
+
+    /* Form section headers */
+    .section-header {
+      background: linear-gradient(135deg, #003876 0%, #0055b3 100%);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Form field label */
+    .field-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    .dark .field-label { color: #94a3b8; }
+
+    /* Custom select & input */
+    .form-control {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      background: white;
+      color: #0f172a;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .dark .form-control {
+      background: #1e293b;
+      border-color: #334155;
+      color: #f1f5f9;
+    }
+    .form-control:focus {
+      border-color: #003876;
+      box-shadow: 0 0 0 3px rgba(0,56,118,0.12);
+    }
+
+    /* Loan detail row */
+    .loan-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.85rem;
+    }
+    .dark .loan-row { border-bottom-color: #1e293b; }
+    .loan-row:last-child { border-bottom: none; }
+
+    /* Pulse badge */
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(206,17,38,0.4); }
+      50%       { box-shadow: 0 0 0 8px rgba(206,17,38,0); }
+    }
+    .btn-submit:hover { animation: pulse-red 1.2s infinite; }
+
+    /* Checkbox custom */
+    .custom-check {
+      accent-color: #003876;
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    /* Required star */
+    .req { color: #CE1126; }
+
+    /* Smooth appear */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    main { animation: fadeUp 0.4s ease; }
+  </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
+    <div class="flex items-center justify-between max-w-[1440px] mx-auto">
+      <div class="flex items-center gap-8">
+        <a href="House.html" class="group flex items-center gap-3 cursor-pointer">
+          <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo" class="h-12 w-auto object-contain filter drop-shadow-md transition-transform duration-200 group-hover:scale-105">
+          <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-200 group-hover:text-dr-red">
+            Lo Compa <span class="text-dr-red dark:group-hover:text-white group-hover:text-primary">Autoimport</span>
+          </h2>
+        </a>
+        <nav class="hidden md:flex items-center gap-7">
+          <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-dr-red transition-colors" href="House.html">Inicio</a>
+          <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-dr-red transition-colors" href="Inventory Page.html">Inventario</a>
+          <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-dr-red transition-colors" href="Nosotros.html">Nosotros</a>
+          <a class="text-sm font-bold text-dr-red border-b-2 border-dr-red pb-1" href="Financiamiento.html">Financiamiento</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="btnTheme"
+          class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+          type="button" aria-label="Cambiar tema">
+          <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
+          <span id="themeText">Oscuro</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-1">
+    <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+      <a href="Financiamiento.html" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span class="material-symbols-outlined text-base">arrow_back</span>
+        Volver a Financiamiento
+      </a>
+      <span>/</span>
+      <span class="text-slate-700 dark:text-slate-200 font-medium">Solicitar Financiamiento</span>
+    </div>
+  </div>
+
+  <!-- PAGE TITLE -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-6">
+    <h1 class="text-3xl font-extrabold tracking-tight">
+      Solicitar <span class="text-dr-red">Financiamiento</span>
+    </h1>
+    <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Complete el formulario con sus datos. Estos serán enviados directamente a la entidad financiera seleccionada.</p>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+      <!-- ========== LEFT SIDEBAR: Loan Summary ========== -->
+      <aside class="w-full lg:w-80 xl:w-96 loan-sidebar">
+
+        <!-- Loan Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <div class="bg-gradient-to-r from-primary to-blue-600 px-5 py-4 text-white">
+            <p class="text-xs uppercase tracking-widest font-semibold opacity-80">Datos del préstamo</p>
+            <p class="text-lg font-bold mt-0.5">que estás solicitando</p>
+          </div>
+          <div class="px-5 py-4 space-y-0.5">
+            <div class="loan-row">
+              <span class="text-slate-500 dark:text-slate-400">Tipo de Vehículo</span>
+              <span class="font-semibold" id="sum-tipo">—</span>
+            </div>
+            <div class="loan-row">
+              <span class="text-slate-500 dark:text-slate-400">Inicial</span>
+              <span class="font-semibold" id="sum-inicial">—</span>
+            </div>
+            <div class="loan-row">
+              <span class="text-slate-500 dark:text-slate-400">Monto a Financiar</span>
+              <span class="font-semibold" id="sum-monto">—</span>
+            </div>
+            <div class="loan-row">
+              <span class="text-slate-500 dark:text-slate-400">Duración del Préstamo</span>
+              <span class="font-semibold" id="sum-plazo">—</span>
+            </div>
+            <div class="loan-row">
+              <span class="text-slate-500 dark:text-slate-400">Tasa Efectiva Anual</span>
+              <span class="font-semibold text-primary" id="sum-tasa">—</span>
+            </div>
+            <div class="loan-row border-none mt-1">
+              <span class="text-slate-500 dark:text-slate-400">Cuota Calculada</span>
+              <span class="font-extrabold text-lg text-dr-red" id="sum-cuota">—</span>
+            </div>
+          </div>
+          <div class="px-5 pb-5">
+            <a href="Financiamiento.html"
+              class="w-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold py-2.5 rounded-xl text-sm transition-all">
+              <span class="material-symbols-outlined text-base">edit</span>
+              Modificar Préstamo
+            </a>
+          </div>
+        </div>
+
+        <!-- Bank Card -->
+        <div id="bank-card" class="mt-5 bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <img id="bank-logo" src="" alt="" class="h-10 w-auto" onerror="this.style.display='none'">
+            <div>
+              <p class="font-bold text-base" id="bank-name">—</p>
+              <p class="text-xs text-slate-500">Tasa Efectiva Anual: <span class="font-semibold text-primary" id="bank-tasa">—</span></p>
+            </div>
+          </div>
+          <div class="bg-primary/5 dark:bg-primary/20 rounded-xl p-3 text-center mb-4">
+            <p class="text-xs text-slate-500 uppercase tracking-wide">Cuota mensual estimada</p>
+            <p class="text-2xl font-black text-primary" id="bank-cuota">—</p>
+          </div>
+          <div id="bank-info-list" class="space-y-1 text-xs text-slate-600 dark:text-slate-400"></div>
+        </div>
+      </aside>
+
+      <!-- ========== RIGHT: Application Form ========== -->
+      <section class="flex-1">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-6 md:p-8">
+
+          <div class="mb-6">
+            <h2 class="text-xl font-bold mb-1">Formulario de Solicitud</h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">Complete el siguiente formulario con sus datos. Estos serán enviados a la entidad financiera.</p>
+            <div class="mt-3 flex items-center gap-2 text-xs text-dr-red font-semibold">
+              <span class="material-symbols-outlined text-sm">info</span>
+              Todos los campos marcados con <span class="req ml-1">*</span> son obligatorios.
+            </div>
+          </div>
+
+          <form id="solicitudForm" novalidate class="space-y-8">
+
+            <!-- ── Datos Personales ── -->
+            <div>
+              <div class="section-header">
+                <span class="material-symbols-outlined text-base">person</span>
+                Datos Personales
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <div>
+                  <label class="field-label">Nombre <span class="req">*</span></label>
+                  <input type="text" id="f-nombre" placeholder="ej. Juan" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Apellidos <span class="req">*</span></label>
+                  <input type="text" id="f-apellidos" placeholder="ej. Pérez García" class="form-control" required>
+                </div>
+
+                <div>
+                  <label class="field-label">Tipo de Documento <span class="req">*</span></label>
+                  <select id="f-tipo-doc" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option value="cedula">Cédula de Identidad</option>
+                    <option value="pasaporte">Pasaporte</option>
+                    <option value="residencia">Carnet de Residencia</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label">Número de Documento <span class="req">*</span></label>
+                  <input type="text" id="f-documento" placeholder="ej. 001-0000000-0" class="form-control" required>
+                </div>
+
+                <div>
+                  <label class="field-label">Nacionalidad <span class="req">*</span></label>
+                  <input type="text" id="f-nacionalidad" value="República Dominicana" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Edad <span class="req">*</span></label>
+                  <select id="f-edad" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option>18-25</option><option>26-30</option><option>31-35</option>
+                    <option>36-40</option><option>41-45</option><option>46-50</option>
+                    <option>51-55</option><option>56-60</option><option>61+</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="field-label">Estado Civil <span class="req">*</span></label>
+                  <select id="f-estado-civil" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option>Soltero/a</option><option>Casado/a</option>
+                    <option>Unión Libre</option><option>Divorciado/a</option>
+                    <option>Viudo/a</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label">Tipo de Vivienda <span class="req">*</span></label>
+                  <select id="f-vivienda" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option>Propia</option><option>Alquilada</option>
+                    <option>Familiar</option><option>Hipotecada</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="field-label">Teléfono <span class="req">*</span></label>
+                  <input type="tel" id="f-telefono" placeholder="ej. (809) 555-0000" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Celular <span class="req">*</span></label>
+                  <input type="tel" id="f-celular" placeholder="ej. (849) 555-0000" class="form-control" required>
+                </div>
+
+                <div>
+                  <label class="field-label">Correo Electrónico <span class="req">*</span></label>
+                  <input type="email" id="f-email" placeholder="ej. juan@email.com" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Confirmar Correo <span class="req">*</span></label>
+                  <input type="email" id="f-email-confirm" placeholder="Repita su correo" class="form-control" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Dirección ── -->
+            <div>
+              <div class="section-header">
+                <span class="material-symbols-outlined text-base">location_on</span>
+                Dirección
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="field-label">Provincia <span class="req">*</span></label>
+                  <select id="f-provincia" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option>Santo Domingo</option><option>Santiago</option>
+                    <option>La Vega</option><option>San Pedro de Macorís</option>
+                    <option>La Romana</option><option>Puerto Plata</option>
+                    <option>San Cristóbal</option><option>Distrito Nacional</option>
+                    <option>Otra</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label">Ciudad <span class="req">*</span></label>
+                  <input type="text" id="f-ciudad" placeholder="ej. Santo Domingo Este" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Sector <span class="req">*</span></label>
+                  <input type="text" id="f-sector" placeholder="ej. Naco" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Calle / Dirección <span class="req">*</span></label>
+                  <input type="text" id="f-calle" placeholder="ej. Calle 15, #22" class="form-control" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Datos Laborales ── -->
+            <div>
+              <div class="section-header">
+                <span class="material-symbols-outlined text-base">work</span>
+                Datos Laborales
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="field-label">Empresa donde Labora <span class="req">*</span></label>
+                  <input type="text" id="f-empresa" placeholder="ej. Empresa S.R.L." class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Ocupación <span class="req">*</span></label>
+                  <select id="f-ocupacion" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option>Empleado Privado</option><option>Empleado Público</option>
+                    <option>Independiente / Freelance</option><option>Empresario</option>
+                    <option>Pensionado</option><option>Otro</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label">Cargo en la Empresa <span class="req">*</span></label>
+                  <input type="text" id="f-cargo" placeholder="ej. Gerente de Ventas" class="form-control" required>
+                </div>
+                <div>
+                  <label class="field-label">Tiempo en la Empresa <span class="req">*</span></label>
+                  <select id="f-tiempo" class="form-control" required>
+                    <option value="">— Seleccione —</option>
+                    <option>Menos de 1 año</option><option>1 - 2 años</option>
+                    <option>3 - 5 años</option><option>6 - 10 años</option>
+                    <option>Más de 10 años</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Ingresos ── -->
+            <div>
+              <div class="section-header">
+                <span class="material-symbols-outlined text-base">payments</span>
+                Ingresos
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="sm:col-span-2">
+                  <label class="field-label">Ingresos Mensuales RD$ <span class="req">*</span></label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-sm font-medium">RD$</span>
+                    <input type="text" id="f-ingresos" placeholder="0.00" class="form-control pl-12" required>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="field-label">Ingresos Extra RD$ (1)</label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-sm font-medium">RD$</span>
+                    <input type="text" id="f-ingreso-extra1" placeholder="0.00" class="form-control pl-12">
+                  </div>
+                </div>
+                <div>
+                  <label class="field-label">Concepto</label>
+                  <select id="f-concepto1" class="form-control">
+                    <option value="">— Seleccione —</option>
+                    <option>Alquiler</option><option>Pensión</option>
+                    <option>Negocio Propio</option><option>Inversiones</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="field-label">Ingresos Extra RD$ (2)</label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-sm font-medium">RD$</span>
+                    <input type="text" id="f-ingreso-extra2" placeholder="0.00" class="form-control pl-12">
+                  </div>
+                </div>
+                <div>
+                  <label class="field-label">Concepto</label>
+                  <select id="f-concepto2" class="form-control">
+                    <option value="">— Seleccione —</option>
+                    <option>Alquiler</option><option>Pensión</option>
+                    <option>Negocio Propio</option><option>Inversiones</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Pagos Extraordinarios ── -->
+            <div>
+              <div class="section-header">
+                <span class="material-symbols-outlined text-base">volunteer_activism</span>
+                Pagos Extraordinarios
+              </div>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+                Indique si va a aplicar pagos extraordinarios. Los pagos extraordinarios anuales le permiten reducir la cuota y/o tiempo de duración de su préstamo.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="field-label">¿Aplica pagos extraordinarios?</label>
+                  <select id="f-pagos-extra" class="form-control">
+                    <option value="no">No</option>
+                    <option value="si">Sí</option>
+                  </select>
+                </div>
+                <div id="monto-extra-wrap" style="display:none;">
+                  <label class="field-label">Monto Anual RD$ <span class="req">*</span></label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-sm font-medium">RD$</span>
+                    <input type="text" id="f-monto-extra" placeholder="0.00" class="form-control pl-12">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Codeudor ── -->
+            <div>
+              <div class="section-header">
+                <span class="material-symbols-outlined text-base">group</span>
+                Codeudor
+              </div>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+                Si va a aplicar con un codeudor/garante, debe completar sus datos.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="field-label">¿Aplica codeudor?</label>
+                  <select id="f-codeudor" class="form-control">
+                    <option value="no">No</option>
+                    <option value="si">Sí</option>
+                  </select>
+                </div>
+              </div>
+              <div id="codeudor-wrap" style="display:none;" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label class="field-label">Nombre Codeudor <span class="req">*</span></label>
+                  <input type="text" id="f-cod-nombre" placeholder="Nombre" class="form-control">
+                </div>
+                <div>
+                  <label class="field-label">Apellidos Codeudor <span class="req">*</span></label>
+                  <input type="text" id="f-cod-apellidos" placeholder="Apellidos" class="form-control">
+                </div>
+                <div>
+                  <label class="field-label">Teléfono Codeudor <span class="req">*</span></label>
+                  <input type="tel" id="f-cod-telefono" placeholder="(809) 555-0000" class="form-control">
+                </div>
+                <div>
+                  <label class="field-label">Relación <span class="req">*</span></label>
+                  <select id="f-cod-relacion" class="form-control">
+                    <option value="">— Seleccione —</option>
+                    <option>Cónyuge</option><option>Familiar</option>
+                    <option>Amigo/a</option><option>Socio/a</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Términos y Condiciones ── -->
+            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 space-y-4">
+              <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Por favor acepte los siguientes términos y condiciones:</p>
+
+              <label class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300 cursor-pointer">
+                <input type="checkbox" id="tc1" class="custom-check mt-0.5" required>
+                <span>Soy la persona aplicando para el préstamo y certifico que los datos introducidos en el formulario son verídicos y pertenecen a mi persona.</span>
+              </label>
+
+              <label class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300 cursor-pointer">
+                <input type="checkbox" id="tc2" class="custom-check mt-0.5" required>
+                <span>Acepto que los datos proveídos en esta herramienta y solicitud de financiamiento no obligan a Lo Compa Autoimport ni la entidad financiera a OTORGAR, APROBAR o CONCEDER un préstamo al solicitante. Autorizo a la entidad financiera a realizar un análisis de crédito. Los datos de cuota/tasas son ESTIMADOS y están sujetos a cambio.</span>
+              </label>
+
+              <label class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300 cursor-pointer">
+                <input type="checkbox" id="tc3" class="custom-check mt-0.5">
+                <span>Quiero recibir ofertas y promociones de Lo Compa Autoimport.</span>
+              </label>
+
+              <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed">
+                Al presionar el botón de enviar, tus datos serán enviados a la entidad financiera. Recibirás un correo de confirmación con un link para verificar tu correo electrónico. Debes hacer click en este link o tu solicitud será desestimada.
+              </p>
+            </div>
+
+            <!-- ── Submit ── -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button type="submit" id="btnEnviar"
+                class="btn-submit flex-1 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-700 hover:to-primary text-white font-bold py-4 px-8 rounded-xl text-base transition-all shadow-lg flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">send</span>
+                Enviar Solicitud »
+              </button>
+              <a href="Financiamiento.html"
+                class="flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold py-4 px-6 rounded-xl text-sm transition-all">
+                <span class="material-symbols-outlined text-base">arrow_back</span>
+                Cancelar
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- SUCCESS OVERLAY -->
+  <div id="success-overlay" style="display:none;"
+    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
+      </div>
+      <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-2">¡Solicitud Enviada!</h3>
+      <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">
+        Su solicitud fue enviada exitosamente a <strong id="success-bank"></strong>. Revise su correo electrónico para confirmar su solicitud.
+      </p>
+      <a href="Financiamiento.html"
+        class="inline-flex items-center gap-2 bg-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-700 transition-all">
+        <span class="material-symbols-outlined text-base">home</span>
+        Volver al Inicio
+      </a>
+    </div>
+  </div>
+
+  <script src="../JS/temas.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ─── Load data from localStorage ───
+      const raw = localStorage.getItem('solicitudFinanciamiento');
+      if (!raw) {
+        // No data → redirect back
+        window.location.href = 'Financiamiento.html';
+        return;
+      }
+      const d = JSON.parse(raw);
+
+      // ─── Fill Loan Summary ───
+      document.getElementById('sum-tipo').textContent    = d.tipo === 'usado' ? `Usado (${d.anio})` : 'Nuevo';
+      document.getElementById('sum-inicial').textContent = `RD$ ${Number(d.inicial).toLocaleString('es-DO')}`;
+      document.getElementById('sum-monto').textContent   = `RD$ ${Number(d.monto).toLocaleString('es-DO')}`;
+      document.getElementById('sum-plazo').textContent   = `${d.plazo} meses`;
+      document.getElementById('sum-tasa').textContent    = `${d.tasa}% anual`;
+      document.getElementById('sum-cuota').textContent   = `RD$ ${Number(d.cuota).toLocaleString('es-DO', {minimumFractionDigits: 2, maximumFractionDigits: 2})} /mes`;
+
+      // ─── Fill Bank Card ───
+      document.getElementById('bank-name').textContent = d.bankName;
+      document.getElementById('bank-tasa').textContent = `${d.tasa}%`;
+      document.getElementById('bank-cuota').textContent = `RD$ ${Number(d.cuota).toLocaleString('es-DO', {minimumFractionDigits: 2, maximumFractionDigits: 2})}/mes`;
+      if (d.bankLogo) {
+        document.getElementById('bank-logo').src = d.bankLogo;
+        document.getElementById('bank-logo').alt = d.bankName;
+      }
+      document.getElementById('success-bank').textContent = d.bankName;
+
+      // ─── Bank Info List ───
+      const info = d.info || {};
+      const infoMap = {
+        'Pagos extraordinarios':           info.pagosExtraordinarios,
+        'Gastos cierre':                   info.gastosCierre,
+        'Gastos legales':                  info.gastosLegales,
+        'Penalidad abono capital':         info.penalidadAbonoCap,
+        'Penalidad saldo anticipado':      info.penalidadSaldoAnticipado,
+        'Financiamiento Póliza Seguro':    info.financiamientoPolizaSeguro,
+        'Financia vehículos nuevos':       info.financiaNuevos,
+        'Financia vehículos usados':       info.financiaUsados,
+        'Plazo máximo nuevos':             info.plazoMaxNuevos,
+        'Plazo máximo usados':             info.plazoMaxUsados,
+        'Levantamiento Oposición':         info.levantamientoOposicion,
+        'Requiere Póliza Seguro de Vida':  info.requierePolizaVida,
+        '% Financiado nuevos':             info.porcFinanciadoNuevos,
+        '% Financiado usados':             info.porcFinanciadoUsados,
+        'Antigüedad máxima usados':        info.antiguedadMaxUsados,
+        'Frecuencia revisión tasa':        info.frecuenciaRevisionTasa,
+        'Ingresos Mínimos':                info.ingresoMinimo,
+        'Redes de Pago':                   info.redesDePago,
+      };
+      const listEl = document.getElementById('bank-info-list');
+      Object.entries(infoMap).forEach(([label, val]) => {
+        if (!val) return;
+        const div = document.createElement('div');
+        div.className = 'flex justify-between gap-2';
+        div.innerHTML = `<span class="text-slate-400">${label}:</span><strong class="text-right">${val}</strong>`;
+        listEl.appendChild(div);
+      });
+      if (info.actualizacion) {
+        const note = document.createElement('p');
+        note.className = 'text-slate-400 mt-2 pt-2 border-t border-slate-100 dark:border-slate-800';
+        note.textContent = `Información actualizada el ${info.actualizacion}`;
+        listEl.appendChild(note);
+      }
+
+      // ─── Toggle Pagos Extraordinarios ───
+      document.getElementById('f-pagos-extra').addEventListener('change', function() {
+        document.getElementById('monto-extra-wrap').style.display = this.value === 'si' ? 'block' : 'none';
+      });
+
+      // ─── Toggle Codeudor ───
+      document.getElementById('f-codeudor').addEventListener('change', function() {
+        document.getElementById('codeudor-wrap').style.display = this.value === 'si' ? 'grid' : 'none';
+      });
+
+      // ─── Form Submit ───
+      document.getElementById('solicitudForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Basic validation
+        const required = this.querySelectorAll('[required]');
+        let valid = true;
+        required.forEach(el => {
+          if (!el.value.trim() || (el.type === 'checkbox' && !el.checked)) {
+            el.style.borderColor = '#CE1126';
+            valid = false;
+          } else {
+            el.style.borderColor = '';
+          }
+        });
+
+        // Email match
+        const email = document.getElementById('f-email').value;
+        const emailConf = document.getElementById('f-email-confirm').value;
+        if (email !== emailConf) {
+          document.getElementById('f-email-confirm').style.borderColor = '#CE1126';
+          alert('Los correos electrónicos no coinciden.');
+          return;
+        }
+
+        if (!valid) {
+          alert('Por favor complete todos los campos obligatorios.');
+          return;
+        }
+
+        // Show success
+        document.getElementById('success-overlay').style.display = 'flex';
+        localStorage.removeItem('solicitudFinanciamiento');
+      });
+
+      // Reset field border on input
+      document.querySelectorAll('.form-control').forEach(el => {
+        el.addEventListener('input', () => el.style.borderColor = '');
+      });
+    });
+  </script>
+</body>
+</html>

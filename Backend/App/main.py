@@ -1,4 +1,5 @@
 import os
+import urllib.parse
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,6 +24,31 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def obtener_imagen_vehiculo(vehiculo):
+    import os
+    import urllib.parse
+    
+    # La carpeta compartida de imágenes (relativa a Backend/app/main.py)
+    ruta_base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Storage Images")
+    
+    # Formato Base que queremos encontrar (ej. "2023 Lexus LX 600 F Sport")
+    nombre_buscado = f"{vehiculo.anio}{vehiculo.marca}{vehiculo.modelo}".replace(" ", "").lower()
+    
+    try:
+        if os.path.exists(ruta_base):
+            archivos = os.listdir(ruta_base)
+            for archivo in archivos:
+                # Comparamos ignorando espacios y mayúsculas
+                if nombre_buscado in archivo.replace(" ", "").lower():
+                    # ¡Encontramos el archivo EXACTO físico que existe!
+                    return f"http://127.0.0.1:8000/imagenes/{urllib.parse.quote(archivo)}"
+    except Exception as e:
+        print(f"Error buscando la imagen: {e}")
+        
+    # Si no lo encuentra, devuelve un nombre genérico esperado
+    nombre_fallback = f"{vehiculo.anio} {vehiculo.marca} {vehiculo.modelo}.jpg"
+    return f"http://127.0.0.1:8000/imagenes/{urllib.parse.quote(nombre_fallback)}"
 
 # ✅ ENDPOINT GET para obtener TODOS los vehículos
 @app.get("/autos")
@@ -51,7 +77,7 @@ def obtener_autos(db: Session = Depends(get_db)):
                 "destacado": vehiculo.destacado,
                 "descripcion": vehiculo.descripcion,
                 "imagen": vehiculo.imagen,
-                "imagen_url": f"http://127.0.0.1:8000/imagenes/{vehiculo.imagen}" if vehiculo.imagen else None
+                "imagen_url": obtener_imagen_vehiculo(vehiculo)
             })
         
         return {
@@ -88,7 +114,7 @@ def obtener_auto_por_id(auto_id: int, db: Session = Depends(get_db)):
         "destacado": vehiculo.destacado,
         "descripcion": vehiculo.descripcion,
         "imagen": vehiculo.imagen,
-        "imagen_url": f"http://127.0.0.1:8000/imagenes/{vehiculo.imagen}" if vehiculo.imagen else None
+        "imagen_url": obtener_imagen_vehiculo(vehiculo)
     }
 
 # ✅ ENDPOINT GET para obtener solo vehículos disponibles
@@ -110,7 +136,7 @@ def obtener_autos_disponibles(db: Session = Depends(get_db)):
             "precio": vehiculo.precio,
             "disponible": vehiculo.disponible,
             "imagen": vehiculo.imagen,
-            "imagen_url": f"http://127.0.0.1:8000/imagenes/{vehiculo.imagen}" if vehiculo.imagen else None
+            "imagen_url": obtener_imagen_vehiculo(vehiculo)
         })
     
     return {

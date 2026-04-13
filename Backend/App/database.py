@@ -4,11 +4,9 @@ from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import os
 
-import os
-from dotenv import load_dotenv
-
-# Carga las variables del archivo .env
-load_dotenv()
+# Carga las variables del archivo .env (ruta explícita al .env dentro de app/)
+env_path = os.path.join(os.path.dirname(__file__), ".env")
+load_dotenv(env_path)
 
 # Asigna las variables a constantes
 DB_HOST = os.getenv("DB_HOST")

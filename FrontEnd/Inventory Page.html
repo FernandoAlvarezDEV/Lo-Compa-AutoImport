@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Inventario de Vehículos - Lo Compa Autoimport</title>
+<html lang="es">
 
-    <link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport\Logo.png"/>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Evita parpadeo: aplica el tema ANTES de pintar -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem("theme");
+            const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const shouldDark = saved ? saved === "dark" : systemDark;
+            if (shouldDark) document.documentElement.classList.add("dark");
+        })();
+    </script>
+
+    <title>Inventario de Vehículos - Lo Compa Autoimport</title>
+    <link rel="icon" type="image/png" href="../Logo Lo Compa AutoImport\Logo.png" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -45,49 +57,52 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #002D62; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-[#0c1d1b] dark:text-[#f8fcfc] transition-colors duration-200">
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#0c1d1b] dark:text-[#f8fcfc] transition-colors duration-200">
     <div class="layout-container flex flex-col min-h-screen">
-        <header class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
+        <header
+            class="sticky top-0 z-50 bg-white dark:bg-background-dark/90 backdrop-blur-md border-b border-solid border-gray-200 dark:border-[#2a3a38] px-4 md:px-10 lg:px-40 py-3">
             <div class="flex items-center justify-between max-w-[1440px] mx-auto">
                 <div class="flex items-center gap-8">
                     <div class="flex items-center gap-3">
                         <div class="shrink-0">
-                            <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
+                            <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport"
+                                class="h-12 w-auto object-contain filter drop-shadow-md">
                         </div>
-                        <h2 class="text-xl font-bold tracking-tight">Lo Compa <span class="text-dr-red">Autoimport</span></h2>
+                        <h2 class="text-xl font-bold tracking-tight">Lo Compa <span
+                                class="text-dr-red">Autoimport</span></h2>
                     </div>
                     <nav class="hidden md:flex items-center gap-7">
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="House.html">Inicio</a>
-                        <a class="text-sm font-bold text-dr-blue dark:text-white border-b-2 border-dr-red pb-1" href="Inventory Page.html">Inventario</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="Nosotros.html">Nosotros</a>
-                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors" href="Financiamiento.html">Financiamiento</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors"
+                            href="House.html">Inicio</a>
+                        <a class="text-sm font-bold text-dr-blue dark:text-white border-b-2 border-dr-red pb-1"
+                            href="Inventory Page.html">Inventario</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors"
+                            href="Nosotros.html">Nosotros</a>
+                        <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue dark:text-white/70 dark:hover:text-white transition-colors"
+                            href="Financiamiento.html">Financiamiento</a>
                     </nav>
                 </div>
                 <div class="flex items-center gap-6">
                     <!-- BUSCADOR -->
                     <div class="relative -top-[0px] left-[10px]">
-                        <input
-                            id="globalSearch"
-                            type="text"
-                            placeholder="Buscar vehículo..."
-                            class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
+                        <input id="globalSearch" type="text" placeholder="Buscar vehículo..." class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium
                                    bg-white dark:bg-[#1e293b]
                                    border border-gray-200 dark:border-white/10
                                    text-gray-800 dark:text-white
                                    placeholder-gray-400 dark:placeholder-gray-500
-                                   focus:outline-none focus:ring-2 focus:ring-dr-red"
-                        />
-                        <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                                   focus:outline-none focus:ring-2 focus:ring-dr-red" />
+                        <span
+                            class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
                             search
                         </span>
                     </div>
 
                     <!-- BOTÓN MODO OSCURO -->
-                    <button
-                        id="btnTheme"
+                    <button id="btnTheme"
                         class="inline-flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
-                        type="button"
-                    >
+                        type="button">
                         <span id="themeIcon" class="material-symbols-outlined">dark_mode</span>
                         <span id="themeText">Oscuro</span>
                     </button>
@@ -97,98 +112,154 @@
 
         <main class="flex-1 max-w-[1440px] mx-auto w-full px-4 md:px-10 lg:px-40 py-8 flex gap-8">
             <aside class="w-64 shrink-0 hidden md:flex flex-col gap-6 sticky top-24 h-fit">
-                <div class="flex flex-col bg-white dark:bg-[#242424] rounded-xl p-0 shadow-lg overflow-hidden border border-gray-200 dark:border-[#2a3a38]">
+                <div
+                    class="flex flex-col bg-white dark:bg-[#242424] rounded-xl p-0 shadow-lg overflow-hidden border border-gray-200 dark:border-[#2a3a38]">
                     <div class="bg-dr-blue p-4 flex items-center justify-between filters-header">
                         <h3 class="text-base font-bold text-white flex items-center gap-2">
                             <span class="material-symbols-outlined text-xl">tune</span> Filtros
                         </h3>
-                        <button id="btnResetFilters" class="text-[10px] font-bold text-white/80 hover:text-white uppercase tracking-wider">Reiniciar</button>
+                        <button id="btnResetFilters"
+                            class="text-[10px] font-bold text-white/80 hover:text-white uppercase tracking-wider">Reiniciar</button>
                     </div>
                     <div class="p-5">
                         <div class="mb-8">
-                            <p class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">Tipo de Vehículo</p>
+                            <p
+                                class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">
+                                Tipo de Vehículo</p>
                             <div class="flex flex-wrap gap-2">
-                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                <div
+                                    class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">SUV</span>
                                 </div>
-                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                <div
+                                    class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">Sedán</span>
                                 </div>
-                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                <div
+                                    class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">Camioneta</span>
                                 </div>
-                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                <div
+                                    class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">Deportivo</span>
                                 </div>
-                                <div class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
+                                <div
+                                    class="vehicle-type-btn flex h-8 items-center gap-2 rounded-md bg-gray-100 dark:bg-[#333] text-dr-blue dark:text-gray-300 px-3 cursor-pointer">
                                     <span class="text-xs font-bold uppercase">Convertibles</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-8">
-                            <p class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">Marca</p>
+                            <p
+                                class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">
+                                Marca</p>
                             <div class="flex flex-col max-h-40 overflow-y-auto custom-scrollbar pr-2 gap-1">
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Audi</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Audi</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">BMW</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">BMW</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Chevrolet</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Chevrolet</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Ford</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Ford</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Honda</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Honda</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Hyundai</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Hyundai</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Lexus</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Lexus</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Mazda</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Mazda</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Mercedes-Benz</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Mercedes-Benz</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Porsche</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Porsche</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Ram</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Ram</span>
                                 </label>
                                 <label class="flex items-center gap-3 py-1 cursor-pointer group">
-                                    <input name="brand" class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue" type="checkbox"/>
-                                    <span class="text-sm font-medium group-hover:text-dr-blue transition-colors">Toyota</span>
+                                    <input name="brand"
+                                        class="h-4 w-4 rounded border-gray-300 text-dr-blue focus:ring-dr-blue"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm font-medium group-hover:text-dr-blue transition-colors">Toyota</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="mb-8">
-                            <p class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">Rango de Precio (USD)</p>
+                            <p
+                                class="text-xs font-bold uppercase tracking-wider text-dr-blue/60 dark:text-gray-500 mb-3">
+                                Rango de Precio (USD)</p>
                             <div class="pt-2">
                                 <div class="relative h-1.5 w-full bg-gray-200 dark:bg-[#333] rounded-full">
-                                    <div class="price-slider-track absolute inset-y-0 left-[20%] right-[10%] bg-dr-red rounded-full"></div>
-                                    <div class="price-thumb-min absolute top-1/2 -translate-y-1/2 left-[20%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer"></div>
-                                    <div class="price-thumb-max absolute top-1/2 -translate-y-1/2 right-[10%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer"></div>
+                                    <div
+                                        class="price-slider-track absolute inset-y-0 left-[20%] right-[10%] bg-dr-red rounded-full">
+                                    </div>
+                                    <div
+                                        class="price-thumb-min absolute top-1/2 -translate-y-1/2 left-[20%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer">
+                                    </div>
+                                    <div
+                                        class="price-thumb-max absolute top-1/2 -translate-y-1/2 right-[10%] size-4 rounded-full bg-white border-2 border-dr-red shadow-md cursor-pointer">
+                                    </div>
                                 </div>
-                                <div class="flex justify-between mt-4 text-xs font-bold text-dr-blue dark:text-gray-300">
+                                <div
+                                    class="flex justify-between mt-4 text-xs font-bold text-dr-blue dark:text-gray-300">
                                     <span id="price-min">$33,000</span>
                                     <span id="price-max">$185,000</span>
                                 </div>
@@ -200,23 +271,29 @@
                 <div class="bg-dr-red rounded-xl p-6 text-white overflow-hidden relative shadow-lg">
                     <div class="relative z-10">
                         <h4 class="text-lg font-black mb-1 uppercase tracking-tighter italic">Tu Crédito Aquí</h4>
-                        <p class="text-xs opacity-90 leading-tight mb-4">Financiamiento disponible con los principales bancos del país.</p>
-                        <a href="Financiamiento.html" class="bg-white text-dr-red px-4 py-2 rounded font-black text-[10px] uppercase hover:bg-gray-100 transition-all">Solicitar Ya</a>
+                        <p class="text-xs opacity-90 leading-tight mb-4">Financiamiento disponible con los principales
+                            bancos del país.</p>
+                        <a href="Financiamiento.html"
+                            class="bg-white text-dr-red px-4 py-2 rounded font-black text-[10px] uppercase hover:bg-gray-100 transition-all">Solicitar
+                            Ya</a>
                     </div>
-                    <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10">payments</span>
+                    <span
+                        class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10">payments</span>
                 </div>
             </aside>
 
             <section class="flex-1">
                 <div class="flex items-center justify-between mb-8">
                     <div>
-                        <h1 class="text-3xl font-black text-dr-blue dark:text-white uppercase italic tracking-tighter">Inventario Disponible</h1>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Encuentra el vehículo de tus sueños en República Dominicana</p>
+                        <h1 class="text-3xl font-black text-dr-blue dark:text-white uppercase italic tracking-tighter">
+                            Inventario Disponible</h1>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Encuentra el vehículo de tus
+                            sueños en República Dominicana</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="text-xs font-bold uppercase dark:text-white text-dr-blue/40">Ordenar:</span>
                         <select id="orderSelect"
-                            class="bg-white dark:bg-[#242424] border border-gray-200 dark:border-[#2a3a38] rounded-lg text-xs font-bold px-3 py-2 outline-none cursor-pointer">
+                            class="bg-white dark:bg-[#242424] dark:text-white border border-gray-200 dark:border-[#2a3a38] rounded-lg text-xs font-bold px-3 py-2 outline-none cursor-pointer">
                             <option value="recent">Más Recientes</option>
                             <option value="price-asc">Precio: Menor a Mayor</option>
                             <option value="price-desc">Precio: Mayor a Menor</option>
@@ -227,85 +304,127 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                     <!-- Vehículo 1 -->
                     <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                         data-precio="95000" data-fecha="2024-01-15" data-marca="Toyota" data-tipo="suv">
+                        data-precio="95000" data-fecha="2024-01-15" data-marca="Toyota" data-tipo="suv">
                         <div class="relative aspect-[4/3] overflow-hidden">
                             <div class="absolute top-3 left-3 z-10">
-                                <span class="bg-dr-red text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">0KM Mileage</span>
+                                <span
+                                    class="bg-dr-red text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">0KM
+                                    Mileage</span>
                             </div>
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1594502184342-2e12f877aa73?q=80&w=800" alt="Toyota Prado VX">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                src="https://images.unsplash.com/photo-1594502184342-2e12f877aa73?q=80&w=800"
+                                alt="Toyota Prado VX">
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <div class="mb-4">
-                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota Prado VX</h3>
+                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota
+                                    Prado VX</h3>
                                 <p class="text-dr-red font-black text-xl mt-1">US$ 95,000</p>
                             </div>
                             <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">speed</span><span class="text-[11px] font-bold">0 km</span></div>
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">settings</span><span class="text-[11px] font-bold uppercase">Auto</span></div>
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">local_gas_station</span><span class="text-[11px] font-bold uppercase">Diesel</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">speed</span><span
+                                        class="text-[11px] font-bold">0 km</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">settings</span><span
+                                        class="text-[11px] font-bold uppercase">Auto</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">local_gas_station</span><span
+                                        class="text-[11px] font-bold uppercase">Diesel</span></div>
                             </div>
                             <div class="grid grid-cols-1 gap-2">
-                                <button class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">Consulta por WhatsApp</button>
-                                <button class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">Detalles</button>
+                                <button
+                                    class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">Consulta
+                                    por WhatsApp</button>
+                                <button
+                                    class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">Detalles</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Vehículo 2 -->
                     <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                         data-precio="66000" data-fecha="2024-01-10" data-marca="Toyota" data-tipo="camioneta">
+                        data-precio="66000" data-fecha="2024-01-10" data-marca="Toyota" data-tipo="camioneta">
                         <div class="relative aspect-[4/3] overflow-hidden">
                             <div class="absolute top-3 left-3 z-10">
-                                <span class="bg-dr-blue text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">Recién Llegada</span>
+                                <span
+                                    class="bg-dr-blue text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">Recién
+                                    Llegada</span>
                             </div>
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800" alt="Toyota Hilux GR-Sport">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800"
+                                alt="Toyota Hilux GR-Sport">
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <div class="mb-4">
-                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota Hilux GR-Sport</h3>
+                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota
+                                    Hilux GR-Sport</h3>
                                 <p class="text-dr-red font-black text-xl mt-1">US$ 66,000</p>
                             </div>
                             <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">speed</span><span class="text-[11px] font-bold">0 km</span></div>
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">settings</span><span class="text-[11px] font-bold uppercase">Auto</span></div>
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">local_gas_station</span><span class="text-[11px] font-bold uppercase">Diesel</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">speed</span><span
+                                        class="text-[11px] font-bold">0 km</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">settings</span><span
+                                        class="text-[11px] font-bold uppercase">Auto</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">local_gas_station</span><span
+                                        class="text-[11px] font-bold uppercase">Diesel</span></div>
                             </div>
                             <div class="grid grid-cols-1 gap-2">
-                                <button class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">Consulta por WhatsApp</button>
-                                <button class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">Detalles</button>
+                                <button
+                                    class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">Consulta
+                                    por WhatsApp</button>
+                                <button
+                                    class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">Detalles</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Vehículo 3 -->
                     <div class="vehicle-card bg-white dark:bg-[#242424] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-[#2a3a38] flex flex-col group"
-                         data-precio="45000" data-fecha="2024-02-05" data-marca="Toyota" data-tipo="sedán">
+                        data-precio="45000" data-fecha="2024-02-05" data-marca="Toyota" data-tipo="sedán">
                         <div class="relative aspect-[4/3] overflow-hidden">
                             <div class="absolute top-3 left-3 z-10">
-                                <span class="bg-accent-gold text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">Premium</span>
+                                <span
+                                    class="bg-accent-gold text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded shadow-lg">Premium</span>
                             </div>
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=800" alt="Toyota Camry XSE">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=800"
+                                alt="Toyota Camry XSE">
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <div class="mb-4">
-                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota Camry XSE V6</h3>
+                                <h3 class="font-bold text-lg leading-tight text-dr-blue dark:text-white">2024 Toyota
+                                    Camry XSE V6</h3>
                                 <p class="text-dr-red font-black text-xl mt-1">US$ 45,000</p>
                             </div>
                             <div class="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-dr-blue/60 dark:text-gray-400">
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">speed</span><span class="text-[11px] font-bold">0 km</span></div>
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">settings</span><span class="text-[11px] font-bold uppercase">Auto</span></div>
-                                <div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">local_gas_station</span><span class="text-[11px] font-bold uppercase">Gasolina</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">speed</span><span
+                                        class="text-[11px] font-bold">0 km</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">settings</span><span
+                                        class="text-[11px] font-bold uppercase">Auto</span></div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-sm">local_gas_station</span><span
+                                        class="text-[11px] font-bold uppercase">Gasolina</span></div>
                             </div>
                             <div class="grid grid-cols-1 gap-2">
-                                <button class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">Consulta por WhatsApp</button>
-                                <button class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">Detalles</button>
+                                <button
+                                    class="h-10 rounded-lg bg-dr-red text-white text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-dr-red/90 transition-all">Consulta
+                                    por WhatsApp</button>
+                                <button
+                                    class="h-10 rounded-lg border-2 border-dr-blue/10 text-dr-blue dark:text-white text-[11px] font-black uppercase tracking-wider hover:bg-dr-blue hover:text-white transition-all">Detalles</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-12 flex justify-center">
-                    <button id="btnVerMas" class="flex items-center gap-2 px-8 py-3 bg-white bg-[#242424] border-2 border-dr-blue text-dr-blue rounded-full text-xs font-black uppercase tracking-widest shadow-md hover:bg-dr-blue hover:text-white transition-all">
+                    <button id="btnVerMas"
+                        class="flex items-center gap-2 px-8 py-3 bg-white dark:bg-[#242424] border-2 border-dr-blue text-dr-blue dark:text-white rounded-full text-xs font-black uppercase tracking-widest shadow-md hover:bg-dr-blue hover:text-white transition-all">
                         Ver Más Vehículos
                         <span class="material-symbols-outlined text-sm">expand_more</span>
                     </button>
@@ -318,15 +437,20 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     <div class="space-y-6">
                         <div class="flex items-center gap-3 text-white">
-                            <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport" class="h-12 w-auto object-contain filter drop-shadow-md">
-                            <h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span class="text-white/80 font-medium">Autoimport</span></h2>
+                            <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport"
+                                class="h-12 w-auto object-contain filter drop-shadow-md">
+                            <h2 class="text-xl font-black tracking-tight uppercase">Lo Compa <span
+                                    class="text-white/80 font-medium">Autoimport</span></h2>
                         </div>
-                        <p class="leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos premium certificados e importaciones directas.</p>
+                        <p class="leading-relaxed text-sm">El destino #1 en la República Dominicana para vehículos
+                            premium certificados e importaciones directas.</p>
                         <div class="flex gap-4">
-                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
+                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                                href="#">
                                 <i class="material-symbols-outlined text-lg">public</i>
                             </a>
-                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all" href="#">
+                            <a class="size-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                                href="#">
                                 <i class="material-symbols-outlined text-lg">share</i>
                             </a>
                         </div>
@@ -336,7 +460,7 @@
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start gap-3">
                                 <span class="material-symbols-outlined text-accent">location_on</span>
-                                <span class="text-white/80">Av. Independencia #456, <br/>Santo Domingo, RD</span>
+                                <span class="text-white/80">Av. Independencia #456, <br />Santo Domingo, RD</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <span class="material-symbols-outlined text-accent">phone</span>
@@ -366,7 +490,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
+                <div
+                    class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs uppercase tracking-widest font-bold">
                     <p>© 2026 Lo Compa Autoimport. Orgullosamente Dominicanos.</p>
                     <div class="flex gap-8"></div>
                 </div>
@@ -374,9 +499,10 @@
         </footer>
     </div>
 
-<script src="../JS/api.js"></script>         
-<script src="../JS/inventory.js"></script>   
-<script src="../JS/temas.js"></script>       
-<script src="../JS/Buscador.js"></script>    
+    <script src="../JS/temas.js"></script>
+    <script src="../JS/api.js"></script>
+    <script src="../JS/inventory.js"></script>
+    <script src="../JS/Buscador.js"></script>
 </body>
+
 </html>
