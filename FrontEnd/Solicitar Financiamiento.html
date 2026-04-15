@@ -143,21 +143,34 @@
     <div class="flex items-center justify-between max-w-[1440px] mx-auto">
       <div class="flex items-center gap-8">
         <a href="House.html" class="group flex items-center gap-3 cursor-pointer">
-          <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo" class="h-12 w-auto object-contain filter drop-shadow-md transition-transform duration-200 group-hover:scale-105">
+          <!-- LOGO -->
+          <img src="../Logo Lo Compa AutoImport/Logo.png" alt="Logo de Lo Compa Autoimport"
+            class="h-12 w-auto object-contain filter drop-shadow-md transition-transform duration-200 group-hover:scale-105">
+          <!-- TEXTO -->
           <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-200 group-hover:text-dr-red">
             Lo Compa <span class="text-dr-red dark:group-hover:text-white group-hover:text-primary">Autoimport</span>
           </h2>
         </a>
         <nav class="hidden md:flex items-center gap-7">
-          <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-dr-red transition-colors" href="House.html">Inicio</a>
-          <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-dr-red transition-colors" href="Inventory Page.html">Inventario</a>
-          <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-dr-red transition-colors" href="Nosotros.html">Nosotros</a>
-          <a class="text-sm font-bold text-dr-red border-b-2 border-dr-red pb-1" href="Financiamiento.html">Financiamiento</a>
+          <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="House.html">Inicio</a>
+          <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Nosotros.html">Nosotros</a>
+          <a class="text-sm font-medium text-dr-blue/70 hover:text-dr-blue transition-colors" href="Inventory Page.html">Inventario</a>
+          <a class="text-sm font-bold text-dr-blue border-b-2 border-dr-red pb-1" href="Financiamiento.html">Financiamiento</a>
         </nav>
       </div>
       <div class="flex items-center gap-3">
+        <!-- BUSCADOR -->
+        <div class="relative">
+          <input id="globalSearch" type="text" placeholder="Buscar vehículo..."
+            class="h-9 w-44 rounded-lg px-3 pr-9 text-sm font-medium bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dr-red" />
+          <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+            search
+          </span>
+        </div>
+
+        <!-- BOTÓN MODO OSCURO -->
         <button id="btnTheme"
-          class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-primary dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+          class="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-white/5 px-4 py-2 text-sm font-bold text-dr-blue dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
           type="button" aria-label="Cambiar tema">
           <span id="themeIcon" class="material-symbols-outlined text-xl">dark_mode</span>
           <span id="themeText">Oscuro</span>
@@ -600,6 +613,7 @@
   </div>
 
   <script src="../JS/temas.js"></script>
+  <script src="../JS/Buscador.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 

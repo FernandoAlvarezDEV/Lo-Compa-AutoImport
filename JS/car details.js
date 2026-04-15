@@ -211,11 +211,25 @@ function renderizarDetalles(auto) {
     // BOTÓN WHATSAPP
     // ═══════════════════════════════════════════
 
+    const NUMERO_WA = '18297534583';
+    const mensajeFlotante = `Hola! Estoy interesado en el ${auto.marca} ${auto.modelo} ${auto.anio} por USD$ ${auto.precio.toLocaleString()}`;
+    const urlWA = `https://wa.me/${NUMERO_WA}?text=${encodeURIComponent(mensajeFlotante)}`;
+
+    // Botones inline con wa.me
     const botonesWhatsapp = document.querySelectorAll('a[href*="wa.me"]');
     botonesWhatsapp.forEach(boton => {
-        const mensaje = `Hola! Estoy interesado en el ${auto.marca} ${auto.modelo} ${auto.anio} por USD$ ${auto.precio.toLocaleString()}`;
-        boton.href = `https://wa.me/18297534583?text=${encodeURIComponent(mensaje)}`;
+        boton.href = urlWA;
+        boton.target = '_blank';
+        boton.rel = 'noopener noreferrer';
     });
+
+    // Botón flotante
+    const btnFlotante = document.getElementById('whatsapp-float');
+    if (btnFlotante) {
+        btnFlotante.href = urlWA;
+        btnFlotante.target = '_blank';
+        btnFlotante.rel = 'noopener noreferrer';
+    }
 }
 
 async function calcularFinanciamiento(auto) {
